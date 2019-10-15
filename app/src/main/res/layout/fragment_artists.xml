@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.FragmentListaDeArtistas">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.ArtistsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragmentArtistasRecyclerView"
+        android:id="@+id/fragment_artists_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        app:reverseLayout="false">
     </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

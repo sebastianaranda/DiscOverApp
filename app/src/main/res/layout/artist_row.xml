@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/artistRowLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:layout_marginBottom="12dp">
+
+    <ImageView
+        android:id="@+id/img_artist_image"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/img_artist_placeholder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txt_artist_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- TODO: (Juan) Pasar a tools:src cuando venga la imagen de la API-->
+
+    <TextView
+        android:id="@+id/txt_artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="120dp"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@id/img_artist_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Nombre Artista" />
+
+    <TextView
+        android:id="@+id/txt_album_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_artist_recycler_albumes"
+        android:textSize="20sp"
+        android:textColor="@color/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/txt_artist_name"
+        app:layout_constraintTop_toBottomOf="@id/txt_artist_name" />
+
+    <TextView
+        android:id="@+id/txt_album_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorSecondary"
+        app:layout_constraintStart_toEndOf="@id/txt_album_label"
+        app:layout_constraintTop_toBottomOf="@id/txt_artist_name"
+        tools:text="N" />
+
+    <ImageView
+        android:id="@+id/img_play_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_keyboard_arrow_right"
+        android:textColor="@android:color/primary_text_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.FragmentPerfilArtista"
+    tools:context=".view.ArtistProfileFragment"
     android:background="@color/colorPrimary">
 
     <FrameLayout
@@ -16,7 +16,7 @@
             android:id="@+id/fragmentPerfilArtista_ImageView_FotoArtista"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            tools:src="@drawable/imageprofileplaceholder"
+            tools:src="@drawable/img_artist_placeholder"
             android:scaleType="centerCrop"
             />
 

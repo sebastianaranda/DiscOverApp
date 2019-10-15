@@ -2,7 +2,7 @@ package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
 import java.io.Serializable;
 
-public class Artista implements Serializable {
+public class Artist implements Serializable {
 
     private int id;
     private String name;
@@ -11,7 +11,7 @@ public class Artista implements Serializable {
     private String actividad;
     private String descripcion;
 
-    public Artista(int id, String name, int nbAlbum,Integer pictureSmall, String actividad, String descripcion) {
+    public Artist(int id, String name, int nbAlbum, Integer pictureSmall, String actividad, String descripcion) {
         this.id = id;
         this.name = name;
         this.nbAlbum = nbAlbum;
