@@ -19,11 +19,11 @@ import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 
 import java.util.List;
 
-public class FragmentArtists extends Fragment implements ArtistAdapter.ArtistAdapterListener {
+public class ArtistsFragment extends Fragment implements ArtistAdapter.ArtistAdapterListener {
 
     private FragmentArtistsListener fragmentArtistsListener;
 
-    public FragmentArtists() {
+    public ArtistsFragment() {
         // Required empty public constructor
     }
 

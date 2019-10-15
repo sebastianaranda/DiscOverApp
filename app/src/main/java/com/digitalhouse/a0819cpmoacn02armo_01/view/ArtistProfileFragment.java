@@ -17,7 +17,7 @@ import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentArtistProfile extends Fragment {
+public class ArtistProfileFragment extends Fragment {
 
     public static final String CLAVE_ARTISTA = "claveArtista";
 
@@ -27,7 +27,7 @@ public class FragmentArtistProfile extends Fragment {
     private TextView fragmentPerfilArtista_TextView_DescripcionArtista;
 
 
-    public FragmentArtistProfile() {
+    public ArtistProfileFragment() {
         // Required empty public constructor
     }
 

@@ -8,13 +8,13 @@ import android.os.Bundle;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 
-public class MainActivity extends AppCompatActivity implements FragmentArtists.FragmentArtistsListener {
+public class MainActivity extends AppCompatActivity implements ArtistsFragment.FragmentArtistsListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        attachFragment(new FragmentArtists());
+        attachFragment(new ArtistsFragment());
     }
 
     private void attachFragment(Fragment fragment) {
@@ -28,15 +28,15 @@ public class MainActivity extends AppCompatActivity implements FragmentArtists.F
     @Override
     public void getArtistFromFragment(Artist artist) {
         //TODO: (Seba) Agregar comportamiento para abrir detalle
-        FragmentArtistProfile fragmentArtistProfile = new FragmentArtistProfile();
+        ArtistProfileFragment artistProfileFragment = new ArtistProfileFragment();
 
         Bundle bundle = new Bundle();
 
-        bundle.putSerializable(FragmentArtistProfile.CLAVE_ARTISTA, artist);
+        bundle.putSerializable(ArtistProfileFragment.CLAVE_ARTISTA, artist);
 
-        fragmentArtistProfile.setArguments(bundle);
+        artistProfileFragment.setArguments(bundle);
 
-        attachFragment(fragmentArtistProfile);
+        attachFragment(artistProfileFragment);
     }
 
 }

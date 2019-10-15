@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 
-public class FragmentCategories extends Fragment {
+public class CategoriesFragment extends Fragment {
 
-    public FragmentCategories() {
+    public CategoriesFragment() {
         // Required empty public constructor
     }
 
