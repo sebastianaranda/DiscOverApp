@@ -3,6 +3,7 @@ package com.digitalhouse.a0819cpmoacn02armo_01.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
@@ -27,16 +28,12 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
 
     @Override
     public void getArtistFromFragment(Artist artist) {
-        //TODO: (Seba) Agregar comportamiento para abrir detalle
         ArtistProfileFragment artistProfileFragment = new ArtistProfileFragment();
-
+        Intent intent = new Intent(MainActivity.this,ArtistActivity.class);
         Bundle bundle = new Bundle();
-
-        bundle.putSerializable(ArtistProfileFragment.CLAVE_ARTISTA, artist);
-
-        artistProfileFragment.setArguments(bundle);
-
-        attachFragment(artistProfileFragment);
+        bundle.putSerializable(ArtistProfileFragment.CLAVE_ARTISTA,artist);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }
