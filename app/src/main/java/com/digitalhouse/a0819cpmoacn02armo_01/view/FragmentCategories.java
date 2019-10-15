@@ -10,32 +10,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 
-import org.w3c.dom.Text;
+public class FragmentCategories extends Fragment {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class FragmentCategorias extends Fragment {
-
-    public FragmentCategorias() {
+    public FragmentCategories() {
         // Required empty public constructor
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categorias, container, false);
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_categories, container, false);
     }
 
 }

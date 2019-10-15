@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.FragmentCategorias">
+    tools:context=".view.FragmentCategories">
 
+    <!-- TODO: (Juan) Quitar cuando esté el ViewPager-->
     <TextView
-        android:id="@+id/txtViewPagerTemp"
+        android:id="@+id/txt_view_pager_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ACA VA EL VIEW PAGER"

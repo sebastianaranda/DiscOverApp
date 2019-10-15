@@ -12,12 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Artista;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPerfilArtista extends Fragment {
+public class FragmentArtistProfile extends Fragment {
 
     public static final String CLAVE_ARTISTA = "claveArtista";
 
@@ -27,7 +27,7 @@ public class FragmentPerfilArtista extends Fragment {
     private TextView fragmentPerfilArtista_TextView_DescripcionArtista;
 
 
-    public FragmentPerfilArtista() {
+    public FragmentArtistProfile() {
         // Required empty public constructor
     }
 
@@ -36,7 +36,7 @@ public class FragmentPerfilArtista extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vistaDelFragment = inflater.inflate(R.layout.fragment_perfil_artista, container, false);
+        View vistaDelFragment = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
         fragmentPerfilArtista_ImageView_FotoArtista = vistaDelFragment.findViewById(R.id.fragmentPerfilArtista_ImageView_FotoArtista);
         fragmentPerfilArtista_TextView_NombreArtista = vistaDelFragment.findViewById(R.id.fragmentPerfilArtista_TextView_NombreArtista);
@@ -45,12 +45,12 @@ public class FragmentPerfilArtista extends Fragment {
 
         Bundle bundle = getArguments();
 
-        Artista artistaSeleccionado = (Artista) bundle.getSerializable(CLAVE_ARTISTA);
+        Artist artistSeleccionado = (Artist) bundle.getSerializable(CLAVE_ARTISTA);
 
-        fragmentPerfilArtista_ImageView_FotoArtista.setImageResource(artistaSeleccionado.getPictureSmall());
-        fragmentPerfilArtista_TextView_NombreArtista.setText(artistaSeleccionado.getName());
-        fragmentPerfilArtista_TextView_ActividadArtista.setText(artistaSeleccionado.getActividad());
-        fragmentPerfilArtista_TextView_DescripcionArtista.setText(artistaSeleccionado.getDescripcion());
+        fragmentPerfilArtista_ImageView_FotoArtista.setImageResource(artistSeleccionado.getPictureSmall());
+        fragmentPerfilArtista_TextView_NombreArtista.setText(artistSeleccionado.getName());
+        fragmentPerfilArtista_TextView_ActividadArtista.setText(artistSeleccionado.getActividad());
+        fragmentPerfilArtista_TextView_DescripcionArtista.setText(artistSeleccionado.getDescripcion());
 
 
         return vistaDelFragment;

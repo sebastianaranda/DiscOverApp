@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">0819CPMOACN02ARMO-01</string>
-    <string name="albumes">Albumes: </string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_artist_recycler_albumes">Albumes:</string>
+    <string name="txt_main_activity_artists">Artistas</string>
 </resources>
