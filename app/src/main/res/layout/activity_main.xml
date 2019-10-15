@@ -5,13 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.MainActivity">
+    tools:context=".view.MainActivity"
+    android:background="@color/colorPrimary">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:id="@+id/mainActivity_ViewPagerContainer">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            />
     </FrameLayout>
 
     <LinearLayout
@@ -24,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="80"
             android:text="Artistas"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"
             android:layout_marginStart="12dp"/>
 
@@ -34,6 +41,7 @@
             android:layout_weight="20"
             tools:text="0"
             android:textSize="20sp"
+            android:textColor="@color/colorWhite"
             android:layout_marginStart="12dp"/>
         <!-- TODO: (Juan) Setar el item count-->
 
@@ -41,8 +49,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_height="0dp"
+        android:layout_weight="7"
         android:id="@+id/mainActivity_Container">
 
     </FrameLayout>

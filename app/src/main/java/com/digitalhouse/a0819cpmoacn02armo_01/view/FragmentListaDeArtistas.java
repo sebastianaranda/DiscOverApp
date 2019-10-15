@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
@@ -24,13 +23,13 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentArtistas extends Fragment implements ArtistaAdapter.ArtistaAdapterListener {
+public class FragmentListaDeArtistas extends Fragment implements ArtistaAdapter.ArtistaAdapterListener {
 
     private RecyclerView recyclerView;
     private FragmentArtistasListener fragmentArtistasListener;
 
 
-    public FragmentArtistas() {
+    public FragmentListaDeArtistas() {
         // Required empty public constructor
     }
 
@@ -38,15 +37,17 @@ public class FragmentArtistas extends Fragment implements ArtistaAdapter.Artista
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_artistas, container, false);
+        View view = inflater.inflate(R.layout.fragment_lista_de_artistas, container, false);
 
         recyclerView = view.findViewById(R.id.fragmentArtistasRecyclerView);
+
         final ArtistaAdapter artistaAdapter = new ArtistaAdapter(this);
         ArtistasController artistasController = new ArtistasController();
+
         artistasController.traerArtistas(new ResultListener<List<Artista>>() {
             @Override
             public void finish(List<Artista> result) {
-                artistaAdapter.setArtistas(result);
+                artistaAdapter.setListaDeArtistas(result);
                 artistaAdapter.notifyDataSetChanged();
             }
         });

@@ -1,20 +1,25 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
-import java.net.URL;
+import java.io.Serializable;
 
-public class Artista {
+public class Artista implements Serializable {
 
     private int id;
     private String name;
     private int nbAlbum;
-    private URL pictureSmall;
+    private Integer pictureSmall;
+    private String actividad;
+    private String descripcion;
 
-    public Artista(int id, String name, int nbAlbum) {
+    public Artista(int id, String name, int nbAlbum,Integer pictureSmall, String actividad, String descripcion) {
         this.id = id;
         this.name = name;
         this.nbAlbum = nbAlbum;
+        this.actividad = actividad;
+        this.descripcion = descripcion;
+
         //TODO: (Juan) Descomentar cuando traigamos imagen por URL
-        //this.pictureSmall = pictureSmall;
+        this.pictureSmall = pictureSmall;
     }
 
     public int getId() {
@@ -41,12 +46,27 @@ public class Artista {
         this.nbAlbum = nbAlbum;
     }
 
-    public URL getPictureSmall() {
+    public Integer getPictureSmall() {
         return pictureSmall;
     }
 
-    public void setPictureSmall(URL pictureSmall) {
+    public void setPictureSmall(Integer pictureSmall) {
         this.pictureSmall = pictureSmall;
     }
 
+    public String getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

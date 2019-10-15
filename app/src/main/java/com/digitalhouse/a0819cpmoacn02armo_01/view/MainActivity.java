@@ -8,13 +8,15 @@ import android.os.Bundle;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artista;
 
-public class MainActivity extends AppCompatActivity implements FragmentArtistas.FragmentArtistasListener {
+import java.io.Serializable;
+
+public class MainActivity extends AppCompatActivity implements FragmentListaDeArtistas.FragmentArtistasListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pegarFragment(new FragmentArtistas(), R.id.mainActivity_Container);
+        pegarFragment(new FragmentListaDeArtistas(), R.id.mainActivity_Container);
     }
 
     private void pegarFragment(Fragment fragment, int layoutId) {
@@ -28,6 +30,15 @@ public class MainActivity extends AppCompatActivity implements FragmentArtistas.
     @Override
     public void recibirArtista(Artista artista) {
         //TODO: (Seba) Agregar comportamiento para abrir detalle
+        FragmentPerfilArtista fragmentPerfilArtista = new FragmentPerfilArtista();
+
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable(FragmentPerfilArtista.CLAVE_ARTISTA,artista);
+
+        fragmentPerfilArtista.setArguments(bundle);
+
+        pegarFragment(fragmentPerfilArtista,R.id.mainActivity_Container);
     }
 
 }

@@ -18,16 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaViewHolder> {
 
-    private List<Artista> artistas;
+    private List<Artista> listaDeArtistas;
     private ArtistaAdapterListener artistaListener;
 
     public ArtistaAdapter(ArtistaAdapterListener artistaListener) {
-        this.artistas = new ArrayList<>();
+        this.listaDeArtistas = new ArrayList<>();
         this.artistaListener = artistaListener;
     }
 
     public ArtistaAdapter(List<Artista> artistas) {
-        this.artistas = artistas;
+        this.listaDeArtistas = artistas;
     }
 
     @NonNull
@@ -40,13 +40,13 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaV
 
     @Override
     public void onBindViewHolder(@NonNull ArtistaViewHolder holder, int position) {
-        Artista artista = artistas.get(position);
+        Artista artista = listaDeArtistas.get(position);
         holder.bindArtista(artista);
     }
 
     @Override
     public int getItemCount() {
-        return artistas.size();
+        return listaDeArtistas.size();
     }
 
     public class ArtistaViewHolder extends RecyclerView.ViewHolder {
@@ -63,7 +63,9 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(itemView.getContext(), "", Toast.LENGTH_SHORT).show();
+                    Artista artista = listaDeArtistas.get(getAdapterPosition());
+                    artistaListener.informarArtista(artista);
+                    //Toast.makeText(itemView.getContext(), "", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -71,7 +73,9 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaV
         private void bindArtista(Artista artista) {
             txtArtistaNombre.setText(artista.getName());
             txtArtistaCantidadAlbumes.setText(String.valueOf(artista.getNbAlbum()));
+
             //TODO: (Juan) Cargar imagen por URL
+            imgArtistaImagen.setImageResource(artista.getPictureSmall());
             //imgArtistaImagen.setImageDrawable(artista.getPictureSmall());
         }
     }
@@ -80,8 +84,8 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ArtistaV
         void informarArtista(Artista artista);
     }
 
-    public void setArtistas(List<Artista> artistas) {
-        this.artistas = artistas;
+    public void setListaDeArtistas(List<Artista> listaDeArtistas) {
+        this.listaDeArtistas = listaDeArtistas;
     }
 
 }
