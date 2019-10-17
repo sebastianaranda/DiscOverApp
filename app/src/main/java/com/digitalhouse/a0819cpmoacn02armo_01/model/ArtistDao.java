@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ArtistDao {
 
-    public void traerArtistas(ResultListener<List<Artist>> controllerListener) {
+    public void getArtistsFromApi(ResultListener<List<Artist>> controllerListener) {
         List<Artist> artists = new ArrayList<>();
         //TODO: (Juan) Borrar cuando venga la data de la API
         artists.add(new Artist(0, "Mudvayne", 4,R.drawable.img_banda_a,"1996 - 2010","Mudvayne fue una banda estadounidense de heavy metal formada en Peoria, Illinois en 1996. Consta de cuatro miembros..."));

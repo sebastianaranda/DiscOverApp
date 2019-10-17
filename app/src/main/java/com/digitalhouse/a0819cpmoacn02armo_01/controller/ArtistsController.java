@@ -10,7 +10,7 @@ public class ArtistsController {
 
     public List<Artist> getArtistsFromDao(final ResultListener<List<Artist>> viewListener) {
         ArtistDao artistDao = new ArtistDao();
-        artistDao.traerArtistas(new ResultListener<List<Artist>>() {
+        artistDao.getArtistsFromApi(new ResultListener<List<Artist>>() {
             @Override
             public void finish(List<Artist> result) {
                 viewListener.finish(result);
