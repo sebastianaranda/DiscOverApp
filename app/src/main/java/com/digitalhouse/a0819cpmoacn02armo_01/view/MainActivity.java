@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
     private void attachFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, fragment)
-                .addToBackStack(null)
+                .replace(R.id.activityMain_recyclerContainer, fragment)
                 .commit();
     }
 
