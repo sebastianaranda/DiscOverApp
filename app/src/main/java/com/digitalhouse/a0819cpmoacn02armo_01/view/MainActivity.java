@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
         getSupportFragmentManager()
             .beginTransaction()
             .replace(R.id.artist_fragment_container, fragment)
-            .addToBackStack(null)
             .commit();
     }
 
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.genre_fragment_container, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 
