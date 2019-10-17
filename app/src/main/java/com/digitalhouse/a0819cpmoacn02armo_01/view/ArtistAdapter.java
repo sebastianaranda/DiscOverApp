@@ -15,7 +15,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistaViewHolder> {
+public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder> {
 
     private List<Artist> artists;
     private ArtistAdapterListener artistAdapterListener;
@@ -25,21 +25,14 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistaVie
         this.artistAdapterListener = artistAdapterListener;
     }
 
-    public ArtistAdapter(List<Artist> artists) {
-        this.artists = artists;
-    }
-
     @NonNull
     @Override
-    public ArtistaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ArtistaViewHolder(
-            LayoutInflater.
-            from(parent.getContext()).
-            inflate(R.layout.artist_row, parent, false));
+    public ArtistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ArtistViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.artist_row, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ArtistaViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ArtistViewHolder holder, int position) {
         holder.bindArtist(artists.get(position));
     }
 
@@ -48,13 +41,12 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistaVie
         return artists.size();
     }
 
-    public class ArtistaViewHolder extends RecyclerView.ViewHolder {
-
+    public class ArtistViewHolder extends RecyclerView.ViewHolder {
         private TextView txtArtistName;
         private TextView txtAlbumCount;
         private ImageView imgArtistImage;
 
-        public ArtistaViewHolder(@NonNull final View itemView) {
+        public ArtistViewHolder(@NonNull final View itemView) {
             super(itemView);
             txtArtistName = itemView.findViewById(R.id.txt_artist_name);
             txtAlbumCount = itemView.findViewById(R.id.txt_album_count);
@@ -70,7 +62,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistaVie
         private void bindArtist(Artist artist) {
             txtArtistName.setText(artist.getName());
             txtAlbumCount.setText(String.valueOf(artist.getNbAlbum()));
-
             //TODO: (Juan) Cargar imagen por URL
             imgArtistImage.setImageResource(artist.getPictureSmall());
         }

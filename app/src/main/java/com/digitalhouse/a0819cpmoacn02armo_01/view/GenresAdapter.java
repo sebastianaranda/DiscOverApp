@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
@@ -49,13 +50,15 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenresView
         private ImageView imgGenrePicture;
         private TextView txtGenreName;
 
-        public GenresViewHolder(@NonNull View itemView) {
+        public GenresViewHolder(@NonNull final View itemView) {
             super(itemView);
             imgGenrePicture = itemView.findViewById(R.id.img_genre_picture);
             txtGenreName = itemView.findViewById(R.id.txt_genre_name);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //TODO (Juan) Borrar toast cuando se defina comportamiento
+                    Toast.makeText(itemView.getContext(), genreList.get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
                     genreAdapterListener.getGenreFromAdapter(genreList.get(getAdapterPosition()));
                 }
             });
