@@ -3,14 +3,11 @@ package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 
 public class CategoriesFragment extends Fragment {

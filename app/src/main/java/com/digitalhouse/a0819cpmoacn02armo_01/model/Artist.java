@@ -8,15 +8,15 @@ public class Artist implements Serializable {
     private String name;
     private int nbAlbum;
     private Integer pictureSmall;
-    private String actividad;
-    private String descripcion;
+    private String yearsActive;
+    private String description;
 
-    public Artist(int id, String name, int nbAlbum, Integer pictureSmall, String actividad, String descripcion) {
+    public Artist(int id, String name, int nbAlbum, Integer pictureSmall, String yearsActive, String description) {
         this.id = id;
         this.name = name;
         this.nbAlbum = nbAlbum;
-        this.actividad = actividad;
-        this.descripcion = descripcion;
+        this.yearsActive = yearsActive;
+        this.description = description;
 
         //TODO: (Juan) Descomentar cuando traigamos imagen por URL
         this.pictureSmall = pictureSmall;
@@ -54,19 +54,19 @@ public class Artist implements Serializable {
         this.pictureSmall = pictureSmall;
     }
 
-    public String getActividad() {
-        return actividad;
+    public String getYearsActive() {
+        return yearsActive;
     }
 
-    public void setActividad(String actividad) {
-        this.actividad = actividad;
+    public void setYearsActive(String yearsActive) {
+        this.yearsActive = yearsActive;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

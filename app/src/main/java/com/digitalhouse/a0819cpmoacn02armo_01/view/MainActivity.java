@@ -2,10 +2,8 @@ package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 
@@ -28,10 +26,9 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
 
     @Override
     public void getArtistFromFragment(Artist artist) {
-        ArtistProfileFragment artistProfileFragment = new ArtistProfileFragment();
         Intent intent = new Intent(MainActivity.this,ArtistActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ArtistProfileFragment.CLAVE_ARTISTA,artist);
+        bundle.putSerializable(ArtistProfileFragment.KEY_ARTIST,artist);
         intent.putExtras(bundle);
         startActivity(intent);
     }
