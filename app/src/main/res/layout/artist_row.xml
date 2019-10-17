@@ -11,15 +11,14 @@
 
     <ImageView
         android:id="@+id/img_artist_image"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:src="@drawable/img_artist_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/txt_artist_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
     <!-- TODO: (Juan) Pasar a tools:src cuando venga la imagen de la API-->
 
     <TextView

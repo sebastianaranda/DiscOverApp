@@ -19,12 +19,12 @@ import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
  */
 public class ArtistProfileFragment extends Fragment {
 
-    public static final String CLAVE_ARTISTA = "claveArtista";
+    public static final String KEY_ARTIST = "keyArtist";
 
-    private ImageView fragmentPerfilArtista_ImageView_FotoArtista;
-    private TextView fragmentPerfilArtista_TextView_NombreArtista;
-    private TextView fragmentPerfilArtista_TextView_ActividadArtista;
-    private TextView fragmentPerfilArtista_TextView_DescripcionArtista;
+    private ImageView fragmentArtistProfile_ImageView_ArtistImage;
+    private TextView fragmentArtistProfile_TextView_artistName;
+    private TextView fragmentArtistProfile_TextView_yearsActive;
+    private TextView fragmentArtistProfile_TextView_ArtistDescription;
 
 
     public ArtistProfileFragment() {
@@ -36,24 +36,21 @@ public class ArtistProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vistaDelFragment = inflater.inflate(R.layout.fragment_artist_profile, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
-        fragmentPerfilArtista_ImageView_FotoArtista = vistaDelFragment.findViewById(R.id.fragmentPerfilArtista_ImageView_FotoArtista);
-        fragmentPerfilArtista_TextView_NombreArtista = vistaDelFragment.findViewById(R.id.fragmentPerfilArtista_TextView_NombreArtista);
-        fragmentPerfilArtista_TextView_ActividadArtista = vistaDelFragment.findViewById(R.id.fragmentPerfilArtista_TextView_ActividadArtista);
-        fragmentPerfilArtista_TextView_DescripcionArtista = vistaDelFragment.findViewById(R.id.fragmentPerfilArtista_TextView_DescripcionArtista);
+        fragmentArtistProfile_ImageView_ArtistImage = fragmentView.findViewById(R.id.fragmentArtistProfile_ImageView_ArtistImage);
+        fragmentArtistProfile_TextView_artistName = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_artistName);
+        fragmentArtistProfile_TextView_yearsActive = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_yearsActive);
+        fragmentArtistProfile_TextView_ArtistDescription = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_ArtistDescription);
 
         Bundle bundle = getArguments();
+        Artist selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
 
-        Artist artistSeleccionado = (Artist) bundle.getSerializable(CLAVE_ARTISTA);
-
-        fragmentPerfilArtista_ImageView_FotoArtista.setImageResource(artistSeleccionado.getPictureSmall());
-        fragmentPerfilArtista_TextView_NombreArtista.setText(artistSeleccionado.getName());
-        fragmentPerfilArtista_TextView_ActividadArtista.setText(artistSeleccionado.getActividad());
-        fragmentPerfilArtista_TextView_DescripcionArtista.setText(artistSeleccionado.getDescripcion());
-
-
-        return vistaDelFragment;
+        fragmentArtistProfile_ImageView_ArtistImage.setImageResource(selectedArtist.getPictureSmall());
+        fragmentArtistProfile_TextView_artistName.setText(selectedArtist.getName());
+        fragmentArtistProfile_TextView_yearsActive.setText(selectedArtist.getYearsActive());
+        fragmentArtistProfile_TextView_ArtistDescription.setText(selectedArtist.getDescription());
+        return fragmentView;
     }
 
 }
