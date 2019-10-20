@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
 
@@ -65,7 +66,11 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenresView
         }
 
         private void bindGenre(Genre genre) {
-            imgGenrePicture.setImageResource(genre.getPicture());
+            Glide.with(itemView)
+                    .load(genre.getPicture())
+                    .placeholder(R.drawable.img_genre_placeholder)
+                    .into(imgGenrePicture);
+            //imgGenrePicture.setImageResource(genre.getPicture());
             txtGenreName.setText(genre.getName());
         }
     }

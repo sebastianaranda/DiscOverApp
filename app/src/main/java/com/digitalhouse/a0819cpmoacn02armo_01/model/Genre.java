@@ -7,9 +7,9 @@ public class Genre implements Serializable {
 
     private int id;
     private String name;
-    private int picture;
+    private URL picture;
 
-    public Genre(int id, String name, int picture) {
+    public Genre(int id, String name, URL picture) {
         this.id = id;
         this.name = name;
         //TODO: (Juan) Agregar al constructor cuando venga por API y migrar tipo a URL
@@ -32,11 +32,11 @@ public class Genre implements Serializable {
         this.name = name;
     }
 
-    public int getPicture() {
+    public URL getPicture() {
         return picture;
     }
 
-    public void setPicture(int picture) {
+    public void setPicture(URL picture) {
         this.picture = picture;
     }
 
