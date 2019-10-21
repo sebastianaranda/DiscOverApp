@@ -12,7 +12,6 @@ public class Genre implements Serializable {
     public Genre(int id, String name, URL picture) {
         this.id = id;
         this.name = name;
-        //TODO: (Juan) Agregar al constructor cuando venga por API y migrar tipo a URL
         this.picture = picture;
     }
 

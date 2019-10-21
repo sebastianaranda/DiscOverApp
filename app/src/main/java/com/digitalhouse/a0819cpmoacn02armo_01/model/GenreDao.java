@@ -1,6 +1,5 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
-import android.util.Log;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import java.util.List;
 import retrofit2.Call;
@@ -25,7 +24,7 @@ public class GenreDao extends GenresRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerGenres> call, Throwable t) {
-                Log.d("asdasd","asdasd");
+
             }
         });
     }

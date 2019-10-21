@@ -1,6 +1,5 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;

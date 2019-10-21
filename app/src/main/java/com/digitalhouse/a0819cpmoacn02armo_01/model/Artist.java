@@ -1,25 +1,32 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
+import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
+import java.net.URL;
 
 public class Artist implements Serializable {
 
+    @SerializedName("id")
     private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("nb_album")
     private int nbAlbum;
-    private Integer pictureSmall;
+    @SerializedName("picture_small")
+    private URL pictureSmall;
+    @SerializedName("picture_big")
+    private URL pictureBig;
     private String yearsActive;
     private String description;
 
-    public Artist(int id, String name, int nbAlbum, Integer pictureSmall, String yearsActive, String description) {
+    public Artist(int id, String name, int nbAlbum, URL pictureSmall,URL pictureBig, String yearsActive, String description) {
         this.id = id;
         this.name = name;
         this.nbAlbum = nbAlbum;
         this.yearsActive = yearsActive;
         this.description = description;
-
-        //TODO: (Juan) Descomentar cuando traigamos imagen por URL
         this.pictureSmall = pictureSmall;
+        this.pictureBig = pictureBig;
     }
 
     public int getId() {
@@ -46,12 +53,20 @@ public class Artist implements Serializable {
         this.nbAlbum = nbAlbum;
     }
 
-    public Integer getPictureSmall() {
+    public URL getPictureSmall() {
         return pictureSmall;
     }
 
-    public void setPictureSmall(Integer pictureSmall) {
+    public void setPictureSmall(URL pictureSmall) {
         this.pictureSmall = pictureSmall;
+    }
+
+    public URL getPictureBig() {
+        return pictureBig;
+    }
+
+    public void setPictureBig(URL pictureBig) {
+        this.pictureBig = pictureBig;
     }
 
     public String getYearsActive() {
