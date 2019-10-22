@@ -16,7 +16,6 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity implements ArtistsFragment.FragmentArtistsListener, GenresFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
         attachArtistFragment(new ArtistsFragment());
         attachGenreFragment(new GenresFragment());
         drawerLayout = findViewById(R.id.mainActivity_drawerLayout);
-        navigationView = findViewById(R.id.mainActivity_navigationView);
+        NavigationView navigationView = findViewById(R.id.mainActivity_navigationView);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
