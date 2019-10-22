@@ -1,22 +1,16 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
-
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ArtistProfileFragment extends Fragment {
 
     public static final String KEY_ARTIST = "keyArtist";
@@ -26,11 +20,9 @@ public class ArtistProfileFragment extends Fragment {
     private TextView fragmentArtistProfile_TextView_yearsActive;
     private TextView fragmentArtistProfile_TextView_ArtistDescription;
 
-
     public ArtistProfileFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +38,10 @@ public class ArtistProfileFragment extends Fragment {
         Bundle bundle = getArguments();
         Artist selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
 
-        fragmentArtistProfile_ImageView_ArtistImage.setImageResource(selectedArtist.getPictureSmall());
+        Glide.with(fragmentView)
+                .load(selectedArtist.getPictureBig())
+                .placeholder(R.drawable.img_artist_placeholder)
+                .into(fragmentArtistProfile_ImageView_ArtistImage);
         fragmentArtistProfile_TextView_artistName.setText(selectedArtist.getName());
         fragmentArtistProfile_TextView_yearsActive.setText(selectedArtist.getYearsActive());
         fragmentArtistProfile_TextView_ArtistDescription.setText(selectedArtist.getDescription());

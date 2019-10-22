@@ -1,24 +1,32 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
-import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
-
-import java.util.ArrayList;
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class GenreDao {
+public class GenreDao extends GenresRetrofitDAO {
+    public static final String BASE_URL = "https://api.deezer.com";
 
-    public void getGenresFromApi(ResultListener<List<Genre>> controllerListener) {
-        List<Genre> genres = new ArrayList<>();
-        //TODO: (Juan) Borrar cuando venga la data de la API
-        genres.add(new Genre(0, "Rock", R.drawable.ic_artista_placeholder));
-        genres.add(new Genre(0, "Pop", R.drawable.ic_artista_placeholder));
-        genres.add(new Genre(0, "Jazz", R.drawable.ic_artista_placeholder));
-        genres.add(new Genre(0, "J-Pop", R.drawable.ic_artista_placeholder));
-        genres.add(new Genre(0, "Metal", R.drawable.ic_artista_placeholder));
-        genres.add(new Genre(0, "Punk", R.drawable.ic_artista_placeholder));
-        genres.add(new Genre(0, "Trip-Hop", R.drawable.ic_artista_placeholder));
-        controllerListener.finish(genres);
+    public GenreDao() {
+        super(BASE_URL);
+    }
+
+    public void getGenresFromApi(final ResultListener<List<Genre>> controllerListener) {
+        Call<ContainerGenres>call = genresService.getsGenres();
+        call.enqueue(new Callback<ContainerGenres>() {
+            @Override
+            public void onResponse(Call<ContainerGenres> call, Response<ContainerGenres> response) {
+                ContainerGenres containerGenres = response.body();
+                controllerListener.finish(containerGenres.getGenresList());
+            }
+
+            @Override
+            public void onFailure(Call<ContainerGenres> call, Throwable t) {
+
+            }
+        });
     }
 
 }

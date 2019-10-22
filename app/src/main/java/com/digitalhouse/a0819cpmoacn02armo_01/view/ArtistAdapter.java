@@ -5,13 +5,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,7 +61,10 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             txtArtistName.setText(artist.getName());
             txtAlbumCount.setText(String.valueOf(artist.getNbAlbum()));
             //TODO: (Juan) Cargar imagen por URL
-            imgArtistImage.setImageResource(artist.getPictureSmall());
+            Glide.with(itemView)
+                    .load(artist.getPictureSmall())
+                    .placeholder(R.drawable.img_artist_placeholder)
+                    .into(imgArtistImage);
         }
     }
 
