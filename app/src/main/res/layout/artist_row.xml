@@ -14,23 +14,26 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:src="@drawable/img_artist_placeholder"
+        android:src="@drawable/ic_play"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/txt_artist_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
     <!-- TODO: (Juan) Pasar a tools:src cuando venga la imagen de la API-->
 
     <TextView
         android:id="@+id/txt_artist_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginEnd="30dp"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:textColor="@android:color/white"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@id/img_artist_image"
+        app:layout_constraintEnd_toStartOf="@+id/img_play_icon"
+        app:layout_constraintStart_toEndOf="@+id/img_artist_image"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ellipsize="end"
         tools:text="Nombre Artista" />
 
     <TextView

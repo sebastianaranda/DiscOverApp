@@ -14,11 +14,11 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        attachFragment(new ArtistsFragment());
+        attachArtistFragment(new ArtistsFragment());
         attachGenreFragment(new GenresFragment());
     }
 
-    private void attachFragment(Fragment fragment) {
+    private void attachArtistFragment(Fragment fragment) {
         getSupportFragmentManager()
             .beginTransaction()
             .replace(R.id.artist_fragment_container, fragment)
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
     public void getArtistFromFragment(Artist artist) {
         Intent intent = new Intent(MainActivity.this, ArtistActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ArtistProfileFragment.KEY_ARTIST,artist);
+        bundle.putSerializable(ArtistProfileFragment.KEY_ARTIST, artist);
         intent.putExtras(bundle);
         startActivity(intent);
     }
