@@ -22,11 +22,8 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        attachFragment(new ArtistsFragment());
-        attachGenreFragment(new GenresFragment());
-        drawerLayout = findViewById(R.id.mainActivity_drawerLayout);
-        navigationView = findViewById(R.id.mainActivity_navigationView);
-        navigationView.setNavigationItemSelectedListener(this);
+        attachArtistFragment(new ArtistsFragment());
+        attachGenreFragment(new GenresFragment());  
     }
 
     private void attachFragment(Fragment fragment) {
