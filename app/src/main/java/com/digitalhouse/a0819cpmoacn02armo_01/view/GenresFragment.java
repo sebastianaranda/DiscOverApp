@@ -48,12 +48,12 @@ public class GenresFragment extends Fragment implements GenresAdapter.GenreAdapt
     }
 
     @Override
-    public void getGenreFromAdapter(Genre genre) {
-        genresFragmentListener.getGenreFromFragment(genre);
+    public void getGenreFromAdapter(List<Genre> genre, Integer pos) {
+        genresFragmentListener.getGenreFromFragment(genre, pos);
     }
 
     public interface GenresFragmentListener {
-        void getGenreFromFragment(Genre genre);
+        void getGenreFromFragment(List<Genre> genre, Integer pos);
     }
 
 }

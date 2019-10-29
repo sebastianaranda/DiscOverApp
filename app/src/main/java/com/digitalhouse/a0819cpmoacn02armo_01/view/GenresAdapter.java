@@ -57,7 +57,7 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenresView
                 public void onClick(View view) {
                     //TODO (Juan) Borrar toast cuando se defina comportamiento
                     Toast.makeText(itemView.getContext(), genreList.get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
-                    genreAdapterListener.getGenreFromAdapter(genreList.get(getAdapterPosition()));
+                    genreAdapterListener.getGenreFromAdapter(genreList, getAdapterPosition());
                 }
             });
         }
@@ -72,7 +72,7 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenresView
     }
 
     public interface GenreAdapterListener {
-        void getGenreFromAdapter(Genre genre);
+        void getGenreFromAdapter(List<Genre> genres, Integer pos);
     }
 
     public void setGenreList(List<Genre> genreList) {

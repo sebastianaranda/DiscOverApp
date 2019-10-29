@@ -13,6 +13,9 @@ import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.Serializable;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements ArtistsFragment.FragmentArtistsListener, GenresFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
 
     @Override
     public void getArtistFromFragment(Artist artist) {
-        Intent intent = new Intent(MainActivity.this, ArtistActivity.class);
+        Intent intent = new Intent(MainActivity.this, ArtistProfileActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ArtistProfileFragment.KEY_ARTIST, artist);
         intent.putExtras(bundle);
@@ -52,8 +55,12 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
     }
 
     @Override
-    public void getGenreFromFragment(Genre genre) {
-
+    public void getGenreFromFragment(List<Genre> genre, Integer pos) {
+        Intent intent = new Intent(MainActivity.this, GenreViewPagerActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("lista", (Serializable) genre);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

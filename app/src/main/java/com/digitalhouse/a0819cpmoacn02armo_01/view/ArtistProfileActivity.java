@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 
-public class ArtistActivity extends AppCompatActivity {
+public class ArtistProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
