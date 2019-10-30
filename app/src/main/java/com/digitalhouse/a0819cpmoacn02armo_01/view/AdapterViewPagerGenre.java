@@ -14,13 +14,13 @@ public class AdapterViewPagerGenre extends FragmentStatePagerAdapter {
 
     private List<GenreViewPagerFragment> genreViewPagerFragments;
 
-    public AdapterViewPagerGenre(@NonNull FragmentManager fm, List<Genre> genres) {
+    public AdapterViewPagerGenre(@NonNull FragmentManager fm, List<Fragment> genres) {
         super(fm);
         genreViewPagerFragments = new ArrayList<>();
-        for (Genre genre : genres) {
+        /*for (Fragment genre : genres) {
             GenreViewPagerFragment fragment = GenreViewPagerFragment.getFragmentForPager(genre);
             genreViewPagerFragments.add(fragment);
-        }
+        }*/
     }
 
     @NonNull
