@@ -61,8 +61,14 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
         Integer id = menuItem.getItemId();
         switch (id){
             //TODO: Definir comportamiento del menu
-            case R.id.mainMenuFav:
-                Toast.makeText(this, "Seleccionaste el menu Favoritos", Toast.LENGTH_SHORT).show();
+            case R.id.mainMenuFavArtists:
+                Toast.makeText(this, "Seleccionaste Artistas favoritos", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.mainMenuFavAlbums:
+                Toast.makeText(this, "Seleccionaste Albumes favoritos", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.mainMenuFavSongs:
+                Toast.makeText(this, "Seleccionaste Canciones favoritas", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mainMenuProfile:
                 Toast.makeText(this, "Seleccionaste el menu Perfil", Toast.LENGTH_SHORT).show();
