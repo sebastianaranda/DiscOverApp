@@ -5,9 +5,19 @@
         android:id="@+id/mainMenuProfile"
         android:title="Perfil"></item>
 
-    <item
-        android:id="@+id/mainMenuFav"
-        android:title="Favoritos"></item>
+    <item android:title="Favoritos">
+        <menu>
+            <item
+                android:id="@+id/mainMenuFavArtists"
+                android:title="Artistas"/>
+            <item
+                android:id="@+id/mainMenuFavAlbums"
+                android:title="Albumes"/>
+            <item
+                android:id="@+id/mainMenuFavSongs"
+                android:title="Canciones"/>
+        </menu>
+    </item>
 
     <item android:title="Sistema">
         <menu>
