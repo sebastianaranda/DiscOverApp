@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ContainerGenres {
     @SerializedName("data")
-    private List<Genre>genresList;
+    private List<Genre> genresList;
 
     public List<Genre> getGenresList() {
         return genresList;

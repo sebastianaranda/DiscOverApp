@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
@@ -14,12 +13,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenresViewHolder> {
+public class GenresRecyclerAdapter extends RecyclerView.Adapter<GenresRecyclerAdapter.GenresViewHolder> {
 
     private List<Genre> genreList;
     private GenreAdapterListener genreAdapterListener;
 
-    public GenresAdapter(GenreAdapterListener genreAdapterListener) {
+    public GenresRecyclerAdapter(GenreAdapterListener genreAdapterListener) {
         this.genreList = new ArrayList<>();
         this.genreAdapterListener = genreAdapterListener;
     }
@@ -55,9 +54,7 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenresView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO (Juan) Borrar toast cuando se defina comportamiento
-                    Toast.makeText(itemView.getContext(), genreList.get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
-                    genreAdapterListener.getGenreFromAdapter(genreList.get(getAdapterPosition()));
+                    genreAdapterListener.getGenreFromAdapter(genreList, getAdapterPosition());
                 }
             });
         }
@@ -72,7 +69,7 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.GenresView
     }
 
     public interface GenreAdapterListener {
-        void getGenreFromAdapter(Genre genre);
+        void getGenreFromAdapter(List<Genre> genres, Integer pos);
     }
 
     public void setGenreList(List<Genre> genreList) {
