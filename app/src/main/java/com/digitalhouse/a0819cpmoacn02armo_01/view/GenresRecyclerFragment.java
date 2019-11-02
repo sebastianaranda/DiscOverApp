@@ -31,7 +31,7 @@ public class GenresRecyclerFragment extends Fragment implements GenresRecyclerAd
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_genres, container, false);
+        View view = inflater.inflate(R.layout.fragment_recycler_genres, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.genres_fragment_recycler);
         final GenresRecyclerAdapter genresRecyclerAdapter = new GenresRecyclerAdapter(this);
         GenresController genresController = new GenresController();

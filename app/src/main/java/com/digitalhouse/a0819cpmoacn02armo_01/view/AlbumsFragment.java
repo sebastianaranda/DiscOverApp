@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 
-public class albumsFragment extends Fragment {
+public class AlbumsFragment extends Fragment {
 
-    public albumsFragment() {
+    public AlbumsFragment() {
         // Required empty public constructor
     }
 
@@ -18,7 +18,7 @@ public class albumsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_albums, container, false);
+        View view = inflater.inflate(R.layout.fragment_recycler_albums, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_albums_recycler);
         return view;
     }

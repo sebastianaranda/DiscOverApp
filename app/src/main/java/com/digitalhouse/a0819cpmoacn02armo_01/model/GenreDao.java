@@ -7,6 +7,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class GenreDao extends GenresRetrofitDAO {
+
     public static final String BASE_URL = "https://api.deezer.com";
 
     public GenreDao() {
@@ -14,7 +15,7 @@ public class GenreDao extends GenresRetrofitDAO {
     }
 
     public void getGenresFromApi(final ResultListener<List<Genre>> controllerListener) {
-        Call<ContainerGenres>call = genresService.getsGenres();
+        Call<ContainerGenres>call = genresService.getGenres();
         call.enqueue(new Callback<ContainerGenres>() {
             @Override
             public void onResponse(Call<ContainerGenres> call, Response<ContainerGenres> response) {
@@ -24,7 +25,7 @@ public class GenreDao extends GenresRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerGenres> call, Throwable t) {
-
+                //TODO: Agregar comportamiento
             }
         });
     }

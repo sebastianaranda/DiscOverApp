@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 
 public class ArtistProfileActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,10 +16,10 @@ public class ArtistProfileActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         ArtistProfileFragment artistProfileFragment = new ArtistProfileFragment();
         artistProfileFragment.setArguments(bundle);
-        pegarFragment(artistProfileFragment);
+        attachFragment(artistProfileFragment);
     }
 
-    private void pegarFragment(Fragment fragment){
+    private void attachFragment(Fragment fragment){
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.artist_activity_fragmentContainer,fragment)

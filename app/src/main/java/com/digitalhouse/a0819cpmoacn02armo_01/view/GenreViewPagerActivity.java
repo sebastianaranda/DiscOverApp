@@ -3,15 +3,11 @@ package com.digitalhouse.a0819cpmoacn02armo_01.view;
 import android.os.Bundle;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 public class GenreViewPagerActivity extends AppCompatActivity {
@@ -19,11 +15,10 @@ public class GenreViewPagerActivity extends AppCompatActivity {
     public static final String GENRE_LIST_KEY = "genreListKey";
     public static final String GENRE_INDEX_KEY = "genreIndexKey";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.genre_view_pager_activity);
+        setContentView(R.layout.activity_genre_view_pager);
 
         Bundle bundle = getIntent().getExtras();
         List<Genre> genreList = (List<Genre>) bundle.getSerializable(GENRE_LIST_KEY);

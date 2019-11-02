@@ -29,7 +29,7 @@ public class GenresRecyclerAdapter extends RecyclerView.Adapter<GenresRecyclerAd
         return new GenresViewHolder(
             LayoutInflater.
                 from(parent.getContext()).
-                inflate(R.layout.genre_row, parent, false));
+                inflate(R.layout.genre_view_pager_row, parent, false));
     }
 
     @Override

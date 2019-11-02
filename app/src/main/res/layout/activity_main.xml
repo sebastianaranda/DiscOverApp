@@ -19,6 +19,7 @@
             android:layout_height="0dp"
             android:layout_weight="3">
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -35,7 +36,6 @@
         android:layout_gravity="start"
         android:background="@color/colorPrimary"
         app:itemTextColor="@color/colorWhite"
-        android:outlineSpotShadowColor="@color/colorBlack"
         android:theme="@style/NavigationView">
     </com.google.android.material.navigation.NavigationView>
 

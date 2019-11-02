@@ -7,6 +7,7 @@
     tools:context=".view.ArtistProfileFragment"
     android:orientation="vertical"
     android:background="@color/colorPrimary">
+<!--    TODO: Pasar a Constraint antes de terminar esta pantalla-->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -63,7 +64,6 @@
                     android:layout_width="0dp"
                     android:layout_weight="8"
                     android:layout_height="wrap_content"
-                    tools:text="Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla Bla bla bla "
                     android:textSize="15sp"
                     android:textColor="@color/colorWhite"
                     />

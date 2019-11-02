@@ -26,7 +26,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     @NonNull
     @Override
     public ArtistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ArtistViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.artist_row, parent, false));
+        return new ArtistViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.artist_recycler_row, parent, false));
     }
 
     @Override
@@ -60,7 +60,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         private void bindArtist(Artist artist) {
             txtArtistName.setText(artist.getName());
             txtAlbumCount.setText(String.valueOf(artist.getNbAlbum()));
-            //TODO: (Juan) Cargar imagen por URL
             Glide.with(itemView)
                     .load(artist.getPictureSmall())
                     .placeholder(R.drawable.img_artist_placeholder)

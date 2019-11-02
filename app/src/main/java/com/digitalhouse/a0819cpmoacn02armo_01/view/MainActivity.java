@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.io.Serializable;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ArtistsFragment.FragmentArtistsListener, GenresRecyclerFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFragment.FragmentArtistsListener, GenresRecyclerFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        attachArtistFragment(new ArtistsFragment());
+        attachArtistFragment(new ArtistsRecyclerFragment());
         attachGenreFragment(new GenresRecyclerFragment());
         drawerLayout = findViewById(R.id.mainActivity_drawerLayout);
         NavigationView navigationView = findViewById(R.id.mainActivity_navigationView);
@@ -69,22 +69,22 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
         Integer id = menuItem.getItemId();
         switch (id){
             //TODO: Definir comportamiento del menu
-            case R.id.mainMenuFavArtists:
+            case R.id.main_menu_fav_artists:
                 Toast.makeText(this, "Seleccionaste Artistas favoritos", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.mainMenuFavAlbums:
+            case R.id.main_menu_fav_albums:
                 Toast.makeText(this, "Seleccionaste Albumes favoritos", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.mainMenuFavSongs:
+            case R.id.main_menu_fav_songs:
                 Toast.makeText(this, "Seleccionaste Canciones favoritas", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.mainMenuProfile:
+            case R.id.main_menu_profile:
                 Toast.makeText(this, "Seleccionaste el menu Perfil", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.mainMenuSettings:
+            case R.id.main_menu_settings:
                 Toast.makeText(this, "Seleccionaste el menu Settings", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.mainMenuLogout:
+            case R.id.main_menu_logout:
                 Toast.makeText(this, "Seleccionaste el menu Logout", Toast.LENGTH_SHORT).show();
                 break;
         }
