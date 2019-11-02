@@ -14,11 +14,11 @@ import com.digitalhouse.a0819cpmoacn02armo_01.controller.GenresController;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
 import java.util.List;
 
-public class GenresFragment extends Fragment implements GenresAdapter.GenreAdapterListener {
+public class GenresRecyclerFragment extends Fragment implements GenresRecyclerAdapter.GenreAdapterListener {
 
     private GenresFragmentListener genresFragmentListener;
 
-    public GenresFragment() {
+    public GenresRecyclerFragment() {
         // Required empty public constructor
     }
 
@@ -31,19 +31,18 @@ public class GenresFragment extends Fragment implements GenresAdapter.GenreAdapt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_genres, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.genres_fragment_recycler);
-        final GenresAdapter genresAdapter = new GenresAdapter(this);
+        final GenresRecyclerAdapter genresRecyclerAdapter = new GenresRecyclerAdapter(this);
         GenresController genresController = new GenresController();
         genresController.getGenresFromDao(new ResultListener<List<Genre>>() {
             @Override
             public void finish(List<Genre> result) {
-                genresAdapter.setGenreList(result);
-                genresAdapter.notifyDataSetChanged();
+                genresRecyclerAdapter.setGenreList(result);
+                genresRecyclerAdapter.notifyDataSetChanged();
             }
         });
-        recyclerView.setAdapter(genresAdapter);
+        recyclerView.setAdapter(genresRecyclerAdapter);
         return view;
     }
 

@@ -10,17 +10,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class AdapterViewPagerGenre extends FragmentStatePagerAdapter {
+public class GenreViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<GenreViewPagerFragment> genreViewPagerFragments;
 
-    public AdapterViewPagerGenre(@NonNull FragmentManager fm, List<Fragment> genres) {
+    GenreViewPagerAdapter(@NonNull FragmentManager fm, List<Genre> genreList) {
         super(fm);
         genreViewPagerFragments = new ArrayList<>();
-        /*for (Fragment genre : genres) {
-            GenreViewPagerFragment fragment = GenreViewPagerFragment.getFragmentForPager(genre);
-            genreViewPagerFragments.add(fragment);
-        }*/
+        for (Genre genre : genreList) {
+            genreViewPagerFragments.add(GenreViewPagerFragment.getFragmentForPager(genre));
+        }
     }
 
     @NonNull
@@ -32,10 +31,6 @@ public class AdapterViewPagerGenre extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return genreViewPagerFragments.size();
-    }
-
-    public void setGenreViewPagerFragments(List<GenreViewPagerFragment> genreViewPagerFragments) {
-        this.genreViewPagerFragments = genreViewPagerFragments;
     }
 
 }

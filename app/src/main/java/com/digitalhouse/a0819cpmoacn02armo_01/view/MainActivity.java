@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.io.Serializable;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ArtistsFragment.FragmentArtistsListener, GenresFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements ArtistsFragment.FragmentArtistsListener, GenresRecyclerFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         attachArtistFragment(new ArtistsFragment());
-        attachGenreFragment(new GenresFragment());
+        attachGenreFragment(new GenresRecyclerFragment());
         drawerLayout = findViewById(R.id.mainActivity_drawerLayout);
         NavigationView navigationView = findViewById(R.id.mainActivity_navigationView);
         navigationView.setNavigationItemSelectedListener(this);
@@ -55,10 +55,11 @@ public class MainActivity extends AppCompatActivity implements ArtistsFragment.F
     }
 
     @Override
-    public void getGenreFromFragment(List<Genre> genre, Integer pos) {
+    public void getGenreFromFragment(List<Genre> genreList, Integer pos) {
         Intent intent = new Intent(MainActivity.this, GenreViewPagerActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("lista", (Serializable) genre);
+        bundle.putSerializable(GenreViewPagerActivity.GENRE_LIST_KEY, (Serializable) genreList);
+        bundle.putInt(GenreViewPagerActivity.GENRE_INDEX_KEY, pos);
         intent.putExtras(bundle);
         startActivity(intent);
     }
