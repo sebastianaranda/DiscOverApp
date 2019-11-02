@@ -26,7 +26,6 @@
             android:layout_centerInParent="true"/>
     </androidx.cardview.widget.CardView>
 
-
     <TextView
         android:id="@+id/headerUserName"
         android:layout_width="wrap_content"
