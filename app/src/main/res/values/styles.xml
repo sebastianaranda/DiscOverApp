@@ -6,6 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listDivider">@color/colorWhite</item>
     </style>
+
+    <style name="NavigationView" >
+        <item name="android:listDivider">@color/colorSecondary</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+    </style>
+
 
 </resources>
