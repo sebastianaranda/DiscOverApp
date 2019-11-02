@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/mainMenuProfile"
-        android:title="Perfil"></item>
-
-    <item android:title="Favoritos">
+        android:title="Mi Cuenta"></item>
+    <item android:title="Mis Favoritos"
+        android:id="@+id/titleFavorites">
         <menu>
             <item
                 android:id="@+id/mainMenuFavArtists"
@@ -18,21 +17,18 @@
                 android:title="Canciones"/>
         </menu>
     </item>
-
-    <item android:title="Sistema">
+    <item android:title="Opciones">
         <menu>
             <item
                 android:id="@+id/mainMenuSettings"
                 android:title="Configuracion"></item>
         </menu>
     </item>
-
-    <item android:title="Logout">
+    <item android:title="Cerrar Sesión">
         <menu>
             <item
                 android:id="@+id/mainMenuLogout"
                 android:title="Logout"></item>
         </menu>
     </item>
-
 </menu>
