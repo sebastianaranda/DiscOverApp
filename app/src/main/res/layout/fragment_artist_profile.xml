@@ -15,7 +15,7 @@
         >
 
         <ImageView
-            android:id="@+id/fragmentArtistProfile_ImageView_ArtistImage"
+            android:id="@+id/img_artist_picture"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             tools:src="@drawable/img_artist_placeholder"
@@ -31,7 +31,7 @@
             >
 
             <TextView
-                android:id="@+id/fragmentArtistProfile_TextView_artistName"
+                android:id="@+id/txt_artist_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -42,7 +42,7 @@
                 />
 
             <TextView
-                android:id="@+id/fragmentArtistProfile_TextView_yearsActive"
+                android:id="@+id/txt_artist_years_active"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -60,7 +60,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/fragmentArtistProfile_TextView_ArtistDescription"
+                    android:id="@+id/txt_artist_fans"
                     android:layout_width="0dp"
                     android:layout_weight="8"
                     android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/fragment_artists_profile_recyclerAlbumsContainer"
+        android:id="@+id/fragment_profile_albums_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

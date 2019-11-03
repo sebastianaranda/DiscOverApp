@@ -24,10 +24,10 @@ public class ArtistProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
-        ImageView imgArtistPicture = fragmentView.findViewById(R.id.fragmentArtistProfile_ImageView_ArtistImage);
-        TextView txtArtistName = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_artistName);
-        TextView txtYearsActive = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_yearsActive);
-        TextView txtArtistDescription = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_ArtistDescription);
+        ImageView imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
+        TextView txtArtistName = fragmentView.findViewById(R.id.txt_artist_name);
+        TextView txtYearsActive = fragmentView.findViewById(R.id.txt_artist_years_active);
+        TextView txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
 
         Bundle bundle = getArguments();
         Artist selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
@@ -38,7 +38,7 @@ public class ArtistProfileFragment extends Fragment {
                 .into(imgArtistPicture);
         txtArtistName.setText(selectedArtist.getName());
         txtYearsActive.setText(selectedArtist.getYearsActive());
-        txtArtistDescription.setText(selectedArtist.getDescription());
+        txtArtistFans.setText(selectedArtist.getDescription());
         return fragmentView;
     }
 
