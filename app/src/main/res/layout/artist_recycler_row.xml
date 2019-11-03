@@ -14,11 +14,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        tools:src="@drawable/img_artist_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <!-- TODO: (Juan) Pasar a tools:src cuando venga la imagen de la API-->
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_artist_placeholder" />
 
     <TextView
         android:id="@+id/txt_artist_name"

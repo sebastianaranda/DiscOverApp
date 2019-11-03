@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/mainMenuProfile"
-        android:title="Mi Cuenta"></item>
-    <item android:title="Mis Favoritos"
-        android:id="@+id/titleFavorites">
+        android:id="@+id/main_menu_profile"
+        android:title="@string/txt_drawer_account"/>
+    <item android:title="@string/txt_drawer_section_favorites"
+        android:id="@+id/title_favorites">
         <menu>
             <item
-                android:id="@+id/mainMenuFavArtists"
-                android:title="Artistas"/>
+                android:id="@+id/main_menu_fav_artists"
+                android:title="@string/txt_drawer_fav_artists"/>
             <item
-                android:id="@+id/mainMenuFavAlbums"
-                android:title="Albumes"/>
+                android:id="@+id/main_menu_fav_albums"
+                android:title="@string/txt_drawer_fav_albums"/>
             <item
-                android:id="@+id/mainMenuFavSongs"
-                android:title="Canciones"/>
+                android:id="@+id/main_menu_fav_songs"
+                android:title="@string/txt_drawer_fav_songs"/>
         </menu>
     </item>
-    <item android:title="Opciones">
+    <item android:title="@string/txt_drawer_section_options">
         <menu>
             <item
-                android:id="@+id/mainMenuSettings"
-                android:title="Configuracion"></item>
+                android:id="@+id/main_menu_settings"
+                android:title="@string/txt_drawer_settings"/>
         </menu>
     </item>
-    <item android:title="Cerrar Sesión">
+    <item android:title="@string/txt_drawer_section_login">
         <menu>
             <item
-                android:id="@+id/mainMenuLogout"
-                android:title="Logout"></item>
+                android:id="@+id/main_menu_logout"
+                android:title="@string/txt_drawer_logout"/>
         </menu>
     </item>
 </menu>

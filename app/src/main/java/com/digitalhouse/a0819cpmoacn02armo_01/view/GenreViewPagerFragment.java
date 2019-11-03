@@ -17,8 +17,6 @@ import androidx.fragment.app.Fragment;
 public class GenreViewPagerFragment extends Fragment {
 
     public static final String KEY_GENRE = "keyGenre";
-    private TextView txtGenrePagerName;
-    private ImageView imgGenrePagerImage;
 
     public GenreViewPagerFragment() {
         // Required empty public constructor
@@ -35,10 +33,10 @@ public class GenreViewPagerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.genre_view_pager_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_genre_view_pager, container, false);
 
-        txtGenrePagerName = view.findViewById(R.id.txt_viewpager_genre_name);
-        imgGenrePagerImage = view.findViewById(R.id.img_viewpager_genre);
+        TextView txtGenrePagerName = view.findViewById(R.id.txt_viewpager_genre_name);
+        ImageView imgGenrePagerImage = view.findViewById(R.id.img_viewpager_genre);
 
         Bundle bundle = getArguments();
         Genre genre = (Genre) bundle.getSerializable(KEY_GENRE);

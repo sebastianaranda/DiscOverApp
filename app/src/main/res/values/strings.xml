@@ -1,8 +1,21 @@
 <resources>
+
     <string name="app_name">DiscOver</string>
+
+<!--    MAIN-->
     <string name="txt_artist_recycler_albumes">Albumes:</string>
     <string name="txt_main_activity_artists">Artistas</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+<!--    DRAWER-->
+    <string name="txt_drawer_account">Mi Cuenta</string>
+    <string name="txt_drawer_section_favorites">Mis Favoritos</string>
+    <string name="txt_drawer_fav_artists">Artistas</string>
+    <string name="txt_drawer_fav_albums">Albumes</string>
+    <string name="txt_drawer_fav_songs">Canciones</string>
+    <string name="txt_drawer_section_options">Opciones</string>
+    <string name="txt_drawer_settings">Configuracion</string>
+    <string name="txt_drawer_section_login">Cerrar Sesión</string>
+    <string name="txt_drawer_logout">Logout</string>
+    <string name="txt_drawer_guest">Usuario Invitado</string>
+
 </resources>

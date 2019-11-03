@@ -15,11 +15,6 @@ public class ArtistProfileFragment extends Fragment {
 
     public static final String KEY_ARTIST = "keyArtist";
 
-    private ImageView fragmentArtistProfile_ImageView_ArtistImage;
-    private TextView fragmentArtistProfile_TextView_artistName;
-    private TextView fragmentArtistProfile_TextView_yearsActive;
-    private TextView fragmentArtistProfile_TextView_ArtistDescription;
-
     public ArtistProfileFragment() {
         // Required empty public constructor
     }
@@ -27,13 +22,12 @@ public class ArtistProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
-        fragmentArtistProfile_ImageView_ArtistImage = fragmentView.findViewById(R.id.fragmentArtistProfile_ImageView_ArtistImage);
-        fragmentArtistProfile_TextView_artistName = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_artistName);
-        fragmentArtistProfile_TextView_yearsActive = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_yearsActive);
-        fragmentArtistProfile_TextView_ArtistDescription = fragmentView.findViewById(R.id.fragmentArtistProfile_TextView_ArtistDescription);
+        ImageView imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
+        TextView txtArtistName = fragmentView.findViewById(R.id.txt_artist_name);
+        TextView txtYearsActive = fragmentView.findViewById(R.id.txt_artist_years_active);
+        TextView txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
 
         Bundle bundle = getArguments();
         Artist selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
@@ -41,10 +35,10 @@ public class ArtistProfileFragment extends Fragment {
         Glide.with(fragmentView)
                 .load(selectedArtist.getPictureBig())
                 .placeholder(R.drawable.img_artist_placeholder)
-                .into(fragmentArtistProfile_ImageView_ArtistImage);
-        fragmentArtistProfile_TextView_artistName.setText(selectedArtist.getName());
-        fragmentArtistProfile_TextView_yearsActive.setText(selectedArtist.getYearsActive());
-        fragmentArtistProfile_TextView_ArtistDescription.setText(selectedArtist.getDescription());
+                .into(imgArtistPicture);
+        txtArtistName.setText(selectedArtist.getName());
+        txtYearsActive.setText(selectedArtist.getYearsActive());
+        txtArtistFans.setText(selectedArtist.getDescription());
         return fragmentView;
     }
 

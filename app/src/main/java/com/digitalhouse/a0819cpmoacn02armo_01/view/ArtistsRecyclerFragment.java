@@ -14,11 +14,11 @@ import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import java.util.List;
 
-public class ArtistsFragment extends Fragment implements ArtistAdapter.ArtistAdapterListener {
+public class ArtistsRecyclerFragment extends Fragment implements ArtistAdapter.ArtistAdapterListener {
 
     private FragmentArtistsListener fragmentArtistsListener;
 
-    public ArtistsFragment() {
+    public ArtistsRecyclerFragment() {
         // Required empty public constructor
     }
 
@@ -31,7 +31,7 @@ public class ArtistsFragment extends Fragment implements ArtistAdapter.ArtistAda
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_artists, container, false);
+        View view = inflater.inflate(R.layout.fragment_recycler_artists, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.fragment_artists_recycler);
         final ArtistAdapter artistAdapter = new ArtistAdapter(this);
         ArtistsController artistsController = new ArtistsController();
