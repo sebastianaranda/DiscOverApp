@@ -1,34 +1,83 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
+import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
+import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
 
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-public class GenreViewPagerActivity extends AppCompatActivity {
+public class GenreViewPagerActivity extends AppCompatActivity implements ArtistAdapter.ArtistAdapterListener {
 
     public static final String GENRE_LIST_KEY = "genreListKey";
     public static final String GENRE_INDEX_KEY = "genreIndexKey";
+    private GenreViewPagerAdapter viewPagerAdapter;
+    private ArtistAdapter artistAdapter;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_genre_view_pager);
 
+        final RecyclerView recyclerView = findViewById(R.id.fragment_artists_recycler);
+        progressBar = findViewById(R.id.progressBar);
+
         Bundle bundle = getIntent().getExtras();
         List<Genre> genreList = (List<Genre>) bundle.getSerializable(GENRE_LIST_KEY);
         int position = bundle.getInt(GENRE_INDEX_KEY);
         ViewPager viewPager = findViewById(R.id.genre_viewpager);
         if (genreList != null && !genreList.isEmpty()) {
-            GenreViewPagerAdapter adapter = new GenreViewPagerAdapter(getSupportFragmentManager(), genreList);
-            viewPager.setAdapter(adapter);
+            viewPagerAdapter = new GenreViewPagerAdapter(getSupportFragmentManager(), genreList);
+            viewPager.setAdapter(viewPagerAdapter);
             viewPager.setCurrentItem(position);
         }
+
+        artistAdapter = new ArtistAdapter(GenreViewPagerActivity.this);
+        recyclerView.setAdapter(artistAdapter);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                displayArtistsByGenre(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    private void displayArtistsByGenre(int position) {
+        progressBar.setVisibility(View.VISIBLE);
+        Genre genre = viewPagerAdapter.getGenreFromPosition(position);
+        ArtistsController artistsController = new ArtistsController();
+        artistsController.getArtistsByGenre(genre, new ResultListener<List<Artist>>() {
+            @Override
+            public void finish(List<Artist> result) {
+                artistAdapter.setArtists(result);
+                artistAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void getArtistFromAdapter(Artist artist) {
     }
 
 }
