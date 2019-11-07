@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context=".view.GenreViewPagerActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/genre_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
+        android:layout_marginTop="24dp"
         android:background="@color/colorPrimary">
 
         <androidx.recyclerview.widget.RecyclerView

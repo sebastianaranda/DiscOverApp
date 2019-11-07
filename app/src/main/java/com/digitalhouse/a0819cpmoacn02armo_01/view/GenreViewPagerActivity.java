@@ -1,5 +1,6 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -29,25 +30,24 @@ public class GenreViewPagerActivity extends AppCompatActivity implements ArtistA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_genre_view_pager);
 
+        ViewPager viewPager = findViewById(R.id.genre_viewpager);
         final RecyclerView recyclerView = findViewById(R.id.fragment_artists_recycler);
+        artistAdapter = new ArtistAdapter(GenreViewPagerActivity.this);
         progressBar = findViewById(R.id.progressBar);
 
         Bundle bundle = getIntent().getExtras();
         List<Genre> genreList = (List<Genre>) bundle.getSerializable(GENRE_LIST_KEY);
         int position = bundle.getInt(GENRE_INDEX_KEY);
-        ViewPager viewPager = findViewById(R.id.genre_viewpager);
         if (genreList != null && !genreList.isEmpty()) {
             viewPagerAdapter = new GenreViewPagerAdapter(getSupportFragmentManager(), genreList);
             viewPager.setAdapter(viewPagerAdapter);
             viewPager.setCurrentItem(position);
         }
-
-        artistAdapter = new ArtistAdapter(GenreViewPagerActivity.this);
         recyclerView.setAdapter(artistAdapter);
+        displayArtistsByGenre(position);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -57,7 +57,6 @@ public class GenreViewPagerActivity extends AppCompatActivity implements ArtistA
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
@@ -78,6 +77,11 @@ public class GenreViewPagerActivity extends AppCompatActivity implements ArtistA
 
     @Override
     public void getArtistFromAdapter(Artist artist) {
+        Intent intent = new Intent(GenreViewPagerActivity.this, ArtistProfileActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ArtistProfileFragment.KEY_ARTIST, artist);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }
