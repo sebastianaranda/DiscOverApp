@@ -13,9 +13,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 public class GenreViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<GenreViewPagerFragment> genreViewPagerFragments;
+    private List<Genre> genreList;
 
     GenreViewPagerAdapter(@NonNull FragmentManager fm, List<Genre> genreList) {
         super(fm);
+        this.genreList = genreList;
         genreViewPagerFragments = new ArrayList<>();
         for (Genre genre : genreList) {
             genreViewPagerFragments.add(GenreViewPagerFragment.getFragmentForPager(genre));
@@ -31,6 +33,10 @@ public class GenreViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return genreViewPagerFragments.size();
+    }
+
+    protected Genre getGenreFromPosition(int position) {
+       return genreList.get(position);
     }
 
 }

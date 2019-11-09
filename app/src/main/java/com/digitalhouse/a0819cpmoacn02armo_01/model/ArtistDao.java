@@ -28,4 +28,20 @@ public class ArtistDao extends ArtistsRetrofitDAO {
             }
         });
     }
+
+    public void getAllArtistFromGenre(Genre genre, final ResultListener<List<Artist>> controllerListener) {
+        Call<ContainerArtists> call = artistsService.getAllArtistFromGenre(genre.getId());
+
+        call.enqueue(new Callback<ContainerArtists>() {
+            @Override
+            public void onResponse(Call<ContainerArtists> call, Response<ContainerArtists> response) {
+                ContainerArtists containerArtists = response.body();
+                controllerListener.finish(containerArtists.getArtistsList());
+            }
+
+            @Override
+            public void onFailure(Call<ContainerArtists> call, Throwable t) {
+            }
+        });
+    }
 }
