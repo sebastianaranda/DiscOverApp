@@ -17,5 +17,9 @@
     <string name="txt_drawer_section_login">Cerrar Sesión</string>
     <string name="txt_drawer_logout">Logout</string>
     <string name="txt_drawer_guest">Usuario Invitado</string>
+    <string name="txt_drawer_open">Abrir menu lateral</string>
+    <string name="txt_drawer_close">Cerrar menu lateral</string>
 
+    <!--    DRAWER-->
+    <string name="title_genre_viewpager_activity">Generos</string>
 </resources>

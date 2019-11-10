@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
-
 import java.util.List;
-
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -24,11 +23,19 @@ public class GenreViewPagerActivity extends AppCompatActivity implements ArtistA
     private GenreViewPagerAdapter viewPagerAdapter;
     private ArtistAdapter artistAdapter;
     ProgressBar progressBar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_genre_view_pager);
+
+        toolbar = findViewById(R.id.toolbar_genre_viewpager_activity);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
         ViewPager viewPager = findViewById(R.id.genre_viewpager);
         final RecyclerView recyclerView = findViewById(R.id.fragment_artists_recycler);
@@ -43,6 +50,8 @@ public class GenreViewPagerActivity extends AppCompatActivity implements ArtistA
             viewPager.setAdapter(viewPagerAdapter);
             viewPager.setCurrentItem(position);
         }
+        Genre generoSeleccionado = genreList.get(position);
+        toolbar.setTitle(generoSeleccionado.getName());
         recyclerView.setAdapter(artistAdapter);
         displayArtistsByGenre(position);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

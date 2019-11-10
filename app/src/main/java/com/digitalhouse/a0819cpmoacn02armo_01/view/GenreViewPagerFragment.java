@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 public class GenreViewPagerFragment extends Fragment {
@@ -40,12 +41,11 @@ public class GenreViewPagerFragment extends Fragment {
 
         Bundle bundle = getArguments();
         Genre genre = (Genre) bundle.getSerializable(KEY_GENRE);
-
         txtGenrePagerName.setText(genre.getName());
         Glide.with(getContext())
-                .load(genre.getPicture())
-                .placeholder(R.drawable.ic_play)
-                .error(R.drawable.img_genre_placeholder)
+                .load(genre.getPicture_big())
+                .placeholder(R.drawable.img_genre_placeholder)
+                .error(R.drawable.img_genres_error_placeholder)
                 .into(imgGenrePagerImage)
         ;
         return view;

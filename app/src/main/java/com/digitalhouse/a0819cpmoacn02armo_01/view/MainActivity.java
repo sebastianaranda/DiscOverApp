@@ -1,11 +1,14 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
@@ -19,16 +22,44 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFragment.FragmentArtistsListener, GenresRecyclerFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        attachArtistFragment(new ArtistsRecyclerFragment());
-        attachGenreFragment(new GenresRecyclerFragment());
         drawerLayout = findViewById(R.id.mainActivity_drawerLayout);
         NavigationView navigationView = findViewById(R.id.mainActivity_navigationView);
         navigationView.setNavigationItemSelectedListener(this);
+        toolbar = findViewById(R.id.toolbar_MainActivity);
+        setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.txt_drawer_open,R.string.txt_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        attachArtistFragment(new ArtistsRecyclerFragment());
+        attachGenreFragment(new GenresRecyclerFragment());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemMenuSelected = item.getItemId();
+        switch (itemMenuSelected){
+            case R.id.toolbar_menu_search:
+                //TODO: modificar esta linea una vez definido el metodo de search
+                Toast.makeText(this, "Seleccionaste la opcion para search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.toolbar_menu_settings:
+                //TODO: modificar esta linea una vez definido el metodo de settings
+                Toast.makeText(this, "Seleccionaste la opcion de settings", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
     }
 
     private void attachArtistFragment(Fragment fragment) {
