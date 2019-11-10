@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.ArtistProfileActivity"/>
+        <activity android:name=".view.ArtistProfileActivity"
+            android:theme="@style/artistProfileTheme"/>
         <activity android:name=".view.GenreViewPagerActivity"/>
         <activity android:name=".view.MainActivity">
             <intent-filter>
