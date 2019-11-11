@@ -41,11 +41,11 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        materialButton = findViewById(R.id.login_activity_materialButton);
-        txtInputLayoutEmail = findViewById(R.id.login_activity_textInputLayout_email);
-        txtInputEditTextEmail = findViewById(R.id.login_activity_textInputEditText_email);
-        txtInputLayoutPassword = findViewById(R.id.login_activity_textInputLayout_password);
-        txtInputEditTextPassword = findViewById(R.id.login_activity_textInputEditText_password);
+        materialButton = findViewById(R.id.login_activity_material_button);
+        txtInputLayoutEmail = findViewById(R.id.login_activity_text_input_layout_email);
+        txtInputEditTextEmail = findViewById(R.id.login_activity_text_input_edit_text_email);
+        txtInputLayoutPassword = findViewById(R.id.login_activity_text_input_layout_password);
+        txtInputEditTextPassword = findViewById(R.id.login_activity_text_input_edit_text_password);
 
         materialButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -19,14 +19,14 @@
         android:layout_marginTop="?actionBarSize">
 
         <ImageView
-            android:id="@+id/imageView_user_profile_bgHeader"
+            android:id="@+id/image_view_user_profile_bg_header"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/bg_header_nav" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView_user_profile"
+            android:id="@+id/card_view_user_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -34,7 +34,7 @@
             app:cardPreventCornerOverlap="true">
 
             <ImageView
-                android:id="@+id/imageView_user_profile_image"
+                android:id="@+id/image_view_user_profile_image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerInParent="true"
@@ -43,7 +43,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/user_profile_activity_textView_nameTitle"
+        android:id="@+id/user_profile_activity_text_view_name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/activity_user_profile_header"
@@ -55,22 +55,22 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/user_profile_activity_textView_userName"
+        android:id="@+id/user_profile_activity_text_view_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_profile_activity_textView_nameTitle"
-        android:layout_alignStart="@id/user_profile_activity_textView_nameTitle"
+        android:layout_below="@id/user_profile_activity_text_view_name_title"
+        android:layout_alignStart="@id/user_profile_activity_text_view_name_title"
         android:layout_marginTop="8dp"
         tools:text="Nombre de usuario"
         android:textColor="@color/colorSecondary"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/user_profile_activity_textView_emailTitle"
+        android:id="@+id/user_profile_activity_text_view_email_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_profile_activity_textView_userName"
-        android:layout_alignStart="@+id/user_profile_activity_textView_nameTitle"
+        android:layout_below="@id/user_profile_activity_text_view_user_name"
+        android:layout_alignStart="@+id/user_profile_activity_text_view_name_title"
         android:layout_marginTop="32dp"
         android:text="Email"
         android:textColor="@color/colorAccent"
@@ -78,11 +78,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/user_profile_activity_textView_userEmail"
+        android:id="@+id/user_profile_activity_text_view_user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_profile_activity_textView_emailTitle"
-        android:layout_alignStart="@id/user_profile_activity_textView_emailTitle"
+        android:layout_below="@id/user_profile_activity_text_view_email_title"
+        android:layout_alignStart="@id/user_profile_activity_text_view_email_title"
         android:layout_marginTop="8dp"
         tools:text="Email de usuario"
         android:textColor="@color/colorSecondary"

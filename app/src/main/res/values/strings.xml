@@ -21,7 +21,7 @@
     <string name="txt_drawer_close">Cerrar menu lateral</string>
 
     <!--    DRAWER-->
-    <string name="title_genre_viewpager_activity">Generos</string>
+    <string name="title_genre_viewpager_activity">Géneros</string>
 
     <!-- Login Facebook -->
     <string name="facebook_app_id">2473820992893138</string>

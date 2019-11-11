@@ -7,11 +7,11 @@
     tools:context=".view.MainActivity">
 
     <include
-        android:id="@+id/toolbar_MainActivity"
+        android:id="@+id/toolbar_main_activity"
         layout="@layout/toolbar" />
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/mainActivity_drawerLayout"
+        android:id="@+id/main_activity_drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?actionBarSize"
@@ -37,7 +37,7 @@
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/mainActivity_navigationView"
+            android:id="@+id/main_activity_navigation_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"

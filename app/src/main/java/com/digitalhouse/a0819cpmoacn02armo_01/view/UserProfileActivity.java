@@ -37,9 +37,9 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        imgUserPicture = findViewById(R.id.imageView_user_profile_image);
-        txtUserName = findViewById(R.id.user_profile_activity_textView_userName);
-        txtUserEmail = findViewById(R.id.user_profile_activity_textView_userEmail);
+        imgUserPicture = findViewById(R.id.image_view_user_profile_image);
+        txtUserName = findViewById(R.id.user_profile_activity_text_view_user_name);
+        txtUserEmail = findViewById(R.id.user_profile_activity_text_view_user_email);
         callbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button_fb);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));

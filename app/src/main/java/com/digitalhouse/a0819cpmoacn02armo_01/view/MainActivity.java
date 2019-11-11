@@ -22,18 +22,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFragment.FragmentArtistsListener, GenresRecyclerFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        drawerLayout = findViewById(R.id.mainActivity_drawerLayout);
-        NavigationView navigationView = findViewById(R.id.mainActivity_navigationView);
+        drawerLayout = findViewById(R.id.main_activity_drawer_layout);
+        NavigationView navigationView = findViewById(R.id.main_activity_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-        toolbar = findViewById(R.id.toolbar_MainActivity);
+        Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.txt_drawer_open,R.string.txt_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.txt_drawer_open,R.string.txt_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         attachArtistFragment(new ArtistsRecyclerFragment());

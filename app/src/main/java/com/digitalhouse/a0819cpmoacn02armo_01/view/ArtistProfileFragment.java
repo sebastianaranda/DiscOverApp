@@ -3,11 +3,7 @@ package com.digitalhouse.a0819cpmoacn02armo_01.view;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.ColorInt;
 import androidx.fragment.app.Fragment;
-
-import android.support.v4.media.RatingCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +28,9 @@ public class ArtistProfileFragment extends Fragment {
         View fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
         ImageView imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
+        //TODO: chequear si podemos pedir este dato a la API y modificar este codigo
         TextView txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
-        CollapsingToolbarLayout collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artistProfile_CollapsingToolbarLayout);
+        CollapsingToolbarLayout collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
 
         Bundle bundle = getArguments();
         Artist selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);

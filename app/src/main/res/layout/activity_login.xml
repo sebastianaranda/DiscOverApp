@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/linearLayout_manual_form"
+        android:layout_above="@id/linear_layout_manual_form"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
         android:text="LOGO APP"
@@ -30,7 +30,7 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/linearLayout_manual_form"
+        android:id="@+id/linear_layout_manual_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -46,13 +46,13 @@
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_activity_textInputLayout_email"
+            android:id="@+id/login_activity_text_input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorWhiteTransparent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_activity_textInputEditText_email"
+                android:id="@+id/login_activity_text_input_edit_text_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -71,13 +71,13 @@
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_activity_textInputLayout_password"
+            android:id="@+id/login_activity_text_input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorWhiteTransparent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_activity_textInputEditText_password"
+                android:id="@+id/login_activity_text_input_edit_text_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Contraseña"
@@ -87,7 +87,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_activity_materialButton"
+            android:id="@+id/login_activity_material_button"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,10 +105,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txt_login_title_socialmedia"
+        android:id="@+id/txt_login_title_social_media"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout_manual_form"
+        android:layout_below="@id/linear_layout_manual_form"
         android:layout_marginTop="48dp"
         android:gravity="center"
         android:text="O ingresá con"
@@ -120,7 +120,7 @@
         android:id="@+id/login_button_fb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_login_title_socialmedia"
+        android:layout_below="@id/txt_login_title_social_media"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp" />
 

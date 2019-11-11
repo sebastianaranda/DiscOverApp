@@ -11,12 +11,12 @@
     <!--    TODO: Pasar a Constraint antes de terminar esta pantalla-->
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/artistProfile_AppBarLayout"
+        android:id="@+id/artist_profile_appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="400dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/artistProfile_CollapsingToolbarLayout"
+            android:id="@+id/artist_profile_collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimary"
@@ -73,7 +73,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/artistProfile_AppBarLayout"
+        app:layout_anchor="@id/artist_profile_appbar_layout"
         app:layout_anchorGravity="bottom|right"
         android:layout_marginRight="16dp"
         android:src="@drawable/ic_fav_border_64dp"/>
