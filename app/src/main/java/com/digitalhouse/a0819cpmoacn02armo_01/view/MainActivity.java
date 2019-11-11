@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
+import com.facebook.AccessToken;
 import com.google.android.material.navigation.NavigationView;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Integer id = menuItem.getItemId();
         switch (id){
-            //TODO: Definir comportamiento del menu
+            //TODO: Definir comportamiento del menu y borrar toast
             case R.id.main_menu_fav_artists:
                 Toast.makeText(this, "Seleccionaste Artistas favoritos", Toast.LENGTH_SHORT).show();
                 break;
@@ -110,7 +110,14 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                 Toast.makeText(this, "Seleccionaste Canciones favoritas", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main_menu_profile:
-                Toast.makeText(this, "Seleccionaste el menu Perfil", Toast.LENGTH_SHORT).show();
+                AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                if (accessToken!= null && !accessToken.isExpired()){
+                    Intent intent = new Intent(MainActivity.this,UserProfileActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.main_menu_settings:
                 Toast.makeText(this, "Seleccionaste el menu Settings", Toast.LENGTH_SHORT).show();

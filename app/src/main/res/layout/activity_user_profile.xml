@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".view.UserProfileActivity">
+
+    <include
+        android:id="@+id/toolbar_user_profile_activity"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/activity_user_profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="?actionBarSize">
+
+        <ImageView
+            android:id="@+id/imageView_user_profile_bgHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_header_nav" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_user_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="150dp"
+            app:cardPreventCornerOverlap="true">
+
+            <ImageView
+                android:id="@+id/imageView_user_profile_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_artist_placeholder" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/user_profile_activity_textView_nameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_user_profile_header"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Nombre"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user_profile_activity_textView_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_profile_activity_textView_nameTitle"
+        android:layout_alignStart="@id/user_profile_activity_textView_nameTitle"
+        android:layout_marginTop="8dp"
+        tools:text="Nombre de usuario"
+        android:textColor="@color/colorSecondary"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/user_profile_activity_textView_emailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_profile_activity_textView_userName"
+        android:layout_alignStart="@+id/user_profile_activity_textView_nameTitle"
+        android:layout_marginTop="32dp"
+        android:text="Email"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user_profile_activity_textView_userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_profile_activity_textView_emailTitle"
+        android:layout_alignStart="@id/user_profile_activity_textView_emailTitle"
+        android:layout_marginTop="8dp"
+        tools:text="Email de usuario"
+        android:textColor="@color/colorSecondary"
+        android:textSize="16sp" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button_fb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp" />
+</RelativeLayout>

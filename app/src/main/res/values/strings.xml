@@ -2,11 +2,11 @@
 
     <string name="app_name">DiscOver</string>
 
-<!--    MAIN-->
+    <!--    MAIN-->
     <string name="txt_artist_recycler_albumes">Albumes:</string>
     <string name="txt_main_activity_artists">Artistas</string>
 
-<!--    DRAWER-->
+    <!--    DRAWER-->
     <string name="txt_drawer_account">Mi Cuenta</string>
     <string name="txt_drawer_section_favorites">Mis Favoritos</string>
     <string name="txt_drawer_fav_artists">Artistas</string>
@@ -22,4 +22,15 @@
 
     <!--    DRAWER-->
     <string name="title_genre_viewpager_activity">Generos</string>
+
+    <!-- Login Facebook -->
+    <string name="facebook_app_id">2473820992893138</string>
+    <string name="fb_login_protocol_scheme">fb2473820992893138</string>
+    <string name="title_login_activity">Iniciar sesión</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    USER PROFILE ACTIVITY-->
+    <string name="title_user_profile_activity">Mi cuenta</string>
 </resources>
