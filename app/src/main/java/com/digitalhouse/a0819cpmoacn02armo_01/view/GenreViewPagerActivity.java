@@ -80,6 +80,7 @@ public class GenreViewPagerActivity extends AppCompatActivity implements ArtistA
         Intent intent = new Intent(GenreViewPagerActivity.this, ArtistProfileActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ArtistProfileFragment.KEY_ARTIST, artist);
+        bundle.putSerializable(AlbumsRecyclerFragment.KEY_ARTIST_PROFILE, artist);
         intent.putExtras(bundle);
         startActivity(intent);
     }

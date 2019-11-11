@@ -17,5 +17,6 @@
     <string name="txt_drawer_section_login">Cerrar Sesión</string>
     <string name="txt_drawer_logout">Logout</string>
     <string name="txt_drawer_guest">Usuario Invitado</string>
+    <string name="txt_album_tracks">Canciones</string>
 
 </resources>

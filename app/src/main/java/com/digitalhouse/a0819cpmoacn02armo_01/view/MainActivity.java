@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
 
     private void attachGenreFragment(Fragment fragment) {
         getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.genre_fragment_container, fragment)
-                .commit();
+            .beginTransaction()
+            .replace(R.id.genre_fragment_container, fragment)
+            .commit();
     }
 
     @Override
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         Intent intent = new Intent(MainActivity.this, ArtistProfileActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ArtistProfileFragment.KEY_ARTIST, artist);
+        bundle.putSerializable(AlbumsRecyclerFragment.KEY_ARTIST_PROFILE, artist);
         intent.putExtras(bundle);
         startActivity(intent);
     }
