@@ -29,7 +29,7 @@
     <string name="facebook_app_id">2473820992893138</string>
     <string name="fb_login_protocol_scheme">fb2473820992893138</string>
     <string name="title_login_activity">Iniciar sesión</string>
-    
+
     <!--    USER PROFILE ACTIVITY-->
     <string name="title_user_profile_activity">Mi cuenta</string>
     <string name="txt_user_profile_activity_no_email_message">El email no fue configurado.</string>
