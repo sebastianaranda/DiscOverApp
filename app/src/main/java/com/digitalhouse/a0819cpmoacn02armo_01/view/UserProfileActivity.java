@@ -78,14 +78,14 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
                 .into(imgUserPicture);
 
         txtUserName.setText(user.getName());
+        //TODO: definir si el id del user lo vamos a utilizar para otra cosa y si vale la pena mostrarlo en algun lado
         //mId.setText(user.getId());
         if (user.getEmail() == null) {
-            txtUserEmail.setText("El email no fue configurado");
+            txtUserEmail.setText(getString(R.string.txt_user_profile_activity_no_email_message));
             txtUserEmail.setTextColor(Color.RED);
         } else {
             txtUserEmail.setText(user.getEmail());
         }
-        //mPermissions.setText(user.getPermissions());
     }
 
 }

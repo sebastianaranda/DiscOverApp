@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkForm()){
+                    //TODO: sacar toast despues de definir la logica del boton
                     Toast.makeText(LoginActivity.this, "Felicitaciones, creaste tu cuenta", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -99,12 +100,12 @@ public class LoginActivity extends AppCompatActivity {
         String password = txtInputEditTextPassword.getText().toString();
 
         if (email.isEmpty()){
-            txtInputLayoutEmail.setError("Debe ingresar un email.");
-            txtInputEditTextEmail.setHint("Este campo no puede estar vacio");
+            txtInputLayoutEmail.setError(getString(R.string.txt_login_layout_error_empty_email));
+            txtInputEditTextEmail.setHint(getString(R.string.txt_login_edit_text_error_empty_email));
             verification = false;
         }else {
             if (checkEmail(email)==false){
-                txtInputLayoutEmail.setError("El email ingresado no es valido.");
+                txtInputLayoutEmail.setError(getString(R.string.txt_login_layout_error_wrong_email));
                 verification = false;
             }else {
                 txtInputLayoutEmail.setError(null);
@@ -112,12 +113,12 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (password.isEmpty()){
-            txtInputLayoutPassword.setError("Debe ingresar una contraseña.");
-            txtInputEditTextPassword.setHint("Este campo no puede estar vacio");
+            txtInputLayoutPassword.setError(getString(R.string.txt_login_layout_error_empty_password));
+            txtInputEditTextPassword.setHint(getString(R.string.txt_login_edit_text_error_empty_password));
             verification=false;
         }else {
             if (password.length()<8){
-                txtInputLayoutPassword.setError("La contraseña debe tener mas de 8 caracteres.");
+                txtInputLayoutPassword.setError(getString(R.string.txt_login_layout_error_wrong_password));
                 verification = false;
             }else {
                 txtInputLayoutPassword.setError(null);

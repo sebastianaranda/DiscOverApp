@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                 if (accessToken!= null && !accessToken.isExpired()){
                     Intent intent = new Intent(MainActivity.this,UserProfileActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                     startActivity(intent);
                 }

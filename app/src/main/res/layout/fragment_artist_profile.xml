@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="ARTISTA"
+            tools:title="@string/txt_fragment_artist_profile_artist_name"
             app:expandedTitleMarginStart="16dp">
 
             <ImageView
@@ -44,11 +44,11 @@
                     android:id="@+id/txt_artist_fans"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fans: 34.3 mill."
+                    tools:text="Fans: 34.3 mill."
                     android:textColor="@color/colorWhite"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:paddingStart="16dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="4dp"/>
 
             </LinearLayout>
 

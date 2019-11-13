@@ -8,13 +8,13 @@ public class Genre implements Serializable {
     private int id;
     private String name;
     private URL picture;
-    private URL picture_big;
+    private URL pictureBig;
 
-    public Genre(int id, String name, URL picture, URL picture_big) {
+    public Genre(int id, String name, URL picture, URL pictureBig) {
         this.id = id;
         this.name = name;
         this.picture = picture;
-        this.picture_big = picture_big;
+        this.pictureBig = pictureBig;
     }
 
     public int getId() {
@@ -29,8 +29,8 @@ public class Genre implements Serializable {
         return name;
     }
 
-    public URL getPicture_big() {
-        return picture_big;
+    public URL getPictureBig() {
+        return pictureBig;
     }
 
     public void setName(String name) {
@@ -45,7 +45,7 @@ public class Genre implements Serializable {
         this.picture = picture;
     }
 
-    public void setPicture_big(URL picture_big) {
-        this.picture_big = picture_big;
+    public void setPictureBig(URL pictureBig) {
+        this.pictureBig = pictureBig;
     }
 }
