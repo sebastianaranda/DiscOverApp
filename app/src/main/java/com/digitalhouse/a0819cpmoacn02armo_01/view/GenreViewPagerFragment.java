@@ -1,17 +1,14 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
-
 import androidx.fragment.app.Fragment;
 
 public class GenreViewPagerFragment extends Fragment {
@@ -40,12 +37,11 @@ public class GenreViewPagerFragment extends Fragment {
 
         Bundle bundle = getArguments();
         Genre genre = (Genre) bundle.getSerializable(KEY_GENRE);
-
         txtGenrePagerName.setText(genre.getName());
         Glide.with(getContext())
-                .load(genre.getPicture())
-                .placeholder(R.drawable.ic_play)
-                .error(R.drawable.img_genre_placeholder)
+                .load(genre.getPictureBig())
+                .placeholder(R.drawable.img_genre_placeholder)
+                .error(R.drawable.img_genres_error_placeholder)
                 .into(imgGenrePagerImage)
         ;
         return view;

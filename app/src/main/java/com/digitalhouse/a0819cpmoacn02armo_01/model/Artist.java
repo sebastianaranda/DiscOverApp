@@ -18,8 +18,10 @@ public class Artist implements Serializable {
     private URL pictureBig;
     private String yearsActive;
     private String description;
+    @SerializedName("nb_fan")
+    private int nbFans;
 
-    public Artist(int id, String name, int nbAlbum, URL pictureSmall,URL pictureBig, String yearsActive, String description) {
+    public Artist(int id, String name, int nbAlbum, URL pictureSmall,URL pictureBig, String yearsActive, String description, int nbFans) {
         this.id = id;
         this.name = name;
         this.nbAlbum = nbAlbum;
@@ -27,6 +29,7 @@ public class Artist implements Serializable {
         this.description = description;
         this.pictureSmall = pictureSmall;
         this.pictureBig = pictureBig;
+        this.nbFans = nbFans;
     }
 
     public int getId() {
@@ -83,5 +86,13 @@ public class Artist implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getNbFans() {
+        return nbFans;
+    }
+
+    public void setNbFans(int nbFans) {
+        this.nbFans = nbFans;
     }
 }
