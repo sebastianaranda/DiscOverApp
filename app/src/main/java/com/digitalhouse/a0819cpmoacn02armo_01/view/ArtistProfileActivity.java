@@ -20,22 +20,12 @@ public class ArtistProfileActivity extends AppCompatActivity implements AlbumsRe
         artistProfileFragment.setArguments(bundle);
         attachProfileFragment(artistProfileFragment);
 
-        AlbumsRecyclerFragment albumsRecyclerFragment = new AlbumsRecyclerFragment();
-        albumsRecyclerFragment.setArguments(bundle);
-        attachAlbumsRecyclerFragment(albumsRecyclerFragment);
     }
 
     private void attachProfileFragment(Fragment fragment){
         getSupportFragmentManager()
             .beginTransaction()
             .replace(R.id.artist_activity_fragmentContainer, fragment)
-            .commit();
-    }
-
-    private void attachAlbumsRecyclerFragment(Fragment fragment){
-        getSupportFragmentManager()
-            .beginTransaction()
-            .replace(R.id.artist_albums_recycler_container, fragment)
             .commit();
     }
 

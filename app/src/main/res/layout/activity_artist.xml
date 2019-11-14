@@ -8,15 +8,7 @@
     <FrameLayout
         android:id="@+id/artist_activity_fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:background="@color/colorPrimary"/>
-
-    <FrameLayout
-        android:id="@+id/artist_albums_recycler_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_height="match_parent"
         android:background="@color/colorPrimary"/>
 
 </LinearLayout>
