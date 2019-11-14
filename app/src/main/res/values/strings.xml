@@ -1,12 +1,12 @@
 <resources>
-
     <string name="app_name">DiscOver</string>
 
-<!--    MAIN-->
+    <!--    MAIN-->
     <string name="txt_artist_recycler_albumes">Albumes:</string>
     <string name="txt_main_activity_artists">Artistas</string>
+    <string name="txt_album_tracks">Canciones</string>
 
-<!--    DRAWER-->
+    <!--    DRAWER-->
     <string name="txt_drawer_account">Mi Cuenta</string>
     <string name="txt_drawer_section_favorites">Mis Favoritos</string>
     <string name="txt_drawer_fav_artists">Artistas</string>
@@ -17,6 +17,30 @@
     <string name="txt_drawer_section_login">Cerrar Sesión</string>
     <string name="txt_drawer_logout">Logout</string>
     <string name="txt_drawer_guest">Usuario Invitado</string>
-    <string name="txt_album_tracks">Canciones</string>
+    <string name="txt_drawer_open">Abrir menu lateral</string>
+    <string name="txt_drawer_close">Cerrar menu lateral</string>
+
+    <!--    GENRE VIEWPAGER ACTIVITY-->
+    <string name="title_genre_viewpager_activity">Géneros</string>
+
+    <!-- ARTIST PROFILE FRAGMENT -->
+    <string name="txt_fragment_artist_profile_artist_name">ARTISTA</string>
+
+    <!-- LOGIN FACEBOOK -->
+    <string name="facebook_app_id">2473820992893138</string>
+    <string name="fb_login_protocol_scheme">fb2473820992893138</string>
+    <string name="title_login_activity">Iniciar sesión</string>
+
+    <!--    USER PROFILE ACTIVITY-->
+    <string name="title_user_profile_activity">Mi cuenta</string>
+    <string name="txt_user_profile_activity_no_email_message">El email no fue configurado.</string>
+
+    <!--    USER LOGIN ACTIVITY-->
+    <string name="txt_login_layout_error_empty_email">Debe ingresar un email.</string>
+    <string name="txt_login_edit_text_error_empty_email">Debe ingresar un email.</string>
+    <string name="txt_login_layout_error_wrong_email">El email ingresado no es válido.</string>
+    <string name="txt_login_layout_error_empty_password">Debe ingresar un email.</string>
+    <string name="txt_login_edit_text_error_empty_password">Debe ingresar un email.</string>
+    <string name="txt_login_layout_error_wrong_password">El email ingresado no es válido.</string>
 
 </resources>

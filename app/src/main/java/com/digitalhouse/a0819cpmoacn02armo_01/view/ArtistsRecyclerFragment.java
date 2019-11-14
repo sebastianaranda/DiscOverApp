@@ -12,6 +12,8 @@ import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
 import java.util.List;
 
 public class ArtistsRecyclerFragment extends Fragment implements ArtistAdapter.ArtistAdapterListener {
