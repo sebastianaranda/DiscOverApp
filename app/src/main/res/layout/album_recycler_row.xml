@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorCard"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/img_album_cover"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img_genre_placeholder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/img_genre_placeholder" />
+
+        <TextView
+            android:id="@+id/txt_album_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:singleLine="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/img_album_cover"
+            app:layout_constraintTop_toBottomOf="@id/img_album_cover"
+            tools:text="L.D. 50" />
+
+        <TextView
+            android:id="@+id/txt_album_track_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorSecondary"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/txt_album_title"
+            app:layout_constraintTop_toBottomOf="@+id/txt_album_title"
+            tools:text="13" />
+
+        <TextView
+            android:id="@+id/txt_album_tracks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/txt_album_tracks"
+            android:textColor="@color/colorSecondary"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/txt_album_track_count"
+            app:layout_constraintTop_toBottomOf="@id/txt_album_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

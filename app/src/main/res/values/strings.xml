@@ -4,6 +4,7 @@
     <!--    MAIN-->
     <string name="txt_artist_recycler_albumes">Albumes:</string>
     <string name="txt_main_activity_artists">Artistas</string>
+    <string name="txt_album_tracks">Canciones</string>
 
     <!--    DRAWER-->
     <string name="txt_drawer_account">Mi Cuenta</string>
@@ -41,4 +42,5 @@
     <string name="txt_login_layout_error_empty_password">Debe ingresar un email.</string>
     <string name="txt_login_edit_text_error_empty_password">Debe ingresar un email.</string>
     <string name="txt_login_layout_error_wrong_password">El email ingresado no es válido.</string>
+
 </resources>

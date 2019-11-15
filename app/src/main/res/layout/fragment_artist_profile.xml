@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,24 @@
     android:orientation="vertical"
     tools:context=".view.ArtistProfileFragment">
     <!--    TODO: Pasar a Constraint antes de terminar esta pantalla-->
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_albums_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:reverseLayout="false"
+            app:spanCount="2"
+            tools:listitem="@layout/album_recycler_row" />
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/artist_profile_appbar_layout"
@@ -20,9 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimary"
+            app:expandedTitleMarginStart="16dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            tools:title="@string/txt_fragment_artist_profile_artist_name"
-            app:expandedTitleMarginStart="16dp">
+            tools:title="@string/txt_fragment_artist_profile_artist_name">
 
             <ImageView
                 android:id="@+id/img_artist_picture"
@@ -36,46 +54,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_gravity="bottom"
-                android:gravity="bottom"
                 android:background="#BF111A21"
+                android:gravity="bottom"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txt_artist_fans"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Fans: 34.3 mill."
+                    android:layout_marginBottom="4dp"
+                    android:paddingStart="16dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp"
-                    android:paddingStart="16dp"
-                    android:layout_marginBottom="4dp"/>
+                    tools:text="Fans: 34.3 mill." />
 
             </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways">
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <FrameLayout
-            android:id="@+id/fragment_profile_albums_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.core.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/progress_bar_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="164dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/artist_profile_appbar_layout"
-        app:layout_anchorGravity="bottom|right"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_fav_border_64dp"/>
+        android:src="@drawable/ic_fav_border_64dp"
+        app:layout_anchor="@id/artist_profile_appbar_layout"
+        app:layout_anchorGravity="bottom|right" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
