@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
@@ -28,6 +29,7 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
 
     public static final String KEY_ARTIST = "keyArtist";
     private AlbumsRecyclerFragment.FragmentAlbumsListener fragmentAlbumsListener;
+    ProgressBar progressBar;
 
     public ArtistProfileFragment() {
         // Required empty public constructor
@@ -49,6 +51,8 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
         TextView txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
         CollapsingToolbarLayout collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
 
+        progressBar = fragmentView.findViewById(R.id.progress_bar_profile);
+
         Bundle bundle = getArguments();
         Artist selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
 
@@ -62,15 +66,18 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
         collapsingToolbarLayoutTitle.setCollapsedTitleTextColor(ColorStateList.valueOf(Color.WHITE));
         RecyclerView recyclerView = fragmentView.findViewById(R.id.fragment_albums_recycler);
         final AlbumAdapter albumAdapter = new AlbumAdapter(this);
+        recyclerView.setAdapter(albumAdapter);
+        progressBar.setVisibility(View.VISIBLE);
         AlbumsController albumsController = new AlbumsController();
         albumsController.getAlbumsByArtist(selectedArtist, new ResultListener<List<Album>>() {
             @Override
             public void finish(List<Album> result) {
                 albumAdapter.setAlbums(result);
                 albumAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
             }
         });
-        recyclerView.setAdapter(albumAdapter);
+
         return fragmentView;
     }
 
