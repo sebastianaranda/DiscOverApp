@@ -31,6 +31,11 @@ public class ArtistProfileActivity extends AppCompatActivity implements AlbumsRe
 
     @Override
     public void geAlbumFromFragment(Album album) {
-
+        Intent intent = new Intent(ArtistProfileActivity.this, AlbumDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(AlbumDetailFragment.ALBUM_KEY, album);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
+
 }

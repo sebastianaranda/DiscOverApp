@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.List;
 
 public class Album implements Serializable {
 
@@ -15,13 +16,16 @@ public class Album implements Serializable {
     private int nbTracks;
     @SerializedName("cover_medium")
     private URL coverMedium;
+    @SerializedName("tracks")
+    private List<Track> tracks;
 
-    public Album(int id, String title, int nbTracks, URL coverMedium) {
+    public Album(int id, String title, int nbTracks, URL coverMedium, List<Track> tracks) {
         this.id = id;
         this.title = title;
         //TODO: (Juan) Setear cantidad de temas con un size de la lista de tracks ya que no anda
         this.nbTracks = nbTracks;
         this.coverMedium = coverMedium;
+        this.tracks = tracks;
     }
 
     public int getId() {
@@ -54,6 +58,14 @@ public class Album implements Serializable {
 
     public void setCoverMedium(URL coverMedium) {
         this.coverMedium = coverMedium;
+    }
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        this.tracks = tracks;
     }
 
 }

@@ -14,10 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".view.AlbumDetailActivity"></activity>
         <activity
             android:name=".view.LoginActivity"
             android:label="@string/title_login_activity"
-            android:parentActivityName=".view.MainActivity"></activity>
+            android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".view.UserProfileActivity"
             android:label="@string/title_user_profile_activity"
