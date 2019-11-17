@@ -11,6 +11,16 @@ public class Track implements Serializable {
     private URL preview;
     private Artist artist;
     private Album album;
+    private URL coverMedium;
+
+    public Track(int id, String title, int duration, URL preview, Artist artist, Album album) {
+        this.id = id;
+        this.title = title;
+        this.duration = duration;
+        this.preview = preview;
+        this.artist = artist;
+        this.album = album;
+    }
 
     public int getId() {
         return id;
@@ -59,4 +69,13 @@ public class Track implements Serializable {
     public void setAlbum(Album album) {
         this.album = album;
     }
+
+    public URL getCoverMedium() {
+        return coverMedium;
+    }
+
+    public void setCoverMedium(URL coverMedium) {
+        this.coverMedium = coverMedium;
+    }
+
 }

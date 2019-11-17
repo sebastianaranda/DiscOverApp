@@ -33,7 +33,8 @@ public class ArtistProfileActivity extends AppCompatActivity implements AlbumsRe
     public void geAlbumFromFragment(Album album) {
         Intent intent = new Intent(ArtistProfileActivity.this, AlbumDetailActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(AlbumDetailFragment.ALBUM_KEY, album);
+        bundle.putSerializable(TrackRecyclerFragment.TRACKLIST_ALBUM_KEY, album);
+        bundle.putSerializable(AlbumDetailFragment.DETAIL_ALBUM_KEY, album);
         intent.putExtras(bundle);
         startActivity(intent);
     }

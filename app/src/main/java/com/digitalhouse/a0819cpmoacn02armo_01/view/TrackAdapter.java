@@ -67,7 +67,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
             txtTrackName.setText(track.getTitle());
             txtByArtist.setText(track.getArtist().getName());
             Glide.with(itemView)
-                    .load(track.getAlbum().getCoverMedium())
+                    .load(track.getCoverMedium())
                     .placeholder(R.drawable.img_artist_placeholder)
                     .into(imgTrackAlbumCover);
         }
