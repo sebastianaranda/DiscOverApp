@@ -1,45 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MediaPlayerFragment">
-
-    <ImageView
-        android:id="@+id/player_album_cover"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        tools:src="@drawable/img_genre_placeholder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/player_track_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorWhite"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/player_album_cover"
-        app:layout_constraintStart_toStartOf="@id/player_album_cover"
-        app:layout_constraintTop_toBottomOf="@id/player_album_cover"
-        tools:text="Under My Skin" />
-
-    <TextView
-        android:id="@+id/player_track_artist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorWhite"
-        android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toEndOf="@id/player_track_title"
-        app:layout_constraintStart_toStartOf="@id/player_track_title"
-        app:layout_constraintTop_toBottomOf="@id/player_track_title"
-        tools:text="Mudvayne" />
 
     <ImageButton
         android:id="@+id/btn_player_play"
@@ -51,5 +17,72 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/player_album_cover"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_genre_placeholder" />
+
+    <SeekBar
+        android:id="@+id/player_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_player_play"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/player_track_artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/player_track_title"
+        app:layout_constraintStart_toStartOf="@id/player_track_title"
+        app:layout_constraintTop_toBottomOf="@id/player_track_title"
+        tools:text="Mudvayne" />
+
+    <TextView
+        android:id="@+id/player_track_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/player_album_cover"
+        app:layout_constraintStart_toStartOf="@id/player_album_cover"
+        app:layout_constraintTop_toBottomOf="@id/player_album_cover"
+        tools:text="Under My Skin" />
+
+    <TextView
+        android:id="@+id/txt_player_elapsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="@+id/player_seekbar"
+        app:layout_constraintEnd_toStartOf="@+id/player_seekbar"
+        tools:text="0:05" />
+
+    <TextView
+        android:id="@+id/txt_player_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="@+id/player_seekbar"
+        app:layout_constraintStart_toEndOf="@+id/player_seekbar"
+        tools:text="1:00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
