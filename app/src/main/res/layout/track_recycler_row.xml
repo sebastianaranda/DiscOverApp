@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/artistRowLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:layout_marginBottom="12dp">
+
+    <ImageView
+        android:id="@+id/img_track_album"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_artist_placeholder" />
+
+    <TextView
+        android:id="@+id/txt_track_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/img_play_icon"
+        app:layout_constraintStart_toEndOf="@+id/img_track_album"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ellipsize="marquee"
+        tools:text="Under My Skin" />
+
+    <TextView
+        android:id="@+id/txt_by_artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Mudvayne"
+        android:textSize="20sp"
+        android:ellipsize="end"
+        android:textColor="@color/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/txt_track_name"
+        app:layout_constraintTop_toBottomOf="@id/txt_track_name" />
+
+    <ImageView
+        android:id="@+id/img_play_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_keyboard_arrow_right"
+        android:textColor="@android:color/primary_text_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,6 +64,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         private void bindAlbum(Album album) {
             txtAlbumTitle.setText(album.getTitle());
+            //TODO: (Juan) Cambiar por release date (año) si esto no funciona
             txtAlbumTracks.setText(String.valueOf(album.getNbTracks()));
             Glide.with(itemView)
                 .load(album.getCoverMedium())
