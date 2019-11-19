@@ -65,11 +65,11 @@ public class TrackRecyclerFragment extends Fragment implements TrackAdapter.Trac
 
     @Override
     public void getTrackFromAdapter(Track track) {
-        fragmentAlbumDetailListener.getTrackFromFragment();
+        fragmentAlbumDetailListener.getTrackFromFragment(track);
     }
 
     public interface FragmentAlbumDetailListener {
-        void getTrackFromFragment();
+        void getTrackFromFragment(Track track);
     }
 
 }

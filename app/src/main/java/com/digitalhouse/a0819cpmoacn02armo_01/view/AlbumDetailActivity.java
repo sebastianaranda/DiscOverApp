@@ -3,9 +3,11 @@ package com.digitalhouse.a0819cpmoacn02armo_01.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
 
 public class AlbumDetailActivity extends AppCompatActivity implements TrackRecyclerFragment.FragmentAlbumDetailListener {
 
@@ -39,8 +41,12 @@ public class AlbumDetailActivity extends AppCompatActivity implements TrackRecyc
     }
 
     @Override
-    public void getTrackFromFragment() {
-
+    public void getTrackFromFragment(Track track) {
+        Intent intent = new Intent(AlbumDetailActivity.this, MediaPlayerActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MediaPlayerFragment.KEY_TRACK, track);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }
