@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
-import java.util.List;
 
 public class Album implements Serializable {
 
@@ -18,7 +17,7 @@ public class Album implements Serializable {
     @SerializedName("cover_medium")
     private URL coverMedium;
     @SerializedName("tracks")
-    private List<Track> tracks;
+    private ContainerTracks tracks;
     @SerializedName("artist")
     private Artist artist;
     @SerializedName("release_date")
@@ -26,7 +25,7 @@ public class Album implements Serializable {
     @SerializedName("duration")
     private int duration;
 
-    public Album(int id, String title, int nbTracks, URL coverMedium, List<Track> tracks, Artist artist, Date releaseDate, int duration) {
+    public Album(int id, String title, int nbTracks, URL coverMedium, ContainerTracks tracks, Artist artist, Date releaseDate, int duration) {
         this.id = id;
         this.title = title;
         //TODO: (Juan) Setear cantidad de temas con un size de la lista de tracks ya que no anda
@@ -70,11 +69,11 @@ public class Album implements Serializable {
         this.coverMedium = coverMedium;
     }
 
-    public List<Track> getTracks() {
+    public ContainerTracks getTracks() {
         return tracks;
     }
 
-    public void setTracks(List<Track> tracks) {
+    public void setTracks(ContainerTracks tracks) {
         this.tracks = tracks;
     }
 
@@ -86,8 +85,8 @@ public class Album implements Serializable {
         this.artist = artist;
     }
 
-    public String getReleaseDate() {
-        return releaseDate.toString();
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
     public void setReleaseDate(Date releaseDate) {
@@ -100,10 +99,6 @@ public class Album implements Serializable {
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public String getDurationMinutes() {
-        return String.valueOf(getDuration()/60);
     }
 
 }
