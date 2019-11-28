@@ -1,5 +1,7 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.net.URL;
 
@@ -12,6 +14,8 @@ public class Track implements Serializable {
     private Artist artist;
     private Album album;
     private URL coverMedium;
+    @SerializedName("track_position")
+    private int trackPosition;
 
     public Track(int id, String title, int duration, URL preview, Artist artist, Album album) {
         this.id = id;
@@ -76,6 +80,14 @@ public class Track implements Serializable {
 
     public void setCoverMedium(URL coverMedium) {
         this.coverMedium = coverMedium;
+    }
+
+    public int getTrackPosition() {
+        return trackPosition;
+    }
+
+    public void setTrackPosition(int trackPosition) {
+        this.trackPosition = trackPosition;
     }
 
 }

@@ -9,6 +9,9 @@ import android.os.Bundle;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
 
+import java.io.Serializable;
+import java.util.List;
+
 public class AlbumDetailActivity extends AppCompatActivity implements TrackRecyclerFragment.FragmentAlbumDetailListener {
 
     @Override
@@ -41,10 +44,11 @@ public class AlbumDetailActivity extends AppCompatActivity implements TrackRecyc
     }
 
     @Override
-    public void getTrackFromFragment(Track track) {
+    public void getTrackFromFragment(Track track, List<Track> customTracklist) {
         Intent intent = new Intent(AlbumDetailActivity.this, MediaPlayerActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(MediaPlayerFragment.KEY_TRACK, track);
+        bundle.putSerializable(MediaPlayerFragment.KEY_TRACKLIST, (Serializable) customTracklist);
         intent.putExtras(bundle);
         startActivity(intent);
     }
