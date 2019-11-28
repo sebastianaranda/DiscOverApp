@@ -11,6 +11,8 @@ import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -64,14 +66,19 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         private void bindAlbum(Album album) {
             txtAlbumTitle.setText(album.getTitle());
-            //TODO: (Juan) Cambiar por release date (año) si esto no funciona
-            txtAlbumTracks.setText(String.valueOf(album.getNbTracks()));
+            txtAlbumTracks.setText(getReleaseYear(album.getReleaseDate()));
             Glide.with(itemView)
                 .load(album.getCoverMedium())
                 .placeholder(R.drawable.img_artist_placeholder)
                 .into(imgAlbumCover);
         }
 
+    }
+
+    private String getReleaseYear(Date releaseDate) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(releaseDate);
+        return String.valueOf(calendar.get(Calendar.YEAR));
     }
 
     public interface AlbumAdapterListener {

@@ -49,19 +49,7 @@
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/txt_album_title"
             app:layout_constraintTop_toBottomOf="@+id/txt_album_title"
-            tools:text="13" />
-
-        <TextView
-            android:id="@+id/txt_album_tracks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/txt_album_tracks"
-            android:textColor="@color/colorSecondary"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/txt_album_track_count"
-            app:layout_constraintTop_toBottomOf="@id/txt_album_title" />
+            tools:text="2009" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
