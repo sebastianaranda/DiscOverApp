@@ -25,6 +25,7 @@ public class TrackRecyclerFragment extends Fragment implements TrackAdapter.Trac
 
     private FragmentAlbumDetailListener fragmentAlbumDetailListener;
     public static final String TRACKLIST_ALBUM_KEY = "tracklistAlbumKey";
+    private List<Track> customTracklist;
 
     public TrackRecyclerFragment() {
         // Required empty public constructor
@@ -50,12 +51,12 @@ public class TrackRecyclerFragment extends Fragment implements TrackAdapter.Trac
         albumsController.getTracklistByAlbum(album, new ResultListener<List<Track>>() {
             @Override
             public void finish(List<Track> result) {
-                List<Track> customizedTrackList = new ArrayList<>();
+                customTracklist = new ArrayList<>();
                 for (Track track : result) {
                     track.setCoverMedium(album.getCoverMedium());
-                    customizedTrackList.add(track);
+                    customTracklist.add(track);
                 }
-                trackAdapter.setTrackList(customizedTrackList);
+                trackAdapter.setTrackList(customTracklist);
                 trackAdapter.notifyDataSetChanged();
             }
         });
@@ -65,11 +66,11 @@ public class TrackRecyclerFragment extends Fragment implements TrackAdapter.Trac
 
     @Override
     public void getTrackFromAdapter(Track track) {
-        fragmentAlbumDetailListener.getTrackFromFragment(track);
+        fragmentAlbumDetailListener.getTrackFromFragment(track, customTracklist);
     }
 
     public interface FragmentAlbumDetailListener {
-        void getTrackFromFragment(Track track);
+        void getTrackFromFragment(Track track, List<Track> customTracklist);
     }
 
 }
