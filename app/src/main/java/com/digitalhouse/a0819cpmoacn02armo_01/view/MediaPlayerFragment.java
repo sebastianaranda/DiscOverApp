@@ -130,6 +130,7 @@ public class MediaPlayerFragment extends Fragment {
             }
         });
 
+        play();
         return view;
     }
 

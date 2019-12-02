@@ -12,4 +12,7 @@ public interface ArtistsService {
     @GET("/genre/{id}/artists")
     Call<ContainerArtists> getAllArtistFromGenre(@Path("id") int idGenre);
 
+    @GET("/artist/{id}")
+    Call<Artist> getArtistByID(@Path("id") int idArtist);
+
 }

@@ -29,4 +29,14 @@ public class ArtistsController {
         });
     }
 
+    public void getArtistByID(final ResultListener<Artist> viewListener, int idArtist){
+        ArtistDao artistDao = new ArtistDao();
+        artistDao.getArtistByID(new ResultListener<Artist>() {
+            @Override
+            public void finish(Artist result) {
+                viewListener.finish(result);
+            }
+        }, idArtist);
+    }
+
 }

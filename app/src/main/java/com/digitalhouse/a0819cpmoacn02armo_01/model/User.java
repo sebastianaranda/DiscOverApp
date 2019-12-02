@@ -3,32 +3,39 @@ package com.digitalhouse.a0819cpmoacn02armo_01.model;
 import android.net.Uri;
 
 public class User {
-    private final Uri picture;
-    private final String name;
-    private final String id;
-    private final String email;
+    private String userProfileImage;
+    private String name;
+    private String email;
 
-    public User(Uri picture, String name, String id, String email) {
-        this.picture = picture;
+    public User(){
+    }
+
+    public User(String name, String email) {
         this.name = name;
-        this.id = id;
         this.email = email;
     }
 
-    public Uri getPicture() {
-        return picture;
+    public String getUserProfileImage() {
+        return userProfileImage;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public String getEmail() {
         return email;
     }
 
+    public void setUserProfileImage(String userProfileImage) {
+        this.userProfileImage = userProfileImage;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
