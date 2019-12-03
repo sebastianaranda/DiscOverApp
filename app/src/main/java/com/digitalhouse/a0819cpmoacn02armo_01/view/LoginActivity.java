@@ -96,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                 String email = txtInputEditTextEmail.getText().toString();
                 String password = txtInputEditTextPassword.getText().toString();
                 if (checkForm()){
-                    //TODO: aca poner codigo para crear cuenta de usuario
                     createFirebaseUser(email,password);
                 }
             }
@@ -108,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                 String email = txtInputEditTextEmail.getText().toString();
                 String password = txtInputEditTextPassword.getText().toString();
                 if (checkForm()){
-                    //TODO: aca poner codigo para iniciar sesion
                     LoginUserFirebase(email,password);
                 }
             }
@@ -134,7 +132,6 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    //TODO: modificar los siguientes metodos despues de definir la logica de la creacion de la cuenta
     public Boolean checkEmail(String email){
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
         Pattern pat = Pattern.compile(emailRegex);
@@ -221,7 +218,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("FB to Firebase", "handleFacebookAccessToken:" + token);
+        Log.d("FB_LOGIN", "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         auth.signInWithCredential(credential)
@@ -229,12 +226,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d("FB A FIREBASE CORRECTO", "signInWithCredential:success");
+                            Log.d("FB_LOGIN", "Inicio de sesión: satisfactorio");
                             FirebaseUser user = auth.getCurrentUser();
                             saveUserLoggedInFirestore();
                             updateUI(user);
                         } else {
-                            Log.w("FB A FIREBASE ERROR", "signInWithCredential:failure", task.getException());
+                            Log.w("FB_LOGIN", "Inicio de sesión: fallído", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }

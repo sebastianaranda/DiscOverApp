@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
@@ -46,7 +48,10 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         NavigationView navigationView = findViewById(R.id.main_activity_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
+        ImageView imgLogo = findViewById(R.id.toolbar_logo);
+        imgLogo.setVisibility(View.VISIBLE);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.txt_drawer_open,R.string.txt_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -158,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
         currentUser = null;
-        Toast.makeText(this, "Sesión cerrada correctamente", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.txt_logout, Toast.LENGTH_SHORT).show();
         headerUserName.setText(getString(R.string.txt_header_username));
         Glide.with(MainActivity.this)
                 .load(R.drawable.img_artist_placeholder)
@@ -172,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        //User user = documentSnapshot.toObject(User.class);
                         User user = documentSnapshot.toObject(User.class);
                         String username = user.getName();
                         if (username == null){

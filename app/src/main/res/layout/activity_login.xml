@@ -17,17 +17,14 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg_header_nav" />
 
-    <!-- TODO: reemplazar TextView por ImageView con el logo-->
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/linear_layout_manual_form"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:text="LOGO APP"
-        android:textColor="@color/colorWhite"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="32dp"
+        android:src="@drawable/app_discover_white" />
 
     <LinearLayout
         android:id="@+id/linear_layout_manual_form"

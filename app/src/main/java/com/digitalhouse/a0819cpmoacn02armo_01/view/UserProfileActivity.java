@@ -1,5 +1,6 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -73,8 +76,8 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
         imgUserPicture = findViewById(R.id.image_view_user_profile_image);
         txtUserName = findViewById(R.id.user_profile_activity_edit_text_user_name);
         txtUserEmail = findViewById(R.id.user_profile_activity_edit_text_user_email);
-        btnEditUserInfo = findViewById(R.id.boton_editar_informacion_usuario);
-        btnSaveUserInfo = findViewById(R.id.boton_guardar_informacion_usuario);
+        btnEditUserInfo = findViewById(R.id.user_profile_activity_button_edit_info_user);
+        btnSaveUserInfo = findViewById(R.id.user_profile_activity_button_save_info_user);
         btnEditUserImage = findViewById(R.id.activity_user_profile_edit_image_icon);
         callbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button_fb);
@@ -87,7 +90,6 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
 
         getCurrentUser();
 
-        //TODO: definir logica e implementar login facebook con Firebase
         callbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button_fb);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
@@ -191,7 +193,6 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
         }
     }
 
-    //TODO: codigo para traer el usuario o modificarlo
     private void getCurrentUser(){
         firestore.collection(COLLECTION_USERS)
                 .document(currentUser.getUid())
@@ -253,7 +254,22 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
                 progressBar.setVisibility(View.GONE);
             }
         });
-
+        uploadTask.addOnCanceledListener(new OnCanceledListener() {
+            @Override
+            public void onCanceled() {
+                btnSaveUserInfo.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(UserProfileActivity.this, R.string.txt_user_profile_activity_upload_image_canceled, Toast.LENGTH_SHORT).show();
+            }
+        });
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(UserProfileActivity.this, R.string.txt_user_profile_activity_upload_image_failure, Toast.LENGTH_SHORT).show();
+                btnSaveUserInfo.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void uploadUrlImageToFirestore(){

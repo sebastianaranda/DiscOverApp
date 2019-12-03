@@ -5,6 +5,7 @@
     <string name="txt_artist_recycler_albumes">Albumes:</string>
     <string name="txt_main_activity_artists">Artistas</string>
     <string name="txt_album_tracks">Canciones</string>
+    <string name="txt_logout">Sesión cerrada correctamente</string>
 
     <!--    DRAWER-->
     <string name="txt_header_username">Usuario Invitado</string>
@@ -38,7 +39,9 @@
     <string name="txt_user_profile_activity_no_email_message">El email no fue configurado.</string>
     <string name="txt_user_profile_activity_logout">Sesión cerrada correctamente.</string>
     <string name="txt_user_profile_activity_upload_image">Seleccionar una foto</string>
-    <string name="txt_user_profile_activity_upload_image_successful">Imagen subida Correctamente</string>
+    <string name="txt_user_profile_activity_upload_image_successful">La imagen se cargó correctamente</string>
+    <string name="txt_user_profile_activity_upload_image_canceled">La carga de la imagen fue cancelada</string>
+    <string name="txt_user_profile_activity_upload_image_failure">La carga de la imagen falló</string>
 
     <!--    USER LOGIN ACTIVITY-->
     <string name="txt_login_layout_error_empty_username">Debe ingresar un nombre.</string>

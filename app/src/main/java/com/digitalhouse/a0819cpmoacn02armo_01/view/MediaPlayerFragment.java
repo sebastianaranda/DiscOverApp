@@ -1,12 +1,9 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
-
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +13,13 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Locale;
-
 import static android.graphics.Color.TRANSPARENT;
 
 public class MediaPlayerFragment extends Fragment {
@@ -129,7 +123,6 @@ public class MediaPlayerFragment extends Fragment {
 
             }
         });
-
         play();
         return view;
     }
