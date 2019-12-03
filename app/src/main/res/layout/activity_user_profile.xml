@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,21 +24,20 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bg_header_nav" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_view_user_profile"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_view_user_profile_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/img_artist_placeholder"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/activity_user_profile_edit_image_icon"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            app:cardCornerRadius="150dp"
-            app:cardPreventCornerOverlap="true">
-
-            <ImageView
-                android:id="@+id/image_view_user_profile_image"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/img_artist_placeholder" />
-        </androidx.cardview.widget.CardView>
+            android:src="@drawable/ic_edit_64dp"
+            android:layout_centerInParent="true"/>
     </RelativeLayout>
 
     <TextView
@@ -54,22 +52,26 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/user_profile_activity_text_view_user_name"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/user_profile_activity_edit_text_user_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/user_profile_activity_text_view_name_title"
         android:layout_alignStart="@id/user_profile_activity_text_view_name_title"
         android:layout_marginTop="8dp"
-        tools:text="Nombre de usuario"
-        android:textColor="@color/colorSecondary"
-        android:textSize="16sp" />
+        android:layout_marginEnd="32dp"
+        android:hint="Nombre de usuario"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhiteTransparent"
+        android:textSize="16sp"
+        android:inputType="text"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/user_profile_activity_text_view_email_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_profile_activity_text_view_user_name"
+        android:layout_below="@id/user_profile_activity_edit_text_user_name"
         android:layout_alignStart="@+id/user_profile_activity_text_view_name_title"
         android:layout_marginTop="32dp"
         android:text="Email"
@@ -77,16 +79,44 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/user_profile_activity_text_view_user_email"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/user_profile_activity_edit_text_user_email"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/user_profile_activity_text_view_email_title"
         android:layout_alignStart="@id/user_profile_activity_text_view_email_title"
         android:layout_marginTop="8dp"
-        tools:text="Email de usuario"
-        android:textColor="@color/colorSecondary"
-        android:textSize="16sp" />
+        android:layout_marginEnd="32dp"
+        android:hint="Email de usuario"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhiteTransparent"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress"
+        android:focusable="false"/>
+
+    <Button
+        android:id="@+id/user_profile_activity_button_save_info_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GUARDAR"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/login_button_fb"
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/user_profile_activity_button_edit_info_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar informacion"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/login_button_fb"/>
+
+    <ProgressBar
+        android:id="@+id/progressbar_upload_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login_button_fb"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button_fb"

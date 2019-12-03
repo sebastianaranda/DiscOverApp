@@ -10,18 +10,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
-import com.facebook.AccessToken;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.User;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.Serializable;
 import java.util.List;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFragment.FragmentArtistsListener, GenresRecyclerFragment.GenresFragmentListener, NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String COLLECTION_USERS = "Users";
     private DrawerLayout drawerLayout;
+    private TextView headerUserName;
+    private CircleImageView headerImageUser;
+    private FirebaseFirestore firestore;
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +48,28 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         NavigationView navigationView = findViewById(R.id.main_activity_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
+        ImageView imgLogo = findViewById(R.id.toolbar_logo);
+        imgLogo.setVisibility(View.VISIBLE);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.txt_drawer_open,R.string.txt_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         attachArtistFragment(new ArtistsRecyclerFragment());
         attachGenreFragment(new GenresRecyclerFragment());
+
+        headerUserName = navigationView.getHeaderView(0).findViewById(R.id.header_user_name);
+        headerImageUser = navigationView.getHeaderView(0).findViewById(R.id.header_user_profile_image);
+
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+
+        if (currentUser!=null){
+            getCurrentUser();
+        }
+
+
     }
 
     @Override
@@ -109,24 +142,55 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                 Toast.makeText(this, "Seleccionaste Canciones favoritas", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main_menu_profile:
-                AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                if (accessToken!= null && !accessToken.isExpired()){
-                    Intent intent = new Intent(MainActivity.this,UserProfileActivity.class);
-                    startActivity(intent);
+                if (currentUser != null){
+                    startActivity(new Intent(MainActivity.this,UserProfileActivity.class));
                 } else {
-                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
                 }
                 break;
             case R.id.main_menu_settings:
                 Toast.makeText(this, "Seleccionaste el menu Settings", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main_menu_logout:
-                Toast.makeText(this, "Seleccionaste el menu Logout", Toast.LENGTH_SHORT).show();
+                makeLogout();
                 break;
         }
         drawerLayout.closeDrawers();
         return false;
+    }
+
+    private void makeLogout(){
+        FirebaseAuth.getInstance().signOut();
+        LoginManager.getInstance().logOut();
+        currentUser = null;
+        Toast.makeText(this, R.string.txt_logout, Toast.LENGTH_SHORT).show();
+        headerUserName.setText(getString(R.string.txt_header_username));
+        Glide.with(MainActivity.this)
+                .load(R.drawable.img_artist_placeholder)
+                .into(headerImageUser);
+    }
+
+    private void getCurrentUser(){
+        firestore.collection(COLLECTION_USERS)
+                .document(currentUser.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User user = documentSnapshot.toObject(User.class);
+                        String username = user.getName();
+                        if (username == null){
+                            headerUserName.setText(user.getEmail());
+                        }else {
+                            headerUserName.setText(user.getName());
+                        }
+                        if (user.getUserProfileImage() != null){
+                            Glide.with(MainActivity.this)
+                                    .load(user.getUserProfileImage())
+                                    .into(headerImageUser);
+                        }
+                    }
+                });
     }
 
 }

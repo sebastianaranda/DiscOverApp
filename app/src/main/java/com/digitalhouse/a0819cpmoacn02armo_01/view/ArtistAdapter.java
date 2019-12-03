@@ -41,13 +41,11 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
     public class ArtistViewHolder extends RecyclerView.ViewHolder {
         private TextView txtArtistName;
-        private TextView txtAlbumCount;
         private ImageView imgArtistImage;
 
         public ArtistViewHolder(@NonNull final View itemView) {
             super(itemView);
             txtArtistName = itemView.findViewById(R.id.txt_artist_name);
-            txtAlbumCount = itemView.findViewById(R.id.txt_album_count);
             imgArtistImage = itemView.findViewById(R.id.img_artist_image);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,7 +57,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
         private void bindArtist(Artist artist) {
             txtArtistName.setText(artist.getName());
-            txtAlbumCount.setText(String.valueOf(artist.getNbAlbum()));
             Glide.with(itemView)
                     .load(artist.getPictureSmall())
                     .placeholder(R.drawable.img_artist_placeholder)

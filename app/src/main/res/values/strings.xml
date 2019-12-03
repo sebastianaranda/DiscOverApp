@@ -5,8 +5,10 @@
     <string name="txt_artist_recycler_albumes">Albumes:</string>
     <string name="txt_main_activity_artists">Artistas</string>
     <string name="txt_album_tracks">Canciones</string>
+    <string name="txt_logout">Sesión cerrada correctamente</string>
 
     <!--    DRAWER-->
+    <string name="txt_header_username">Usuario Invitado</string>
     <string name="txt_drawer_account">Mi Cuenta</string>
     <string name="txt_drawer_section_favorites">Mis Favoritos</string>
     <string name="txt_drawer_fav_artists">Artistas</string>
@@ -25,6 +27,7 @@
 
     <!-- ARTIST PROFILE FRAGMENT -->
     <string name="txt_fragment_artist_profile_artist_name">ARTISTA</string>
+    <string name="txt_fragment_artist_profile_nb_fans">Fans: </string>
 
     <!-- LOGIN FACEBOOK -->
     <string name="facebook_app_id">2473820992893138</string>
@@ -34,14 +37,24 @@
     <!--    USER PROFILE ACTIVITY-->
     <string name="title_user_profile_activity">Mi cuenta</string>
     <string name="txt_user_profile_activity_no_email_message">El email no fue configurado.</string>
+    <string name="txt_user_profile_activity_logout">Sesión cerrada correctamente.</string>
+    <string name="txt_user_profile_activity_upload_image">Seleccionar una foto</string>
+    <string name="txt_user_profile_activity_upload_image_successful">La imagen se cargó correctamente</string>
+    <string name="txt_user_profile_activity_upload_image_canceled">La carga de la imagen fue cancelada</string>
+    <string name="txt_user_profile_activity_upload_image_failure">La carga de la imagen falló</string>
 
     <!--    USER LOGIN ACTIVITY-->
+    <string name="txt_login_layout_error_empty_username">Debe ingresar un nombre.</string>
+    <string name="txt_login_edit_text_error_empty_username">Debe ingresar un email.</string>
+    <string name="txt_login_layout_error_wrong_username">El nombre ingresado no es válido.</string>
     <string name="txt_login_layout_error_empty_email">Debe ingresar un email.</string>
     <string name="txt_login_edit_text_error_empty_email">Debe ingresar un email.</string>
     <string name="txt_login_layout_error_wrong_email">El email ingresado no es válido.</string>
-    <string name="txt_login_layout_error_empty_password">Debe ingresar un email.</string>
-    <string name="txt_login_edit_text_error_empty_password">Debe ingresar un email.</string>
-    <string name="txt_login_layout_error_wrong_password">El email ingresado no es válido.</string>
+    <string name="txt_login_layout_error_empty_password">Debe ingresar una contraseña.</string>
+    <string name="txt_login_edit_text_error_empty_password">Debe ingresar una contraseña.</string>
+    <string name="txt_login_layout_error_wrong_password">La contraseña ingresada no es válida.</string>
+    <string name="btn_login_activity_login">Iniciar sesión</string>
+    <string name="btn_login_activity_register">Registrarme</string>
 
     <!--    MEDIA PLAYER-->
     <string name="player_first_track">Primera canción</string>

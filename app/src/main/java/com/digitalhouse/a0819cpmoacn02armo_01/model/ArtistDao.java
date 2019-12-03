@@ -44,4 +44,22 @@ public class ArtistDao extends ArtistsRetrofitDAO {
             }
         });
     }
+
+    public void getArtistByID(final ResultListener<Artist> controllerListener, int artistID){
+        Call<Artist> call = artistsService.getArtistByID(artistID);
+
+        call.enqueue(new Callback<Artist>() {
+            @Override
+            public void onResponse(Call<Artist> call, Response<Artist> response) {
+                Artist selectedArtist = response.body();
+                controllerListener.finish(selectedArtist);
+            }
+
+            @Override
+            public void onFailure(Call<Artist> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

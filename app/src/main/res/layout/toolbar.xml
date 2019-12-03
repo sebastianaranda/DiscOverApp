@@ -6,4 +6,13 @@
     android:layout_height="?actionBarSize"
     android:background="@color/colorPrimary"
     app:titleTextColor="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/toolbar_logo"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/app_discover_white"
+        android:scaleType="centerInside"
+        android:visibility="gone"/>
+
 </androidx.appcompat.widget.Toolbar>

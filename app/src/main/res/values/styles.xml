@@ -8,6 +8,7 @@
         <item name="android:titleTextColor">@color/colorWhite</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="artistProfileTheme" parent="Theme.AppCompat.Light.NoActionBar">

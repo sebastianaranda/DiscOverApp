@@ -17,17 +17,14 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg_header_nav" />
 
-    <!-- TODO: reemplazar TextView por ImageView con el logo-->
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/linear_layout_manual_form"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="LOGO APP"
-        android:textColor="@color/colorWhite"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="32dp"
+        android:src="@drawable/app_discover_white" />
 
     <LinearLayout
         android:id="@+id/linear_layout_manual_form"
@@ -40,6 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="Correo electrónico"
             android:textColor="@color/colorWhite"
             android:textSize="34sp"
@@ -86,21 +84,42 @@
                 android:textColorHint="@color/colorWhiteTransparent"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_activity_material_button"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:background="?attr/colorAccent"
-            android:elevation="2dp"
-            android:text="Enviar"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="4dp" />
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_activity_material_button_login"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="?attr/colorAccent"
+                android:elevation="2dp"
+                android:text="@string/btn_login_activity_login"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_activity_material_button_register"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="?attr/colorAccent"
+                android:elevation="2dp"
+                android:text="@string/btn_login_activity_register"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="4dp" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 

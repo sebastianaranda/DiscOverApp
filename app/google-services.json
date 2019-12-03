@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1001861584776",
+    "firebase_url": "https://dh-equipo-01-discover-app.firebaseio.com",
+    "project_id": "dh-equipo-01-discover-app",
+    "storage_bucket": "dh-equipo-01-discover-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001861584776:android:f8f0143bd0c59b462b0c3d",
+        "android_client_info": {
+          "package_name": "com.digitalhouse.a0819cpmoacn02armo_01"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001861584776-taol2ibs0t1tqpg756a2qfsja8a5k2h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChN9u78T33grWZhRaXAfTfOqaKFOyWv6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001861584776-taol2ibs0t1tqpg756a2qfsja8a5k2h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

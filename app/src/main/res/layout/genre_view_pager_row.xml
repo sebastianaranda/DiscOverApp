@@ -31,6 +31,7 @@
         app:layout_constraintStart_toStartOf="@+id/img_genre_picture"
         app:layout_constraintEnd_toEndOf="@id/img_genre_picture"
         app:layout_constraintTop_toBottomOf="@id/img_genre_picture"
+        android:layout_marginTop="8dp"
         tools:text="Rock" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

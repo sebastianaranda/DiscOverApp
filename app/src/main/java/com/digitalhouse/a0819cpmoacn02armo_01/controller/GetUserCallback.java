@@ -45,7 +45,7 @@ public class GetUserCallback {
         if (user.has("email")) {
             email = user.getString("email");
         }
-        return new User(picture, name, id, email);
+        return new User(name, email);
     }
 
     public GraphRequest.Callback getCallback() {

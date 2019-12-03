@@ -1,27 +1,31 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.AlbumsController;
+import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -30,6 +34,14 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
     public static final String KEY_ARTIST = "keyArtist";
     private AlbumsRecyclerFragment.FragmentAlbumsListener fragmentAlbumsListener;
     ProgressBar progressBar;
+    private FloatingActionButton btnfav;
+    private Artist selectedArtist;
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private Artist newArtist;
+    private TextView txtArtistFans;
+    private ImageView imgArtistPicture;
+    private CollapsingToolbarLayout collapsingToolbarLayoutTitle;
 
     public ArtistProfileFragment() {
         // Required empty public constructor
@@ -44,24 +56,35 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
+        final View fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
-        ImageView imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
+        imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
         //TODO: chequear si podemos pedir este dato a la API y modificar este codigo
-        TextView txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
-        CollapsingToolbarLayout collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
+        txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
+        btnfav = fragmentView.findViewById(R.id.fragment_artist_profile_button_fav);
+        collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
 
         progressBar = fragmentView.findViewById(R.id.progress_bar_profile);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+
         Bundle bundle = getArguments();
-        Artist selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
+        selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
 
-        Glide.with(fragmentView)
-                .load(selectedArtist.getPictureBig())
-                .placeholder(R.drawable.img_artist_placeholder)
-                .into(imgArtistPicture);
+        ArtistsController artistsController = new ArtistsController();
+        artistsController.getArtistByID(new ResultListener<Artist>() {
+            @Override
+            public void finish(Artist result) {
+                txtArtistFans.setText(String.valueOf(result.getNbFans()));
+                Glide.with(fragmentView)
+                        .load(result.getPictureBig())
+                        .placeholder(R.drawable.img_artist_placeholder)
+                        .into(imgArtistPicture);
+                collapsingToolbarLayoutTitle.setTitle(result.getName());
+            }
+        },selectedArtist.getId());
 
-        collapsingToolbarLayoutTitle.setTitle(selectedArtist.getName());
         collapsingToolbarLayoutTitle.setExpandedTitleTextColor(ColorStateList.valueOf(Color.WHITE));
         collapsingToolbarLayoutTitle.setCollapsedTitleTextColor(ColorStateList.valueOf(Color.WHITE));
         RecyclerView recyclerView = fragmentView.findViewById(R.id.fragment_albums_recycler);
@@ -78,6 +101,18 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
             }
         });
 
+        btnfav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentUser == null){
+                    startActivity(new Intent(getContext(),LoginActivity.class));
+                } else {
+                    btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                    Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
+                    //TODO: agregar de favoritos
+                }
+            }
+        });
         return fragmentView;
     }
 
