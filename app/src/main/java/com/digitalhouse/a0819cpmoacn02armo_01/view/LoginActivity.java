@@ -122,7 +122,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null){
-            startActivity(new Intent(LoginActivity.this,UserProfileActivity.class));
+            //startActivity(new Intent(LoginActivity.this,UserProfileActivity.class));
+            onBackPressed();
         }
     }
 

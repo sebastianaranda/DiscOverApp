@@ -1,5 +1,7 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
+import android.util.Log;
+
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import java.util.List;
 import retrofit2.Call;
@@ -25,6 +27,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerArtists> call, Throwable t) {
+                Log.d("asdasd","asdasd");
             }
         });
     }
@@ -45,7 +48,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
         });
     }
 
-    public void getArtistByID(final ResultListener<Artist> controllerListener, int artistID){
+    public void getArtistByID(final ResultListener<Artist> controllerListener, Integer artistID){
         Call<Artist> call = artistsService.getArtistByID(artistID);
 
         call.enqueue(new Callback<Artist>() {

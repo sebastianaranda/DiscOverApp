@@ -68,8 +68,15 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         if (currentUser!=null){
             getCurrentUser();
         }
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        currentUser = auth.getCurrentUser();
+        if (currentUser!=null){
+            getCurrentUser();
+        }
     }
 
     @Override

@@ -3,25 +3,26 @@ package com.digitalhouse.a0819cpmoacn02armo_01.model;
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
 public class Artist implements Serializable {
 
     @SerializedName("id")
-    private int id;
+    private Integer id;
     @SerializedName("name")
     private String name;
     @SerializedName("nb_album")
     private int nbAlbum;
     @SerializedName("picture_small")
-    private URL pictureSmall;
+    private String pictureSmall;
     @SerializedName("picture_big")
-    private URL pictureBig;
+    private String pictureBig;
     private String yearsActive;
     private String description;
     @SerializedName("nb_fan")
     private int nbFans;
 
-    public Artist(int id, String name, int nbAlbum, URL pictureSmall,URL pictureBig, String yearsActive, String description, int nbFans) {
+    public Artist(Integer id, String name, int nbAlbum, String pictureSmall, String pictureBig, String yearsActive, String description, int nbFans) {
         this.id = id;
         this.name = name;
         this.nbAlbum = nbAlbum;
@@ -32,11 +33,14 @@ public class Artist implements Serializable {
         this.nbFans = nbFans;
     }
 
-    public int getId() {
+    public Artist() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -56,19 +60,19 @@ public class Artist implements Serializable {
         this.nbAlbum = nbAlbum;
     }
 
-    public URL getPictureSmall() {
+    public String getPictureSmall() {
         return pictureSmall;
     }
 
-    public void setPictureSmall(URL pictureSmall) {
+    public void setPictureSmall(String pictureSmall) {
         this.pictureSmall = pictureSmall;
     }
 
-    public URL getPictureBig() {
+    public String getPictureBig() {
         return pictureBig;
     }
 
-    public void setPictureBig(URL pictureBig) {
+    public void setPictureBig(String pictureBig) {
         this.pictureBig = pictureBig;
     }
 
@@ -94,5 +98,20 @@ public class Artist implements Serializable {
 
     public void setNbFans(int nbFans) {
         this.nbFans = nbFans;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return Objects.equals(id, artist.id) &&
+                Objects.equals(name, artist.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
