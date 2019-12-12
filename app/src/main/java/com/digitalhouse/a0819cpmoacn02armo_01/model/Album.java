@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
+import java.util.Objects;
 
 public class Album implements Serializable {
 
@@ -15,7 +16,7 @@ public class Album implements Serializable {
     @SerializedName("nb_tracks")
     private int nbTracks;
     @SerializedName("cover_medium")
-    private URL coverMedium;
+    private String coverMedium;
     @SerializedName("tracks")
     private ContainerTracks tracks;
     @SerializedName("artist")
@@ -25,7 +26,10 @@ public class Album implements Serializable {
     @SerializedName("duration")
     private int duration;
 
-    public Album(int id, String title, int nbTracks, URL coverMedium, ContainerTracks tracks, Artist artist, Date releaseDate, int duration) {
+    public Album() {
+    }
+
+    public Album(int id, String title, int nbTracks, String coverMedium, ContainerTracks tracks, Artist artist, Date releaseDate, int duration) {
         this.id = id;
         this.title = title;
         //TODO: (Juan) Setear cantidad de temas con un size de la lista de tracks ya que no anda
@@ -61,11 +65,11 @@ public class Album implements Serializable {
         this.nbTracks = nbTracks;
     }
 
-    public URL getCoverMedium() {
+    public String getCoverMedium() {
         return coverMedium;
     }
 
-    public void setCoverMedium(URL coverMedium) {
+    public void setCoverMedium(String coverMedium) {
         this.coverMedium = coverMedium;
     }
 
@@ -101,4 +105,17 @@ public class Album implements Serializable {
         this.duration = duration;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Album album = (Album) o;
+        return Objects.equals(id, album.id) &&
+                Objects.equals(artist, album.artist);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, artist);
+    }
 }
