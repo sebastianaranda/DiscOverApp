@@ -3,6 +3,7 @@ package com.digitalhouse.a0819cpmoacn02armo_01.model;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ArtistsService {
 
@@ -14,5 +15,8 @@ public interface ArtistsService {
 
     @GET("/artist/{id}")
     Call<Artist> getArtistByID(@Path("id") int idArtist);
+
+    @GET("/search")
+    Call<ContainerTracks> getArtistTracksByName(@Query("q") String query);
 
 }
