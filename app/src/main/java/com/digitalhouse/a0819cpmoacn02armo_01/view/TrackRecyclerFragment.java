@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.AlbumsController;
+import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
 
@@ -40,27 +41,32 @@ public class TrackRecyclerFragment extends Fragment implements TrackAdapter.Trac
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_tracks, container, false);
+        View view;
+        if (!NetworkUtils.isNetworkAvailable(getContext())) {
+            view = inflater.inflate(R.layout.fragment_empty_state, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_recycler_tracks, container, false);
 
-        Bundle bundle = getArguments();
-        final Album album = (Album) bundle.getSerializable(TRACKLIST_ALBUM_KEY);
+            Bundle bundle = getArguments();
+            final Album album = (Album) bundle.getSerializable(TRACKLIST_ALBUM_KEY);
 
-        RecyclerView recyclerView = view.findViewById(R.id.fragment_tracks_recycler);
-        final TrackAdapter trackAdapter = new TrackAdapter(this);
-        AlbumsController albumsController = new AlbumsController();
-        albumsController.getTracklistByAlbum(album, new ResultListener<List<Track>>() {
-            @Override
-            public void finish(List<Track> result) {
-                customTracklist = new ArrayList<>();
-                for (Track track : result) {
-                    track.setCoverMedium(album.getCoverMedium());
-                    customTracklist.add(track);
+            RecyclerView recyclerView = view.findViewById(R.id.fragment_tracks_recycler);
+            final TrackAdapter trackAdapter = new TrackAdapter(this);
+            AlbumsController albumsController = new AlbumsController();
+            albumsController.getTracklistByAlbum(album, new ResultListener<List<Track>>() {
+                @Override
+                public void finish(List<Track> result) {
+                    customTracklist = new ArrayList<>();
+                    for (Track track : result) {
+                        track.setCoverMedium(album.getCoverMedium());
+                        customTracklist.add(track);
+                    }
+                    trackAdapter.setTrackList(customTracklist);
+                    trackAdapter.notifyDataSetChanged();
                 }
-                trackAdapter.setTrackList(customTracklist);
-                trackAdapter.notifyDataSetChanged();
-            }
-        });
-        recyclerView.setAdapter(trackAdapter);
+            });
+            recyclerView.setAdapter(trackAdapter);
+        }
         return view;
     }
 
