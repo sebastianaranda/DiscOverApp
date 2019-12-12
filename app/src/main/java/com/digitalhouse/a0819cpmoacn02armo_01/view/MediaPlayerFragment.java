@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
+import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
 import java.io.IOException;
 import java.net.URL;
@@ -45,85 +46,90 @@ public class MediaPlayerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_media_player, container, false);
-        Bundle bundle = getArguments();
-        track = (Track) bundle.getSerializable(KEY_TRACK);
-        trackList = (List<Track>) bundle.getSerializable(KEY_TRACKLIST);
+        View view;
+        if (!NetworkUtils.isNetworkAvailable(getContext())) {
+            view = inflater.inflate(R.layout.fragment_empty_state, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_media_player, container, false);
+            Bundle bundle = getArguments();
+            track = (Track) bundle.getSerializable(KEY_TRACK);
+            trackList = (List<Track>) bundle.getSerializable(KEY_TRACKLIST);
 
-        handler = new Handler();
-        ImageButton btnPlay = view.findViewById(R.id.btn_player_play);
-        ImageButton btnNext = view.findViewById(R.id.btn_player_next);
-        ImageButton btnPrevious = view.findViewById(R.id.btn_player_previous);
-        ImageView imgPlayerAlbumCover = view.findViewById(R.id.player_album_cover);
-        final TextView txtPlayerTrackName = view.findViewById(R.id.player_track_title);
-        TextView txtPlayerTrackArtist = view.findViewById(R.id.player_track_artist);
-        seekBar = view.findViewById(R.id.player_seekbar);
-        txtPlayerElapsed = view.findViewById(R.id.txt_player_elapsed);
-        txtPlayerDuration = view.findViewById(R.id.txt_player_duration);
+            handler = new Handler();
+            ImageButton btnPlay = view.findViewById(R.id.btn_player_play);
+            ImageButton btnNext = view.findViewById(R.id.btn_player_next);
+            ImageButton btnPrevious = view.findViewById(R.id.btn_player_previous);
+            ImageView imgPlayerAlbumCover = view.findViewById(R.id.player_album_cover);
+            final TextView txtPlayerTrackName = view.findViewById(R.id.player_track_title);
+            TextView txtPlayerTrackArtist = view.findViewById(R.id.player_track_artist);
+            seekBar = view.findViewById(R.id.player_seekbar);
+            txtPlayerElapsed = view.findViewById(R.id.txt_player_elapsed);
+            txtPlayerDuration = view.findViewById(R.id.txt_player_duration);
 
-        txtPlayerTrackName.setText(track.getTitle());
-        txtPlayerTrackArtist.setText(track.getArtist().getName());
-        Glide.with(view)
-            .load(track.getCoverMedium())
-            .placeholder(R.drawable.img_genre_placeholder)
-            .into(imgPlayerAlbumCover);
+            txtPlayerTrackName.setText(track.getTitle());
+            txtPlayerTrackArtist.setText(track.getArtist().getName());
+            Glide.with(view)
+                .load(track.getCoverMedium())
+                .placeholder(R.drawable.img_genre_placeholder)
+                .into(imgPlayerAlbumCover);
 
-        mediaPlayer = CustomMediaPlayer.getInstance();
-        setAndPrepare(track.getPreview());
-        getPlayerStats();
+            mediaPlayer = CustomMediaPlayer.getInstance();
+            setAndPrepare(track.getPreview());
+            getPlayerStats();
 
-        btnPlay.setBackgroundColor(TRANSPARENT);
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                play();
-            }
-        });
-
-        btnNext.setBackgroundColor(TRANSPARENT);
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (track.getTrackPosition() < trackList.size()) {
-                    goToTrack(track.getTrackPosition(), txtPlayerTrackName);
-                } else {
-                    Toast.makeText(getContext(), getString(R.string.player_last_track), Toast.LENGTH_SHORT).show();
+            btnPlay.setBackgroundColor(TRANSPARENT);
+            btnPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    play();
                 }
-            }
-        });
+            });
 
-        btnPrevious.setBackgroundColor(TRANSPARENT);
-        btnPrevious.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int previousTrackPosition = track.getTrackPosition() - 2;
-                if (track.getTrackPosition() >= 2) {
-                    goToTrack(previousTrackPosition, txtPlayerTrackName);
-                } else {
-                    Toast.makeText(getContext(), getString(R.string.player_first_track), Toast.LENGTH_SHORT).show();
+            btnNext.setBackgroundColor(TRANSPARENT);
+            btnNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (track.getTrackPosition() < trackList.size()) {
+                        goToTrack(track.getTrackPosition(), txtPlayerTrackName);
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.player_last_track), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (mediaPlayer != null && fromUser) {
-                    mediaPlayer.seekTo(progress * ONE_SECOND);
+            btnPrevious.setBackgroundColor(TRANSPARENT);
+            btnPrevious.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int previousTrackPosition = track.getTrackPosition() - 2;
+                    if (track.getTrackPosition() >= 2) {
+                        goToTrack(previousTrackPosition, txtPlayerTrackName);
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.player_first_track), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
+            });
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if (mediaPlayer != null && fromUser) {
+                        mediaPlayer.seekTo(progress * ONE_SECOND);
+                    }
+                }
 
-            }
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                }
 
-            }
-        });
-        play();
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+            play();
+        }
         return view;
     }
 
@@ -209,9 +215,11 @@ public class MediaPlayerFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mediaPlayer.reset();
-        if (handler != null) {
-            handler.removeCallbacks(runnable);
+        if (mediaPlayer != null) {
+            mediaPlayer.reset();
+            if (handler != null) {
+                handler.removeCallbacks(runnable);
+            }
         }
     }
 
