@@ -67,7 +67,7 @@ public class AlbumDetailFragment extends Fragment {
         return view;
     }
 
-    public String getDurationMinutes(int time) {
+    private String getDurationMinutes(int time) {
         return String.format(Locale.getDefault(), "%02d:%02d:%02d",time / 3600, (time % 3600) / 60, time % 60);
     }
 

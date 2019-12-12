@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
+import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.List;
 
@@ -33,18 +33,23 @@ public class ArtistsRecyclerFragment extends Fragment implements ArtistAdapter.A
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_artists, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.fragment_artists_recycler);
-        final ArtistAdapter artistAdapter = new ArtistAdapter(this);
-        ArtistsController artistsController = new ArtistsController();
-        artistsController.getArtistsFromDao(new ResultListener<List<Artist>>() {
-            @Override
-            public void finish(List<Artist> result) {
-                artistAdapter.setArtists(result);
-                artistAdapter.notifyDataSetChanged();
-            }
-        });
-        recyclerView.setAdapter(artistAdapter);
+        View view;
+        if (!NetworkUtils.isNetworkAvailable(getContext())) {
+            view = inflater.inflate(R.layout.fragment_empty_state, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_recycler_artists, container, false);
+            RecyclerView recyclerView = view.findViewById(R.id.fragment_artists_recycler);
+            final ArtistAdapter artistAdapter = new ArtistAdapter(this);
+            ArtistsController artistsController = new ArtistsController();
+            artistsController.getArtistsFromDao(new ResultListener<List<Artist>>() {
+                @Override
+                public void finish(List<Artist> result) {
+                    artistAdapter.setArtists(result);
+                    artistAdapter.notifyDataSetChanged();
+                }
+            });
+            recyclerView.setAdapter(artistAdapter);
+        }
         return view;
     }
 

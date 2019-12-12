@@ -13,7 +13,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginStart="28dp"
-        android:src="@drawable/img_genre_placeholder"
+        tools:src="@drawable/img_genre_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
