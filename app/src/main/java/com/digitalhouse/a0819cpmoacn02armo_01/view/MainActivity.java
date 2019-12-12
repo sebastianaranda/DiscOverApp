@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
+    private String itemFavSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,16 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         if (currentUser!=null){
             getCurrentUser();
         }
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        if (currentUser!=null){
+            getCurrentUser();
+        }
     }
 
     @Override
@@ -133,13 +142,13 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         switch (id){
             //TODO: Definir comportamiento del menu y borrar toast
             case R.id.main_menu_fav_artists:
-                Toast.makeText(this, "Seleccionaste Artistas favoritos", Toast.LENGTH_SHORT).show();
+                goToFavorites("Artist");
                 break;
             case R.id.main_menu_fav_albums:
-                Toast.makeText(this, "Seleccionaste Albumes favoritos", Toast.LENGTH_SHORT).show();
+                goToFavorites("Album");
                 break;
             case R.id.main_menu_fav_songs:
-                Toast.makeText(this, "Seleccionaste Canciones favoritas", Toast.LENGTH_SHORT).show();
+                goToFavorites("Tracks");
                 break;
             case R.id.main_menu_profile:
                 if (currentUser != null){
@@ -157,6 +166,14 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         }
         drawerLayout.closeDrawers();
         return false;
+    }
+
+    private void goToFavorites(String itemFavSelected){
+        Intent intent = new Intent(MainActivity.this,MyFavoritesActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MyFavoritesActivity.KEY_FAVORITE,itemFavSelected);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private void makeLogout(){

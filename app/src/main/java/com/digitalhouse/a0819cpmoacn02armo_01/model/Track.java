@@ -10,14 +10,17 @@ public class Track implements Serializable {
     private int id;
     private String title;
     private int duration;
-    private URL preview;
+    private String preview;
     private Artist artist;
     private Album album;
-    private URL coverMedium;
+    private String coverMedium;
     @SerializedName("track_position")
     private int trackPosition;
 
-    public Track(int id, String title, int duration, URL preview, Artist artist, Album album) {
+    public Track() {
+    }
+
+    public Track(int id, String title, int duration, String preview, Artist artist, Album album) {
         this.id = id;
         this.title = title;
         this.duration = duration;
@@ -50,11 +53,11 @@ public class Track implements Serializable {
         this.duration = duration;
     }
 
-    public URL getPreview() {
+    public String getPreview() {
         return preview;
     }
 
-    public void setPreview(URL preview) {
+    public void setPreview(String preview) {
         this.preview = preview;
     }
 
@@ -74,11 +77,11 @@ public class Track implements Serializable {
         this.album = album;
     }
 
-    public URL getCoverMedium() {
+    public String getCoverMedium() {
         return coverMedium;
     }
 
-    public void setCoverMedium(URL coverMedium) {
+    public void setCoverMedium(String coverMedium) {
         this.coverMedium = coverMedium;
     }
 

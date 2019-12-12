@@ -150,7 +150,7 @@ public class MediaPlayerFragment extends Fragment {
         }
     }
 
-    private void setAndPrepare(URL preview) {
+    private void setAndPrepare(String preview) {
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         try {

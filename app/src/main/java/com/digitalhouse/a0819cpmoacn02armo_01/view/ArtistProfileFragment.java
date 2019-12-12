@@ -25,11 +25,15 @@ import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.FavArtist;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistProfileFragment extends Fragment implements AlbumAdapter.AlbumAdapterListener {
@@ -41,10 +45,15 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
     private Artist selectedArtist;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
-    private Artist newArtist;
     private TextView txtArtistFans;
     private ImageView imgArtistPicture;
     private CollapsingToolbarLayout collapsingToolbarLayoutTitle;
+
+    /** ///////////       CODIGO DE FAVORITO     /////////////*/
+
+    private static final String COLLECTION_FAV_ARTIST = "FavArtists";
+    private FirebaseFirestore firestore;
+    private FavArtist favArtist = new FavArtist();
 
     public ArtistProfileFragment() {
         // Required empty public constructor
@@ -62,23 +71,28 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
         final View fragmentView;
         if (!NetworkUtils.isNetworkAvailable(getContext())) {
             fragmentView = inflater.inflate(R.layout.fragment_empty_state, container, false);
-
         } else {
-            fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
+          fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
-            imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
-            //TODO: chequear si podemos pedir este dato a la API y modificar este codigo
-            txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
-            btnfav = fragmentView.findViewById(R.id.fragment_artist_profile_button_fav);
-            collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
 
-            progressBar = fragmentView.findViewById(R.id.progress_bar_profile);
+        favArtist = new FavArtist();
+        favArtist.setArtistList(new ArrayList<Artist>());
+        getCurrentFavArtistsList();
 
-            auth = FirebaseAuth.getInstance();
-            currentUser = auth.getCurrentUser();
 
-            Bundle bundle = getArguments();
-            selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
+        imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
+        //TODO: chequear si podemos pedir este dato a la API y modificar este codigo
+        txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
+        btnfav = fragmentView.findViewById(R.id.fragment_artist_profile_button_fav);
+        collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
+
+          progressBar = fragmentView.findViewById(R.id.progress_bar_profile);
+
+        Bundle bundle = getArguments();
+        selectedArtist = (Artist) bundle.getSerializable(KEY_ARTIST);
 
             ArtistsController artistsController = new ArtistsController();
             artistsController.getArtistByID(new ResultListener<Artist>() {
@@ -89,46 +103,80 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
                         .load(result.getPictureBig())
                         .placeholder(R.drawable.img_artist_placeholder)
                         .into(imgArtistPicture);
+                collapsingToolbarLayoutTitle.setTitle(result.getName());
+                selectedArtist = result;
+            }
+        },selectedArtist.getId());
+
+        collapsingToolbarLayoutTitle.setExpandedTitleTextColor(ColorStateList.valueOf(Color.WHITE));
+        collapsingToolbarLayoutTitle.setCollapsedTitleTextColor(ColorStateList.valueOf(Color.WHITE));
+        RecyclerView recyclerView = fragmentView.findViewById(R.id.fragment_albums_recycler);
+        final AlbumAdapter albumAdapter = new AlbumAdapter(this);
+        recyclerView.setAdapter(albumAdapter);
+        progressBar.setVisibility(View.VISIBLE);
+        AlbumsController albumsController = new AlbumsController();
+        albumsController.getAlbumsByArtist(selectedArtist, new ResultListener<List<Album>>() {
+            @Override
+            public void finish(List<Album> result) {
+                albumAdapter.setAlbums(result);
+                albumAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+        //TODO: agregar de favoritos
+        btnfav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser== null){
+                    startActivity(new Intent(getContext(),LoginActivity.class));
+                } else {
+                    btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                    Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
+                    addArtistToFavList(selectedArtist);
                     collapsingToolbarLayoutTitle.setTitle(result.getName());
                 }
-            }, selectedArtist.getId());
-
-            collapsingToolbarLayoutTitle.setExpandedTitleTextColor(ColorStateList.valueOf(Color.WHITE));
-            collapsingToolbarLayoutTitle.setCollapsedTitleTextColor(ColorStateList.valueOf(Color.WHITE));
-            RecyclerView recyclerView = fragmentView.findViewById(R.id.fragment_albums_recycler);
-            final AlbumAdapter albumAdapter = new AlbumAdapter(this);
-            recyclerView.setAdapter(albumAdapter);
-            progressBar.setVisibility(View.VISIBLE);
-            AlbumsController albumsController = new AlbumsController();
-            albumsController.getAlbumsByArtist(selectedArtist, new ResultListener<List<Album>>() {
-                @Override
-                public void finish(List<Album> result) {
-                    albumAdapter.setAlbums(result);
-                    albumAdapter.notifyDataSetChanged();
-                    progressBar.setVisibility(View.GONE);
-                }
-            });
-
-            btnfav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (currentUser == null) {
-                        startActivity(new Intent(getContext(), LoginActivity.class));
-                    } else {
-                        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
-                        Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
-                        //TODO: agregar de favoritos
-                    }
-                }
-            });
-
-        }
+            }
+        });
         return fragmentView;
     }
 
     @Override
     public void getAlbumFromAdapter(Album album) {
         fragmentAlbumsListener.geAlbumFromFragment(album);
+    }
+
+    private void addArtistToFavList(Artist selectedArtist) {
+        if (!favArtist.getArtistList().contains(selectedArtist)){
+            favArtist.getArtistList().add(selectedArtist);
+            firestore.collection(COLLECTION_FAV_ARTIST)
+                    .document(currentUser.getUid())
+                    .set(favArtist);
+        }
+    }
+
+    private void getCurrentFavArtistsList(){
+        if(currentUser == null){
+            return;
+        }
+        firestore.collection(COLLECTION_FAV_ARTIST)
+                .document(currentUser.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        favArtist = documentSnapshot.toObject(FavArtist.class);
+                        if (favArtist==null){
+                            favArtist = new FavArtist();
+                            favArtist.setArtistList(new ArrayList<Artist>());
+                        }
+
+                        if(favArtist.getArtistList().contains(selectedArtist)){
+                            btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                        }
+                    }
+                });
     }
 
 }

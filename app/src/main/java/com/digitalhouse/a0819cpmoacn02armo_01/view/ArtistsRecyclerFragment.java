@@ -13,7 +13,6 @@ import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
-
 import java.util.List;
 
 public class ArtistsRecyclerFragment extends Fragment implements ArtistAdapter.ArtistAdapterListener {

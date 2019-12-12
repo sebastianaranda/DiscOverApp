@@ -12,4 +12,8 @@ public class ContainerAlbums {
     public List<Album> getAlbums() {
         return albums;
     }
+
+    public void setAlbums(List<Album> albums) {
+        this.albums = albums;
+    }
 }
