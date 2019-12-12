@@ -68,6 +68,11 @@ public class AlbumDetailFragment extends Fragment {
 
         favAlbum = new FavAlbum();
         favAlbum.setAlbumsList(new ArrayList<Album>());
+
+        btnfav = view.findViewById(R.id.fragment_album_detail_button_fav);
+        emptyFavIcon();
+        btnfav.setClickable(false);
+
         getCurrentFavAlbumsList();
 
         txtAlbumTitle = view.findViewById(R.id.txt_detail_abum_title);
@@ -75,7 +80,6 @@ public class AlbumDetailFragment extends Fragment {
         txtReleaseDate = view.findViewById(R.id.txt_release_date);
         txtAlbumDuration = view.findViewById(R.id.txt_album_duration);
         imgDetailAlbumCover = view.findViewById(R.id.img_detail_album_cover);
-        btnfav = view.findViewById(R.id.fragment_album_detail_button_fav);
 
         Bundle bundle = getArguments();
         selectedAlbum = (Album) bundle.getSerializable(DETAIL_ALBUM_KEY);
@@ -105,8 +109,6 @@ public class AlbumDetailFragment extends Fragment {
                 if (currentUser == null){
                     startActivity(new Intent(getContext(),LoginActivity.class));
                 } else {
-                    btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
-                    Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
                     addAlbumToFavList(selectedAlbum);
                 }
             }
@@ -126,12 +128,18 @@ public class AlbumDetailFragment extends Fragment {
     }
 
     private void addAlbumToFavList(Album selectedAlbum) {
-        if (!favAlbum.getAlbumsList().contains(selectedAlbum)){
+        if (!favAlbum.getAlbumsList().contains(selectedAlbum)) {
             favAlbum.getAlbumsList().add(selectedAlbum);
-            firestore.collection(COLLECTION_FAV_ALBUM)
-                    .document(currentUser.getUid())
-                    .set(favAlbum);
+            Toast.makeText(getContext(), selectedAlbum.getTitle() + " se agregó a tus favoritos", Toast.LENGTH_SHORT).show();
+            fillFavIcon();
+        } else {
+            favAlbum.getAlbumsList().remove(selectedAlbum);
+            Toast.makeText(getContext(), selectedAlbum.getTitle() + " se eliminó a tus favoritos", Toast.LENGTH_SHORT).show();
+            emptyFavIcon();
         }
+        firestore.collection(COLLECTION_FAV_ALBUM)
+                .document(currentUser.getUid())
+                .set(favAlbum);
     }
 
 
@@ -155,6 +163,19 @@ public class AlbumDetailFragment extends Fragment {
                         }
                     }
                 });
+        enableOnClickFav();
+    }
+
+    private void enableOnClickFav(){
+        btnfav.setClickable(true);
+    }
+
+    private void fillFavIcon(){
+        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+    }
+
+    private void emptyFavIcon(){
+        btnfav.setImageResource(R.drawable.ic_fav_border_64dp);
     }
 
 }

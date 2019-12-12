@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
-    private String itemFavSelected;
+    //private String itemFavSelected;
+    private MenuItem btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         toggle.syncState();
         attachArtistFragment(new ArtistsRecyclerFragment());
         attachGenreFragment(new GenresRecyclerFragment());
+
+        btnLogout = navigationView.getMenu().findItem(R.id.main_menu_logout);
+        btnLogout.setEnabled(false);
 
         headerUserName = navigationView.getHeaderView(0).findViewById(R.id.header_user_name);
         headerImageUser = navigationView.getHeaderView(0).findViewById(R.id.header_user_profile_image);
@@ -147,9 +151,9 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
             case R.id.main_menu_fav_albums:
                 goToFavorites("Album");
                 break;
-            case R.id.main_menu_fav_songs:
-                goToFavorites("Tracks");
-                break;
+            //case R.id.main_menu_fav_songs:
+            //    goToFavorites("Tracks");
+            //    break;
             case R.id.main_menu_profile:
                 if (currentUser != null){
                     startActivity(new Intent(MainActivity.this,UserProfileActivity.class));
@@ -157,9 +161,9 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                     startActivity(new Intent(MainActivity.this,LoginActivity.class));
                 }
                 break;
-            case R.id.main_menu_settings:
-                Toast.makeText(this, "Seleccionaste el menu Settings", Toast.LENGTH_SHORT).show();
-                break;
+            //case R.id.main_menu_settings:
+            //    Toast.makeText(this, "Seleccionaste el menu Settings", Toast.LENGTH_SHORT).show();
+            //    break;
             case R.id.main_menu_logout:
                 makeLogout();
                 break;
@@ -208,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                         }
                     }
                 });
+        btnLogout.setEnabled(true);
     }
 
 }

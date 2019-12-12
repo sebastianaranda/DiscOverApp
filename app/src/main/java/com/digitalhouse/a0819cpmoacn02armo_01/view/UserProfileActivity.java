@@ -210,6 +210,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
                         }
                     }
                 });
+        loginButton.setVisibility(View.INVISIBLE);
     }
 
     private void saveNewData(User newUser){

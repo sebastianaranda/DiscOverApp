@@ -83,6 +83,7 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
             //TODO: chequear si podemos pedir este dato a la API y modificar este codigo
             txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
             btnfav = fragmentView.findViewById(R.id.fragment_artist_profile_button_fav);
+            emptyFavIcon();
             btnfav.setClickable(false);
 
             collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
@@ -132,8 +133,6 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
                     if (currentUser == null) {
                         startActivity(new Intent(getContext(), LoginActivity.class));
                     } else {
-                        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
-                        Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
                         addArtistToFavList(selectedArtist);
                     }
                 }
@@ -148,12 +147,18 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
     }
 
     private void addArtistToFavList(Artist selectedArtist) {
-        if (!favArtist.getArtistList().contains(selectedArtist)){
+        if (!favArtist.getArtistList().contains(selectedArtist)) {
             favArtist.getArtistList().add(selectedArtist);
-            firestore.collection(COLLECTION_FAV_ARTIST)
-                    .document(currentUser.getUid())
-                    .set(favArtist);
+            Toast.makeText(getContext(), selectedArtist.getName() + " se agregó a tus favoritos", Toast.LENGTH_SHORT).show();
+            fillFavIcon();
+        } else {
+            favArtist.getArtistList().remove(selectedArtist);
+            Toast.makeText(getContext(), selectedArtist.getName() + " se eliminó de tus favoritos", Toast.LENGTH_SHORT).show();
+            emptyFavIcon();
         }
+        firestore.collection(COLLECTION_FAV_ARTIST)
+                .document(currentUser.getUid())
+                .set(favArtist);
     }
 
     private void getCurrentFavArtistsList(){
@@ -173,7 +178,8 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
                         }
 
                         if(favArtist.getArtistList().contains(selectedArtist)){
-                            btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                            //btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                            fillFavIcon();
                         }
                     }
                 });
@@ -183,6 +189,14 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
 
     private void enableOnClickFav(){
         btnfav.setClickable(true);
+    }
+
+    private void fillFavIcon(){
+        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+    }
+
+    private void emptyFavIcon(){
+        btnfav.setImageResource(R.drawable.ic_fav_border_64dp);
     }
 
 }

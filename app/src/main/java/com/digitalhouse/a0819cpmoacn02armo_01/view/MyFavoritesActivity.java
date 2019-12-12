@@ -9,6 +9,8 @@ import android.os.Bundle;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MyFavoritesActivity extends AppCompatActivity implements FavoritesArtistsFragment.FragmentFavoritesArtistsListener, FavoritesAlbumsFragment.FragmentFavoritesAlbumsListener {
 
@@ -16,31 +18,42 @@ public class MyFavoritesActivity extends AppCompatActivity implements FavoritesA
     private Toolbar toolbar;
     private String favoriteSelected;
 
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_favorites);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+
         toolbar = findViewById(R.id.toolbar_my_favourites_activity);
         toolbar.setElevation(10);
 
-        favoriteSelected = getIntent().getExtras().getSerializable(KEY_FAVORITE).toString();
+        if (currentUser == null){
+            startActivity(new Intent(MyFavoritesActivity.this,LoginActivity.class));
+        } else {
+            favoriteSelected = getIntent().getExtras().getSerializable(KEY_FAVORITE).toString();
 
-        switch (favoriteSelected){
-            case "Artist":
-                toolbar.setTitle("Tus artistas favoritos");
-                attachFavouritesFragment(new FavoritesArtistsFragment());
-                break;
-            case "Album":
-                toolbar.setTitle("Tus albums favoritos");
-                attachFavouritesFragment(new FavoritesAlbumsFragment());
+            switch (favoriteSelected){
+                case "Artist":
+                    toolbar.setTitle("Tus artistas favoritos");
+                    attachFavouritesFragment(new FavoritesArtistsFragment());
+                    break;
+                case "Album":
+                    toolbar.setTitle("Tus albums favoritos");
+                    attachFavouritesFragment(new FavoritesAlbumsFragment());
 
-                break;
-            case "Tracks":
-                toolbar.setTitle("Tus canciones favoritas");
+                    break;
+                case "Tracks":
+                    toolbar.setTitle("Tus canciones favoritas");
 
-                break;
+                    break;
+            }
         }
+
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -67,7 +80,7 @@ public class MyFavoritesActivity extends AppCompatActivity implements FavoritesA
     public void getFavoriteAlbumFromFragment(Album album) {
         Intent intent = new Intent(MyFavoritesActivity.this, AlbumDetailActivity.class);
         Bundle bundle = new Bundle();
-        //bundle.putSerializable(TrackRecyclerFragment.TRACKLIST_ALBUM_KEY, album);
+        bundle.putSerializable(TrackRecyclerFragment.TRACKLIST_ALBUM_KEY, album);
         bundle.putSerializable(AlbumDetailFragment.DETAIL_ALBUM_KEY, album);
         intent.putExtras(bundle);
         startActivity(intent);
