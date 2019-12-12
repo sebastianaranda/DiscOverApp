@@ -1,5 +1,6 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -16,9 +17,19 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.FavArtist;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.FavTracks;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.IOException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import static android.graphics.Color.TRANSPARENT;
@@ -38,6 +49,15 @@ public class MediaPlayerFragment extends Fragment {
     private List<Track> trackList;
     private boolean pause = false;
 
+    /** ///////////       CODIGO DE FAVORITO     /////////////*/
+    private static final String COLLECTION_FAV_TRACK = "FavTracks";
+    private FloatingActionButton btnfav;
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private FirebaseFirestore firestore;
+    private FavTracks favTracks = new FavTracks();
+
+
 
     public MediaPlayerFragment() {
         // Required empty public constructor
@@ -51,6 +71,15 @@ public class MediaPlayerFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_empty_state, container, false);
         } else {
             view = inflater.inflate(R.layout.fragment_media_player, container, false);
+
+            btnfav = view.findViewById(R.id.fragment_media_player_button_fav);
+            firestore = FirebaseFirestore.getInstance();
+            auth = FirebaseAuth.getInstance();
+            currentUser = auth.getCurrentUser();
+            favTracks = new FavTracks();
+            favTracks.setTracksList(new ArrayList<Track>());
+            getCurrentFavTracksList();
+
             Bundle bundle = getArguments();
             track = (Track) bundle.getSerializable(KEY_TRACK);
             trackList = (List<Track>) bundle.getSerializable(KEY_TRACKLIST);
@@ -128,6 +157,23 @@ public class MediaPlayerFragment extends Fragment {
 
                 }
             });
+
+
+            btnfav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (currentUser == null) {
+                        startActivity(new Intent(getContext(), LoginActivity.class));
+                    } else {
+                        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                        Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
+                        addTrackToFavList(track);
+                    }
+                }
+            });
+
+
             play();
         }
         return view;
@@ -223,4 +269,37 @@ public class MediaPlayerFragment extends Fragment {
         }
     }
 
+
+    private void addTrackToFavList(Track selectedTrack) {
+        if (!favTracks.getTracksList().contains(selectedTrack)){
+            favTracks.getTracksList().add(selectedTrack);
+            firestore.collection(COLLECTION_FAV_TRACK)
+                    .document(currentUser.getUid())
+                    .set(favTracks);
+        }
+    }
+
+
+    private void getCurrentFavTracksList(){
+        if(currentUser == null){
+            return;
+        }
+        firestore.collection(COLLECTION_FAV_TRACK)
+                .document(currentUser.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        favTracks = documentSnapshot.toObject(FavTracks.class);
+                        if (favTracks==null){
+                            favTracks = new FavTracks();
+                            favTracks.setTracksList(new ArrayList<Track>());
+                        }
+
+                        if(favTracks.getTracksList().contains(track)){
+                            btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                        }
+                    }
+                });
+    }
 }

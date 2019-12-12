@@ -1,9 +1,12 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
 public class Track implements Serializable {
 
@@ -93,4 +96,17 @@ public class Track implements Serializable {
         this.trackPosition = trackPosition;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Track track = (Track) o;
+        return Objects.equals(id,track.id) &&
+                Objects.equals(title,track.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title);
+    }
 }
