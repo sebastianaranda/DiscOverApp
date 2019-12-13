@@ -16,20 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
+import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.FavArtist;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.FavTracks;
+import com.digitalhouse.a0819cpmoacn02armo_01.controller.TrackController;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import static android.graphics.Color.TRANSPARENT;
@@ -48,16 +41,7 @@ public class MediaPlayerFragment extends Fragment {
     private Track track;
     private List<Track> trackList;
     private boolean pause = false;
-
-    /** ///////////       CODIGO DE FAVORITO     /////////////*/
-    private static final String COLLECTION_FAV_TRACK = "FavTracks";
-    private FloatingActionButton btnfav;
-    private FirebaseAuth auth;
-    private FirebaseUser currentUser;
-    private FirebaseFirestore firestore;
-    private FavTracks favTracks = new FavTracks();
-
-
+    private FloatingActionButton btnShare;
 
     public MediaPlayerFragment() {
         // Required empty public constructor
@@ -72,13 +56,7 @@ public class MediaPlayerFragment extends Fragment {
         } else {
             view = inflater.inflate(R.layout.fragment_media_player, container, false);
 
-            btnfav = view.findViewById(R.id.fragment_media_player_button_fav);
-            firestore = FirebaseFirestore.getInstance();
-            auth = FirebaseAuth.getInstance();
-            currentUser = auth.getCurrentUser();
-            favTracks = new FavTracks();
-            favTracks.setTracksList(new ArrayList<Track>());
-            getCurrentFavTracksList();
+            btnShare = view.findViewById(R.id.fragment_media_player_share);
 
             Bundle bundle = getArguments();
             track = (Track) bundle.getSerializable(KEY_TRACK);
@@ -158,22 +136,23 @@ public class MediaPlayerFragment extends Fragment {
                 }
             });
 
-
-            btnfav.setOnClickListener(new View.OnClickListener() {
+            btnShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                    if (currentUser == null) {
-                        startActivity(new Intent(getContext(), LoginActivity.class));
-                    } else {
-                        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
-                        Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
-                        addTrackToFavList(track);
-                    }
+                    TrackController trackController = new TrackController();
+                    trackController.getTrackByID(new ResultListener<Track>() {
+                        @Override
+                        public void finish(Track result) {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_SEND);
+                            intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.txt_media_player_share_text) + result.getArtist().getName() + getString(R.string.txt_media_player_text_space) + result.getShare());
+                            intent.setType("text/plain");
+                            Intent shareIntent = Intent.createChooser(intent,getString(R.string.txt_media_player_share_chooser));
+                            startActivity(shareIntent);
+                        }
+                    },track.getId());
                 }
             });
-
-
             play();
         }
         return view;
@@ -269,37 +248,4 @@ public class MediaPlayerFragment extends Fragment {
         }
     }
 
-
-    private void addTrackToFavList(Track selectedTrack) {
-        if (!favTracks.getTracksList().contains(selectedTrack)){
-            favTracks.getTracksList().add(selectedTrack);
-            firestore.collection(COLLECTION_FAV_TRACK)
-                    .document(currentUser.getUid())
-                    .set(favTracks);
-        }
-    }
-
-
-    private void getCurrentFavTracksList(){
-        if(currentUser == null){
-            return;
-        }
-        firestore.collection(COLLECTION_FAV_TRACK)
-                .document(currentUser.getUid())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        favTracks = documentSnapshot.toObject(FavTracks.class);
-                        if (favTracks==null){
-                            favTracks = new FavTracks();
-                            favTracks.setTracksList(new ArrayList<Track>());
-                        }
-
-                        if(favTracks.getTracksList().contains(track)){
-                            btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
-                        }
-                    }
-                });
-    }
 }

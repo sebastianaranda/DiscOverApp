@@ -19,17 +19,20 @@ public class Track implements Serializable {
     private String coverMedium;
     @SerializedName("track_position")
     private int trackPosition;
+    @SerializedName("share")
+    private String share;
 
     public Track() {
     }
 
-    public Track(int id, String title, int duration, String preview, Artist artist, Album album) {
+    public Track(int id, String title, int duration, String preview, Artist artist, Album album, String share) {
         this.id = id;
         this.title = title;
         this.duration = duration;
         this.preview = preview;
         this.artist = artist;
         this.album = album;
+        this.share = share;
     }
 
     public int getId() {
@@ -94,6 +97,14 @@ public class Track implements Serializable {
 
     public void setTrackPosition(int trackPosition) {
         this.trackPosition = trackPosition;
+    }
+
+    public String getShare() {
+        return share;
+    }
+
+    public void setShare(String share) {
+        this.share = share;
     }
 
     @Override

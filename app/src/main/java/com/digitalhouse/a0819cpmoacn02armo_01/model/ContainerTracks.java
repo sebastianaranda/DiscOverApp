@@ -2,9 +2,10 @@ package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ContainerTracks {
+public class ContainerTracks implements Serializable {
 
     @SerializedName("data")
     private List<Track> trackList;

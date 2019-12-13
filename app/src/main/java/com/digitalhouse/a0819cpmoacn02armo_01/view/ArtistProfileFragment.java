@@ -39,15 +39,13 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
     public static final String KEY_ARTIST = "keyArtist";
     private AlbumsRecyclerFragment.FragmentAlbumsListener fragmentAlbumsListener;
     ProgressBar progressBar;
-    private FloatingActionButton btnfav;
+    private FloatingActionButton btnFav;
     private Artist selectedArtist;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
     private TextView txtArtistFans;
     private ImageView imgArtistPicture;
     private CollapsingToolbarLayout collapsingToolbarLayoutTitle;
-
-    /** ///////////       CODIGO DE FAVORITO     /////////////*/
 
     private static final String COLLECTION_FAV_ARTIST = "FavArtists";
     private FirebaseFirestore firestore;
@@ -80,10 +78,11 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
             favArtist.setArtistList(new ArrayList<Artist>());
 
             imgArtistPicture = fragmentView.findViewById(R.id.img_artist_picture);
-            //TODO: chequear si podemos pedir este dato a la API y modificar este codigo
+
             txtArtistFans = fragmentView.findViewById(R.id.txt_artist_fans);
-            btnfav = fragmentView.findViewById(R.id.fragment_artist_profile_button_fav);
-            btnfav.setClickable(false);
+            btnFav = fragmentView.findViewById(R.id.fragment_artist_profile_button_fav);
+            emptyFavIcon();
+            btnFav.setClickable(false);
 
             collapsingToolbarLayoutTitle = fragmentView.findViewById(R.id.artist_profile_collapsing_toolbar_layout);
 
@@ -124,16 +123,13 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
 
             getCurrentFavArtistsList();
 
-            //TODO: agregar de favoritos
-            btnfav.setOnClickListener(new View.OnClickListener() {
+            btnFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     currentUser = FirebaseAuth.getInstance().getCurrentUser();
                     if (currentUser == null) {
                         startActivity(new Intent(getContext(), LoginActivity.class));
                     } else {
-                        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
-                        Toast.makeText(getContext(), "AGREGASTE UN FAVORITO", Toast.LENGTH_SHORT).show();
                         addArtistToFavList(selectedArtist);
                     }
                 }
@@ -148,12 +144,18 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
     }
 
     private void addArtistToFavList(Artist selectedArtist) {
-        if (!favArtist.getArtistList().contains(selectedArtist)){
+        if (!favArtist.getArtistList().contains(selectedArtist)) {
             favArtist.getArtistList().add(selectedArtist);
-            firestore.collection(COLLECTION_FAV_ARTIST)
-                    .document(currentUser.getUid())
-                    .set(favArtist);
+            Toast.makeText(getContext(), selectedArtist.getName() + getString(R.string.txt_favorite_artist_added), Toast.LENGTH_SHORT).show();
+            fillFavIcon();
+        } else {
+            favArtist.getArtistList().remove(selectedArtist);
+            Toast.makeText(getContext(), selectedArtist.getName() + getString(R.string.txt_favorite_artist_removed), Toast.LENGTH_SHORT).show();
+            emptyFavIcon();
         }
+        firestore.collection(COLLECTION_FAV_ARTIST)
+                .document(currentUser.getUid())
+                .set(favArtist);
     }
 
     private void getCurrentFavArtistsList(){
@@ -173,16 +175,23 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
                         }
 
                         if(favArtist.getArtistList().contains(selectedArtist)){
-                            btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                            fillFavIcon();
                         }
                     }
                 });
         enableOnClickFav();
     }
 
-
     private void enableOnClickFav(){
-        btnfav.setClickable(true);
+        btnFav.setClickable(true);
+    }
+
+    private void fillFavIcon(){
+        btnFav.setImageResource(R.drawable.ic_fav_active_64dp);
+    }
+
+    private void emptyFavIcon(){
+        btnFav.setImageResource(R.drawable.ic_fav_border_64dp);
     }
 
 }
