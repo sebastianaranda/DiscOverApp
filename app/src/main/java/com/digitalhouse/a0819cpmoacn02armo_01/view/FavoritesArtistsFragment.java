@@ -10,20 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.ContainerArtists;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.FavArtist;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
 import java.util.ArrayList;
 
 public class FavoritesArtistsFragment extends Fragment implements ArtistAdapter.ArtistAdapterListener {
@@ -35,7 +31,6 @@ public class FavoritesArtistsFragment extends Fragment implements ArtistAdapter.
     private static final String COLLECTION_FAV_ARTIST = "FavArtists";
     private FirebaseFirestore firestore;
     private FavArtist favArtist = new FavArtist();
-    private ContainerArtists containerArtists;
     private ArtistAdapter artistAdapter;
     private TextView txtEmpty;
 
@@ -52,7 +47,6 @@ public class FavoritesArtistsFragment extends Fragment implements ArtistAdapter.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorites_artists, container, false);
 
         txtEmpty = view.findViewById(R.id.fragment_favorites_empty);

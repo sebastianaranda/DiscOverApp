@@ -1,33 +1,26 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.AlbumsController;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.FavAlbum;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.FavArtist;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,7 +29,7 @@ import java.util.Locale;
 public class AlbumDetailFragment extends Fragment {
 
     public static final String DETAIL_ALBUM_KEY = "detailAlbumKey";
-    private FloatingActionButton btnfav;
+    private FloatingActionButton btnFav;
     private TextView txtAlbumTitle;
     private TextView txtAlbumArtist;
     private TextView txtReleaseDate;
@@ -45,9 +38,6 @@ public class AlbumDetailFragment extends Fragment {
     private ImageView imgDetailAlbumCover;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
-
-
-    /** ///////////       CODIGO DE FAVORITO     /////////////*/
 
     private static final String COLLECTION_FAV_ALBUM = "FavAlbums";
     private FirebaseFirestore firestore;
@@ -69,9 +59,9 @@ public class AlbumDetailFragment extends Fragment {
         favAlbum = new FavAlbum();
         favAlbum.setAlbumsList(new ArrayList<Album>());
 
-        btnfav = view.findViewById(R.id.fragment_album_detail_button_fav);
+        btnFav = view.findViewById(R.id.fragment_album_detail_button_fav);
         emptyFavIcon();
-        btnfav.setClickable(false);
+        btnFav.setClickable(false);
 
         getCurrentFavAlbumsList();
 
@@ -88,7 +78,6 @@ public class AlbumDetailFragment extends Fragment {
         albumsController.getAlbumById(selectedAlbum.getId(), new ResultListener<Album>() {
             @Override
             public void finish(Album result) {
-                //TODO: sacar esto
                 selectedAlbum = result;
                 txtAlbumTitle.setText(result.getTitle());
                 txtAlbumArtist.setText(result.getArtist().getName());
@@ -100,9 +89,7 @@ public class AlbumDetailFragment extends Fragment {
                     .into(imgDetailAlbumCover);
             }
         });
-
-        //TODO: agregar de favoritos
-        btnfav.setOnClickListener(new View.OnClickListener() {
+        btnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -113,7 +100,6 @@ public class AlbumDetailFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
 
@@ -130,11 +116,11 @@ public class AlbumDetailFragment extends Fragment {
     private void addAlbumToFavList(Album selectedAlbum) {
         if (!favAlbum.getAlbumsList().contains(selectedAlbum)) {
             favAlbum.getAlbumsList().add(selectedAlbum);
-            Toast.makeText(getContext(), selectedAlbum.getTitle() + " se agregó a tus favoritos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), selectedAlbum.getTitle() + getString(R.string.txt_favorite_album_added), Toast.LENGTH_SHORT).show();
             fillFavIcon();
         } else {
             favAlbum.getAlbumsList().remove(selectedAlbum);
-            Toast.makeText(getContext(), selectedAlbum.getTitle() + " se eliminó a tus favoritos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), selectedAlbum.getTitle() + getString(R.string.txt_favorite_album_removed), Toast.LENGTH_SHORT).show();
             emptyFavIcon();
         }
         firestore.collection(COLLECTION_FAV_ALBUM)
@@ -159,7 +145,7 @@ public class AlbumDetailFragment extends Fragment {
                             favAlbum.setAlbumsList(new ArrayList<Album>());
                         }
                         if(favAlbum.getAlbumsList().contains(selectedAlbum)){
-                            btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+                            btnFav.setImageResource(R.drawable.ic_fav_active_64dp);
                         }
                     }
                 });
@@ -167,15 +153,15 @@ public class AlbumDetailFragment extends Fragment {
     }
 
     private void enableOnClickFav(){
-        btnfav.setClickable(true);
+        btnFav.setClickable(true);
     }
 
     private void fillFavIcon(){
-        btnfav.setImageResource(R.drawable.ic_fav_active_64dp);
+        btnFav.setImageResource(R.drawable.ic_fav_active_64dp);
     }
 
     private void emptyFavIcon(){
-        btnfav.setImageResource(R.drawable.ic_fav_border_64dp);
+        btnFav.setImageResource(R.drawable.ic_fav_border_64dp);
     }
 
 }

@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
-    //private String itemFavSelected;
     private MenuItem btnLogout;
 
     @Override
@@ -99,10 +98,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                 //TODO: modificar esta linea una vez definido el metodo de search
                 Toast.makeText(this, "Seleccionaste la opcion para search", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.toolbar_menu_settings:
-                //TODO: modificar esta linea una vez definido el metodo de settings
-                Toast.makeText(this, "Seleccionaste la opcion de settings", Toast.LENGTH_SHORT).show();
-                break;
         }
         return true;
     }
@@ -144,12 +139,11 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Integer id = menuItem.getItemId();
         switch (id){
-            //TODO: Definir comportamiento del menu y borrar toast
             case R.id.main_menu_fav_artists:
-                goToFavorites("Artist");
+                goToFavorites(getString(R.string.txt_navigation_items_favorite_artist_option));
                 break;
             case R.id.main_menu_fav_albums:
-                goToFavorites("Album");
+                goToFavorites(getString(R.string.txt_navigation_items_favorite_album_option));
                 break;
             //case R.id.main_menu_fav_songs:
             //    goToFavorites("Tracks");
@@ -161,9 +155,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                     startActivity(new Intent(MainActivity.this,LoginActivity.class));
                 }
                 break;
-            //case R.id.main_menu_settings:
-            //    Toast.makeText(this, "Seleccionaste el menu Settings", Toast.LENGTH_SHORT).show();
-            //    break;
             case R.id.main_menu_logout:
                 makeLogout();
                 break;

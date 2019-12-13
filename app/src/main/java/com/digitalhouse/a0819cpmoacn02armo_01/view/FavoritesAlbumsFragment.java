@@ -10,19 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.ContainerAlbums;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.FavAlbum;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
 import java.util.ArrayList;
 
 public class FavoritesAlbumsFragment extends Fragment implements AlbumAdapter.AlbumAdapterListener {
@@ -34,7 +31,6 @@ public class FavoritesAlbumsFragment extends Fragment implements AlbumAdapter.Al
     private static final String COLLECTION_FAV_ALBUM = "FavAlbums";
     private FirebaseFirestore firestore;
     private FavAlbum favAlbum = new FavAlbum();
-    private ContainerAlbums containerAlbums;
     private AlbumAdapter albumAdapter;
     private TextView txtEmpty;
 
@@ -51,7 +47,7 @@ public class FavoritesAlbumsFragment extends Fragment implements AlbumAdapter.Al
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_favorites_albums, container, false);
 
         txtEmpty = view.findViewById(R.id.fragment_favorites_albums_empty);
