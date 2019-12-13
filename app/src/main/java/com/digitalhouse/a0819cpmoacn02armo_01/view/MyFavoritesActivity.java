@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class MyFavoritesActivity extends AppCompatActivity implements FavoritesArtistsFragment.FragmentFavoritesArtistsListener, FavoritesAlbumsFragment.FragmentFavoritesAlbumsListener {
 
     public static final String KEY_FAVORITE = "keyFavorite";
+    public static final String KEY_ARTIST_FAV_SELECTED = "Artist";
+    public static final String KEY_ALBUM_FAV_SELECTED = "Album";
     private Toolbar toolbar;
     private String favoriteSelected;
 
@@ -38,17 +40,13 @@ public class MyFavoritesActivity extends AppCompatActivity implements FavoritesA
             favoriteSelected = getIntent().getExtras().getSerializable(KEY_FAVORITE).toString();
 
             switch (favoriteSelected){
-                case "Artist":
-                    toolbar.setTitle("Tus artistas favoritos");
+                case KEY_ARTIST_FAV_SELECTED:
+                    toolbar.setTitle(R.string.txt_toolbar_title_fav_artist);
                     attachFavouritesFragment(new FavoritesArtistsFragment());
                     break;
-                case "Album":
-                    toolbar.setTitle("Tus albums favoritos");
+                case KEY_ALBUM_FAV_SELECTED:
+                    toolbar.setTitle(R.string.txt_toolbar_title_fav_album);
                     attachFavouritesFragment(new FavoritesAlbumsFragment());
-
-                    break;
-                case "Tracks":
-                    toolbar.setTitle("Tus canciones favoritas");
 
                     break;
             }

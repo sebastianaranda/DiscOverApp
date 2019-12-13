@@ -75,6 +75,10 @@
     <string name="txt_favorite_album_added">&#160;se agregó a tus favoritos</string>
     <string name="txt_favorite_album_removed">&#160;se eliminó a tus favoritos</string>
     <string name="txt_favorite_track_added">&#160;se agregó a tus favoritos</string>
+    <string name="txt_toolbar_title_fav_artist">Tus artistas favoritos</string>
+    <string name="txt_toolbar_title_fav_album">Tus albums favoritos</string>
+    <string name="txt_fragment_favorites_albums_empty">Usted no tiene albums favoritos, visite un album para agregarlo</string>
+    <string name="txt_fragment_favorites_artists_empty">Usted no tiene favoritos, visite un artista para agregarlo</string>
 
 
 </resources>

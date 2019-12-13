@@ -145,9 +145,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
             case R.id.main_menu_fav_albums:
                 goToFavorites(getString(R.string.txt_navigation_items_favorite_album_option));
                 break;
-            //case R.id.main_menu_fav_songs:
-            //    goToFavorites("Tracks");
-            //    break;
             case R.id.main_menu_profile:
                 if (currentUser != null){
                     startActivity(new Intent(MainActivity.this,UserProfileActivity.class));

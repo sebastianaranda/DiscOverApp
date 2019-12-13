@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:gravity="center"
-        android:text="Usted no tiene favoritos, visite un artista para agregarlo"
+        android:text="@string/txt_fragment_favorites_artists_empty"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
