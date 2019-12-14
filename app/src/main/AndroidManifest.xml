@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.SearchActivity"></activity>
+        <activity android:name=".view.SearchActivity" />
         <activity
             android:name=".view.MyFavoritesActivity"
             android:parentActivityName=".view.MainActivity"

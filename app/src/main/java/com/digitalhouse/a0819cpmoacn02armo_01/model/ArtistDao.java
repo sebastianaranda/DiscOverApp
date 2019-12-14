@@ -27,7 +27,6 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerArtists> call, Throwable t) {
-                Log.d("asdasd","asdasd");
             }
         });
     }
@@ -77,8 +76,6 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerTracks> call, Throwable t) {
-                //TODO: Borrar cuando se termine
-                Log.d("AAAA", "AAAAAAAAAAAA");
             }
         });
     }

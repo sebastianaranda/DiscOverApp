@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         int itemMenuSelected = item.getItemId();
         switch (itemMenuSelected){
             case R.id.toolbar_menu_search:
-                //TODO: modificar esta linea una vez definido el metodo de search
                 startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 break;
         }
