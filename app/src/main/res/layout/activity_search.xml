@@ -1,40 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
-<!--    Pasar esto a un fragment y dejar un container en este layout-->
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edt_search"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Buscar..."
-        app:layout_constraintEnd_toStartOf="@id/btn_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/toolbar_search_activity"
+        layout="@layout/toolbar" />
 
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="buscar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_artist_recycler"
+    <FrameLayout
+        android:id="@+id/search_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_marginTop="6dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_search"
-        app:reverseLayout="false"
-        tools:listitem="@layout/artist_recycler_row" />
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -25,10 +25,6 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
         this.trackList = new ArrayList<>();
         this.trackAdapterListener = trackAdapterListener;
     }
-//TODO: Borrar este constructor cuando se implemente el search fragment
-    public TrackAdapter() {
-        this.trackList = new ArrayList<>();
-    }
 
     @NonNull
     @Override

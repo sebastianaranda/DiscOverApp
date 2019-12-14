@@ -6,6 +6,8 @@
     <string name="txt_main_activity_artists">Artistas</string>
     <string name="txt_album_tracks">Canciones</string>
     <string name="txt_logout">Sesión cerrada correctamente</string>
+    <string name="txt_hint_search">Buscar&#8230;</string>
+    <string name="txt_btn_search">Buscar</string>
 
     <!--    DRAWER-->
     <string name="txt_header_username">Usuario Invitado</string>
