@@ -12,11 +12,14 @@
             <item
                 android:id="@+id/main_menu_fav_albums"
                 android:title="@string/txt_drawer_fav_albums"/>
+            <!--
             <item
                 android:id="@+id/main_menu_fav_songs"
                 android:title="@string/txt_drawer_fav_songs"/>
+                -->
         </menu>
     </item>
+    <!--
     <item android:title="@string/txt_drawer_section_options">
         <menu>
             <item
@@ -24,6 +27,7 @@
                 android:title="@string/txt_drawer_settings"/>
         </menu>
     </item>
+    -->
     <item android:title="@string/txt_drawer_section_login">
         <menu>
             <item

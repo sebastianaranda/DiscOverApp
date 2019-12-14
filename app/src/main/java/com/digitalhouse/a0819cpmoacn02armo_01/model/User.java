@@ -1,7 +1,5 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
-import android.net.Uri;
-
 public class User {
     private String userProfileImage;
     private String name;

@@ -14,7 +14,7 @@ public interface ArtistsService {
     Call<ContainerArtists> getAllArtistFromGenre(@Path("id") int idGenre);
 
     @GET("/artist/{id}")
-    Call<Artist> getArtistByID(@Path("id") int idArtist);
+    Call<Artist> getArtistByID(@Path("id") Integer idArtist);
 
     @GET("/search")
     Call<ContainerTracks> getArtistTracksByName(@Query("q") String query);

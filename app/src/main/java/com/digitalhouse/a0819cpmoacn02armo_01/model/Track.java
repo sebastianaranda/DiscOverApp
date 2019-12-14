@@ -1,29 +1,38 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
 public class Track implements Serializable {
 
     private int id;
     private String title;
     private int duration;
-    private URL preview;
+    private String preview;
     private Artist artist;
     private Album album;
-    private URL coverMedium;
+    private String coverMedium;
     @SerializedName("track_position")
     private int trackPosition;
+    @SerializedName("share")
+    private String share;
 
-    public Track(int id, String title, int duration, URL preview, Artist artist, Album album) {
+    public Track() {
+    }
+
+    public Track(int id, String title, int duration, String preview, Artist artist, Album album, String share) {
         this.id = id;
         this.title = title;
         this.duration = duration;
         this.preview = preview;
         this.artist = artist;
         this.album = album;
+        this.share = share;
     }
 
     public int getId() {
@@ -50,11 +59,11 @@ public class Track implements Serializable {
         this.duration = duration;
     }
 
-    public URL getPreview() {
+    public String getPreview() {
         return preview;
     }
 
-    public void setPreview(URL preview) {
+    public void setPreview(String preview) {
         this.preview = preview;
     }
 
@@ -74,11 +83,11 @@ public class Track implements Serializable {
         this.album = album;
     }
 
-    public URL getCoverMedium() {
+    public String getCoverMedium() {
         return coverMedium;
     }
 
-    public void setCoverMedium(URL coverMedium) {
+    public void setCoverMedium(String coverMedium) {
         this.coverMedium = coverMedium;
     }
 
@@ -90,4 +99,25 @@ public class Track implements Serializable {
         this.trackPosition = trackPosition;
     }
 
+    public String getShare() {
+        return share;
+    }
+
+    public void setShare(String share) {
+        this.share = share;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Track track = (Track) o;
+        return Objects.equals(id,track.id) &&
+                Objects.equals(title,track.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title);
+    }
 }

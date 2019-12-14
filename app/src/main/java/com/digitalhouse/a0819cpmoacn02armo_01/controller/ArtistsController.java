@@ -30,7 +30,7 @@ public class ArtistsController {
         });
     }
 
-    public void getArtistByID(final ResultListener<Artist> viewListener, int idArtist){
+    public void getArtistByID(final ResultListener<Artist> viewListener, Integer idArtist){
         ArtistDao artistDao = new ArtistDao();
         artistDao.getArtistByID(new ResultListener<Artist>() {
             @Override

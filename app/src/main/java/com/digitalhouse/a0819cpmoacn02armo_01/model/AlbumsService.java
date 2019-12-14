@@ -10,7 +10,7 @@ public interface AlbumsService {
     Call<Album> getAlbumById(@Path("id") int idAlbum);
 
     @GET("/artist/{id}/albums")
-    Call<ContainerAlbums> getAllAlbumsByArtist(@Path("id") int idArtist);
+    Call<ContainerAlbums> getAllAlbumsByArtist(@Path("id") Integer idArtist);
 
     @GET("/album/{id}/tracks")
     Call<ContainerTracks> getAllTracksByAlbum(@Path("id") int idAlbum);

@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout txtInputLayoutPassword;
     private TextInputEditText txtInputEditTextPassword;
     private FirebaseAuth auth;
-    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         txtInputLayoutPassword = findViewById(R.id.login_activity_text_input_layout_password);
         txtInputEditTextPassword = findViewById(R.id.login_activity_text_input_edit_text_password);
 
-        //TODO: Modificar esta parte de codigo para implemetar FB con Firebase
         callbackManager = CallbackManager.Factory.create();
         btnLoginFacebook = findViewById(R.id.login_button_fb);
         btnLoginFacebook.setReadPermissions(Arrays.asList("email", "public_profile"));
@@ -79,14 +77,12 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                //TODO: borrar esta linea cuando se defina el comportamiento
-                Toast.makeText(LoginActivity.this, "Login cancelado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.txt_login_activity_login_canceled, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException exception) {
-                //TODO: borrar esta linea cuando se defina el comportamiento
-                Toast.makeText(LoginActivity.this, "Login con error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.txt_login_activity_login_error, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -122,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null){
-            startActivity(new Intent(LoginActivity.this,UserProfileActivity.class));
+            onBackPressed();
         }
     }
 
@@ -171,7 +167,6 @@ public class LoginActivity extends AppCompatActivity {
         return verification;
     }
 
-    //CODIGO DE FIREBASE
     private void createFirebaseUser(String email, String password){
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -218,21 +213,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("FB_LOGIN", "handleFacebookAccessToken:" + token);
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d("FB_LOGIN", "Inicio de sesión: satisfactorio");
                             FirebaseUser user = auth.getCurrentUser();
                             saveUserLoggedInFirestore();
                             updateUI(user);
                         } else {
-                            Log.w("FB_LOGIN", "Inicio de sesión: fallído", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.txt_login_activity_handle_fb_token_error, Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }

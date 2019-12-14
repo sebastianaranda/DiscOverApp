@@ -108,4 +108,14 @@
         app:layout_constraintStart_toEndOf="@+id/player_seekbar"
         tools:text="1:00" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_media_player_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="32dp"
+        android:src="@drawable/ic_share_white_64dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

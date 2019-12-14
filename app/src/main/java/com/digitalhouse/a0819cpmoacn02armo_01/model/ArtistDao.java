@@ -27,6 +27,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerArtists> call, Throwable t) {
+                Log.d("asdasd","asdasd");
             }
         });
     }
@@ -47,7 +48,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
         });
     }
 
-    public void getArtistByID(final ResultListener<Artist> controllerListener, int artistID){
+    public void getArtistByID(final ResultListener<Artist> controllerListener, Integer artistID){
         Call<Artist> call = artistsService.getArtistByID(artistID);
 
         call.enqueue(new Callback<Artist>() {
