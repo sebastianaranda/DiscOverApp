@@ -44,7 +44,7 @@ public class AlbumDetailActivity extends AppCompatActivity implements TrackRecyc
     }
 
     @Override
-    public void getTrackFromFragment(Track track, List<Track> customTracklist) {
+    public void getTrackFromFragment(Track track, List<Track> customTracklist, boolean fromSearch) {
         Intent intent = new Intent(AlbumDetailActivity.this, MediaPlayerActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(MediaPlayerFragment.KEY_TRACK, track);

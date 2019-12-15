@@ -27,7 +27,6 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerArtists> call, Throwable t) {
-                Log.d("asdasd","asdasd");
             }
         });
     }
@@ -61,6 +60,22 @@ public class ArtistDao extends ArtistsRetrofitDAO {
             @Override
             public void onFailure(Call<Artist> call, Throwable t) {
 
+            }
+        });
+    }
+
+    public void getArtistTracksByName(final ResultListener<List<Track>> controllerListener, String query) {
+        Call<ContainerTracks> call = artistsService.getArtistTracksByName(query);
+
+        call.enqueue(new Callback<ContainerTracks>() {
+            @Override
+            public void onResponse(Call<ContainerTracks> call, Response<ContainerTracks> response) {
+                ContainerTracks containerTracks = response.body();
+                controllerListener.finish(containerTracks.getTrackList());
+            }
+
+            @Override
+            public void onFailure(Call<ContainerTracks> call, Throwable t) {
             }
         });
     }

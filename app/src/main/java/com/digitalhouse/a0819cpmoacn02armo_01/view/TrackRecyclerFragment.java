@@ -27,6 +27,7 @@ public class TrackRecyclerFragment extends Fragment implements TrackAdapter.Trac
     private FragmentAlbumDetailListener fragmentAlbumDetailListener;
     public static final String TRACKLIST_ALBUM_KEY = "tracklistAlbumKey";
     private List<Track> customTracklist;
+    private boolean fromSearch = false;
 
     public TrackRecyclerFragment() {
         // Required empty public constructor
@@ -72,11 +73,11 @@ public class TrackRecyclerFragment extends Fragment implements TrackAdapter.Trac
 
     @Override
     public void getTrackFromAdapter(Track track) {
-        fragmentAlbumDetailListener.getTrackFromFragment(track, customTracklist);
+        fragmentAlbumDetailListener.getTrackFromFragment(track, customTracklist, fromSearch);
     }
 
     public interface FragmentAlbumDetailListener {
-        void getTrackFromFragment(Track track, List<Track> customTracklist);
+        void getTrackFromFragment(Track track, List<Track> customTracklist, boolean fromSearch);
     }
 
 }

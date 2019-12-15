@@ -4,6 +4,7 @@ import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.ArtistDao;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
+import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
 
 import java.util.List;
 
@@ -37,6 +38,16 @@ public class ArtistsController {
                 viewListener.finish(result);
             }
         }, idArtist);
+    }
+
+    public void getArtistTracksByName(final ResultListener<List<Track>> viewListener, String query) {
+        ArtistDao artistDao = new ArtistDao();
+        artistDao.getArtistTracksByName(new ResultListener<List<Track>>() {
+            @Override
+            public void finish(List<Track> result) {
+                viewListener.finish(result);
+            }
+        }, query);
     }
 
 }
