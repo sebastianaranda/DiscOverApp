@@ -1,20 +1,27 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.view;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
@@ -40,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
     private MenuItem btnLogout;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
         btnLogout = navigationView.getMenu().findItem(R.id.main_menu_logout);
         btnLogout.setEnabled(false);
 
+        progressBar = navigationView.getHeaderView(0).findViewById(R.id.header_navigation_progressbar);
+        progressBar.setVisibility(View.VISIBLE);
         headerUserName = navigationView.getHeaderView(0).findViewById(R.id.header_user_name);
         headerImageUser = navigationView.getHeaderView(0).findViewById(R.id.header_user_profile_image);
 
@@ -71,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
 
         if (currentUser!=null){
             getCurrentUser();
+        } else {
+            progressBar.setVisibility(View.GONE);
         }
     }
 
@@ -196,6 +208,20 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                             if (user.getUserProfileImage() != null) {
                                 Glide.with(MainActivity.this)
                                     .load(user.getUserProfileImage())
+                                        .placeholder(R.drawable.img_artist_placeholder)
+                                        .addListener(new RequestListener<Drawable>() {
+                                            @Override
+                                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                                progressBar.setVisibility(View.GONE);
+                                                return false;
+                                            }
+
+                                            @Override
+                                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                                progressBar.setVisibility(View.GONE);
+                                                return false;
+                                            }
+                                        })
                                     .into(headerImageUser);
                             }
                         }

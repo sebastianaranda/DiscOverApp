@@ -33,11 +33,11 @@ public class MyFavoritesActivity extends AppCompatActivity implements FavoritesA
 
         toolbar = findViewById(R.id.toolbar_my_favourites_activity);
         toolbar.setElevation(10);
+        favoriteSelected = getIntent().getExtras().getSerializable(KEY_FAVORITE).toString();
 
         if (currentUser == null){
             startActivity(new Intent(MyFavoritesActivity.this,LoginActivity.class));
         } else {
-            favoriteSelected = getIntent().getExtras().getSerializable(KEY_FAVORITE).toString();
 
             switch (favoriteSelected){
                 case KEY_ARTIST_FAV_SELECTED:
@@ -57,6 +57,29 @@ public class MyFavoritesActivity extends AppCompatActivity implements FavoritesA
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+
+        if (currentUser == null){
+            startActivity(new Intent(MyFavoritesActivity.this,LoginActivity.class));
+        } else {
+
+            switch (favoriteSelected){
+                case KEY_ARTIST_FAV_SELECTED:
+                    toolbar.setTitle(R.string.txt_toolbar_title_fav_artist);
+                    attachFavouritesFragment(new FavoritesArtistsFragment());
+                    break;
+                case KEY_ALBUM_FAV_SELECTED:
+                    toolbar.setTitle(R.string.txt_toolbar_title_fav_album);
+                    attachFavouritesFragment(new FavoritesAlbumsFragment());
+
+                    break;
+            }
+        }
+    }
 
     private void attachFavouritesFragment(Fragment fragment) {
         getSupportFragmentManager()

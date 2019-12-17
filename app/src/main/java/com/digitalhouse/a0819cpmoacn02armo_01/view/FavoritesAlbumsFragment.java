@@ -14,6 +14,7 @@ import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.ContainerAlbums;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.FavAlbum;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -65,9 +66,10 @@ public class FavoritesAlbumsFragment extends Fragment implements AlbumAdapter.Al
 
         firestore.collection(COLLECTION_FAV_ALBUM)
                 .document(currentUser.getUid())
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
                         favAlbum = documentSnapshot.toObject(FavAlbum.class);
                         if (!documentSnapshot.exists()){
                             favAlbum = new FavAlbum();
@@ -85,6 +87,7 @@ public class FavoritesAlbumsFragment extends Fragment implements AlbumAdapter.Al
                         albumAdapter.notifyDataSetChanged();
                     }
                 });
+
         recyclerView.setAdapter(albumAdapter);
         return view;
     }

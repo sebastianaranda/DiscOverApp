@@ -151,6 +151,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
             public void onClick(View v) {
                 chooseImage();
                 btnSaveUserInfo.setVisibility(View.GONE);
+                btnEditUserImage.setVisibility(View.GONE);
             }
         });
 
@@ -250,6 +251,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
                 Toast.makeText(UserProfileActivity.this, R.string.txt_user_profile_activity_upload_image_successful, Toast.LENGTH_SHORT).show();
                 btnSaveUserInfo.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
+                btnEditUserImage.setVisibility(View.VISIBLE);
             }
         });
         uploadTask.addOnCanceledListener(new OnCanceledListener() {
@@ -257,12 +259,14 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
             public void onCanceled() {
                 btnSaveUserInfo.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
+                btnEditUserImage.setVisibility(View.VISIBLE);
                 Toast.makeText(UserProfileActivity.this, R.string.txt_user_profile_activity_upload_image_canceled, Toast.LENGTH_SHORT).show();
             }
         });
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                btnEditUserImage.setVisibility(View.VISIBLE);
                 Toast.makeText(UserProfileActivity.this, R.string.txt_user_profile_activity_upload_image_failure, Toast.LENGTH_SHORT).show();
                 btnSaveUserInfo.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);

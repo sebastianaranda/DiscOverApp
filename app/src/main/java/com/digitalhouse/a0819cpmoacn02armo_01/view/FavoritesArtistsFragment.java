@@ -14,6 +14,7 @@ import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.ContainerArtists;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.FavArtist;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -63,9 +64,10 @@ public class FavoritesArtistsFragment extends Fragment implements ArtistAdapter.
 
         firestore.collection(COLLECTION_FAV_ARTIST)
                 .document(currentUser.getUid())
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
                         favArtist = documentSnapshot.toObject(FavArtist.class);
                         if (!documentSnapshot.exists()){
                             favArtist = new FavArtist();
