@@ -1,5 +1,7 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
+import android.util.Log;
+
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import retrofit2.Response;
 public class AlbumDao extends AlbumsRetrofitDAO {
 
     public static final String BASE_URL = "https://api.deezer.com";
+    private static final String LOG_TAG = "CALL_ALBUM";
 
     public AlbumDao() {
         super(BASE_URL);
@@ -27,7 +30,7 @@ public class AlbumDao extends AlbumsRetrofitDAO {
 
             @Override
             public void onFailure(Call<Album> call, Throwable t) {
-                //TODO: Agregar comportamiento
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }
@@ -43,7 +46,7 @@ public class AlbumDao extends AlbumsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerAlbums> call, Throwable t) {
-                //TODO: Agregar comportamiento
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }
@@ -59,7 +62,7 @@ public class AlbumDao extends AlbumsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerTracks> call, Throwable t) {
-                //TODO: Agregar comportamiento
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }

@@ -33,7 +33,6 @@ public class GenreViewPagerActivity extends AppCompatActivity implements ArtistA
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        //TODO: Ordenar este codigo
         ViewPager viewPager = findViewById(R.id.genre_viewpager);
         final RecyclerView recyclerView = findViewById(R.id.fragment_artists_recycler);
         artistAdapter = new ArtistAdapter(GenreViewPagerActivity.this);

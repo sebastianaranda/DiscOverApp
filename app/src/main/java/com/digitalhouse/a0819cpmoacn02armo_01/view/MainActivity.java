@@ -186,16 +186,18 @@ public class MainActivity extends AppCompatActivity implements ArtistsRecyclerFr
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         User user = documentSnapshot.toObject(User.class);
-                        String username = user.getName();
-                        if (username == null){
-                            headerUserName.setText(user.getEmail());
-                        }else {
-                            headerUserName.setText(user.getName());
-                        }
-                        if (user.getUserProfileImage() != null){
-                            Glide.with(MainActivity.this)
+                        if (user != null) {
+                            String username = user.getName();
+                            if (username == null) {
+                                headerUserName.setText(user.getEmail());
+                            } else {
+                                headerUserName.setText(user.getName());
+                            }
+                            if (user.getUserProfileImage() != null) {
+                                Glide.with(MainActivity.this)
                                     .load(user.getUserProfileImage())
                                     .into(headerImageUser);
+                            }
                         }
                     }
                 });
