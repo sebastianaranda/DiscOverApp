@@ -1,5 +1,7 @@
 package com.digitalhouse.a0819cpmoacn02armo_01.model;
 
+import android.util.Log;
+
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import java.util.List;
 import retrofit2.Call;
@@ -9,6 +11,7 @@ import retrofit2.Response;
 public class GenreDao extends GenresRetrofitDAO {
 
     public static final String BASE_URL = "https://api.deezer.com";
+    private static final String LOG_TAG = "CALL_GENRE";
 
     public GenreDao() {
         super(BASE_URL);
@@ -25,7 +28,7 @@ public class GenreDao extends GenresRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerGenres> call, Throwable t) {
-                //TODO: Agregar comportamiento
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }

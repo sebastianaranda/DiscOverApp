@@ -8,7 +8,6 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".view.ArtistProfileFragment">
-    <!--    TODO: Pasar a Constraint antes de terminar esta pantalla-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

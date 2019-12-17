@@ -96,20 +96,17 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //TODO: borrar esta linea cuando se defina el comportamiento
-                Toast.makeText(UserProfileActivity.this, "Login Exitoso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this, getString(R.string.txt_login_activity_welcome), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancel() {
-                //TODO: borrar esta linea cuando se defina el comportamiento
-                Toast.makeText(UserProfileActivity.this, "Login cancelado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this, getString(R.string.txt_login_activity_login_canceled), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException exception) {
-                //TODO: borrar esta linea cuando se defina el comportamiento
-                Toast.makeText(UserProfileActivity.this, "Login con error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this, getString(R.string.txt_login_activity_login_error), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -183,8 +180,6 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
                 .into(imgUserPicture);
 
         txtUserName.setText(user.getName());
-        //TODO: definir si el id del user lo vamos a utilizar para otra cosa y si vale la pena mostrarlo en algun lado
-        //mId.setText(user.getId());
         if (user.getEmail() == null) {
             txtUserEmail.setText(getString(R.string.txt_user_profile_activity_no_email_message));
             txtUserEmail.setTextColor(Color.RED);
@@ -201,12 +196,14 @@ public class UserProfileActivity extends AppCompatActivity implements GetUserCal
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         user = documentSnapshot.toObject(User.class);
-                        txtUserName.setHint(user.getName());
-                        txtUserEmail.setHint(user.getEmail());
-                        if (user.getUserProfileImage() != null){
-                            Glide.with(UserProfileActivity.this)
+                        if (user != null) {
+                            txtUserName.setHint(user.getName());
+                            txtUserEmail.setHint(user.getEmail());
+                            if (user.getUserProfileImage() != null) {
+                                Glide.with(UserProfileActivity.this)
                                     .load(user.getUserProfileImage())
                                     .into(imgUserPicture);
+                            }
                         }
                     }
                 });

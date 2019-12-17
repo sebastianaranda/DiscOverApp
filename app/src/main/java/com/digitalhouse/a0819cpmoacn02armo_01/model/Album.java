@@ -32,7 +32,6 @@ public class Album implements Serializable {
     public Album(int id, String title, int nbTracks, String coverMedium, ContainerTracks tracks, Artist artist, Date releaseDate, int duration) {
         this.id = id;
         this.title = title;
-        //TODO: (Juan) Setear cantidad de temas con un size de la lista de tracks ya que no anda
         this.nbTracks = nbTracks;
         this.coverMedium = coverMedium;
         this.tracks = tracks;

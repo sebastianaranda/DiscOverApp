@@ -10,6 +10,7 @@ import retrofit2.Response;
 
 public class ArtistDao extends ArtistsRetrofitDAO {
     public static final String BASE_URL = "https://api.deezer.com";
+    public static final String LOG_TAG = "CALL_ARTIST";
 
     public ArtistDao() {
         super(BASE_URL);
@@ -27,6 +28,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerArtists> call, Throwable t) {
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }
@@ -43,6 +45,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerArtists> call, Throwable t) {
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }
@@ -59,7 +62,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<Artist> call, Throwable t) {
-
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }
@@ -76,6 +79,7 @@ public class ArtistDao extends ArtistsRetrofitDAO {
 
             @Override
             public void onFailure(Call<ContainerTracks> call, Throwable t) {
+                Log.d(LOG_TAG, "Request failed");
             }
         });
     }
