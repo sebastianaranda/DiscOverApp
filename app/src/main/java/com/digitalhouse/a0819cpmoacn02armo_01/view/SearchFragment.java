@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.digitalhouse.a0819cpmoacn02armo_01.R;
 import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
 import com.digitalhouse.a0819cpmoacn02armo_01.controller.ArtistsController;
+import com.digitalhouse.a0819cpmoacn02armo_01.controller.NetworkUtils;
 import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
 
 import java.util.ArrayList;
@@ -47,34 +48,38 @@ public class SearchFragment extends Fragment implements TrackAdapter.TrackAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view;
+        if (!NetworkUtils.isNetworkAvailable(getContext())){
+            view = inflater.inflate(R.layout.fragment_empty_state, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        edtSearch = view.findViewById(R.id.edt_search);
-        Button button = view.findViewById(R.id.btn_search);
-        RecyclerView recyclerView = view.findViewById(R.id.search_artist_recycler);
+            edtSearch = view.findViewById(R.id.edt_search);
+            Button button = view.findViewById(R.id.btn_search);
+            RecyclerView recyclerView = view.findViewById(R.id.search_artist_recycler);
 
-        final ArtistsController artistsController = new ArtistsController();
-        final TrackAdapter trackAdapter = new TrackAdapter(this);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                performSearch(artistsController, trackAdapter);
-
-            }
-        });
-
-        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_SEARCH) {
+            final ArtistsController artistsController = new ArtistsController();
+            final TrackAdapter trackAdapter = new TrackAdapter(this);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     performSearch(artistsController, trackAdapter);
-                    return true;
-                }
-                return false;
-            }
-        });
 
-        recyclerView.setAdapter(trackAdapter);
+                }
+            });
+
+            edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                    if (i == EditorInfo.IME_ACTION_SEARCH) {
+                        performSearch(artistsController, trackAdapter);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            recyclerView.setAdapter(trackAdapter);
+        }
         return view;
     }
 
