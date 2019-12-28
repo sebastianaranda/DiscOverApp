@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout txtInputLayoutPassword;
     private TextInputEditText txtInputEditTextPassword;
     private FirebaseAuth auth;
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         toolbar = findViewById(R.id.toolbar_login_activity);
         setSupportActionBar(toolbar);
@@ -176,6 +180,9 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = auth.getCurrentUser();
                             saveUserLoggedInFirestore();
                             updateUI(user);
+                            Bundle bundle = new Bundle();
+                            bundle.putString(FirebaseAnalytics.Param.METHOD, "sign_up");
+                            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
                         } else {
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             updateUI(null);
