@@ -1,4 +1,4 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.model;
+package com.arandasebastian.discoverapp.model;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

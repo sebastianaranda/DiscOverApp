@@ -1,8 +1,8 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.controller;
+package com.arandasebastian.discoverapp.controller;
 
-import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.GenreDao;
+import com.arandasebastian.discoverapp.ResultListener;
+import com.arandasebastian.discoverapp.model.Genre;
+import com.arandasebastian.discoverapp.model.GenreDao;
 import java.util.List;
 
 public class GenresController {

@@ -1,6 +1,6 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.model;
+package com.arandasebastian.discoverapp.model;
 
-import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
+import com.arandasebastian.discoverapp.ResultListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;

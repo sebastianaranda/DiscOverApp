@@ -1,8 +1,8 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.controller;
+package com.arandasebastian.discoverapp.controller;
 
-import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.TrackDAO;
+import com.arandasebastian.discoverapp.ResultListener;
+import com.arandasebastian.discoverapp.model.Track;
+import com.arandasebastian.discoverapp.model.TrackDAO;
 
 public class TrackController {
 

@@ -1,7 +1,7 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.controller;
+package com.arandasebastian.discoverapp.controller;
 
 import android.net.Uri;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.User;
+import com.arandasebastian.discoverapp.model.User;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import org.json.JSONException;

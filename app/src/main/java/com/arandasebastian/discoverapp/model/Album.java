@@ -1,9 +1,8 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.model;
+package com.arandasebastian.discoverapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.net.URL;
 import java.util.Date;
 import java.util.Objects;
 

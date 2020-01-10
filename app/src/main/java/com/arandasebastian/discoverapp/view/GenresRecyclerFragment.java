@@ -1,4 +1,4 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.view;
+package com.arandasebastian.discoverapp.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.digitalhouse.a0819cpmoacn02armo_01.R;
-import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
-import com.digitalhouse.a0819cpmoacn02armo_01.controller.GenresController;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
+import com.arandasebastian.discoverapp.R;
+import com.arandasebastian.discoverapp.ResultListener;
+import com.arandasebastian.discoverapp.controller.GenresController;
+import com.arandasebastian.discoverapp.model.Genre;
 import java.util.List;
 
 public class GenresRecyclerFragment extends Fragment implements GenresRecyclerAdapter.GenreAdapterListener {

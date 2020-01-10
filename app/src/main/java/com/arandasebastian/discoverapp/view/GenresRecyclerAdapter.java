@@ -1,4 +1,4 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.view;
+package com.arandasebastian.discoverapp.view;
 
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.digitalhouse.a0819cpmoacn02armo_01.R;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Genre;
+import com.arandasebastian.discoverapp.R;
+import com.arandasebastian.discoverapp.model.Genre;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;

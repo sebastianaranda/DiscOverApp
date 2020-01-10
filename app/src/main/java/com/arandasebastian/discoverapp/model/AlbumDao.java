@@ -1,8 +1,8 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.model;
+package com.arandasebastian.discoverapp.model;
 
 import android.util.Log;
 
-import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
+import com.arandasebastian.discoverapp.ResultListener;
 
 import java.util.List;
 

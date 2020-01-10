@@ -1,4 +1,4 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.controller;
+package com.arandasebastian.discoverapp.controller;
 
 import android.os.Bundle;
 import com.facebook.AccessToken;

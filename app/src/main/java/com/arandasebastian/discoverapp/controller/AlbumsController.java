@@ -1,10 +1,10 @@
-package com.digitalhouse.a0819cpmoacn02armo_01.controller;
+package com.arandasebastian.discoverapp.controller;
 
-import com.digitalhouse.a0819cpmoacn02armo_01.ResultListener;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Album;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.AlbumDao;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Artist;
-import com.digitalhouse.a0819cpmoacn02armo_01.model.Track;
+import com.arandasebastian.discoverapp.ResultListener;
+import com.arandasebastian.discoverapp.model.Album;
+import com.arandasebastian.discoverapp.model.AlbumDao;
+import com.arandasebastian.discoverapp.model.Artist;
+import com.arandasebastian.discoverapp.model.Track;
 
 import java.util.List;
 
