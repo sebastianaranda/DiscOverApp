@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1001861584776:android:14104eb9a50a08362b0c3d",
+        "android_client_info": {
+          "package_name": "com.arandasebastian.discoverapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001861584776-mvs14avifivtvrq5os2a4q21r7uik55l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arandasebastian.discoverapp",
+            "certificate_hash": "9531949c5cb2ce152d37a2d9f2c78299724b3c9c"
+          }
+        },
+        {
+          "client_id": "1001861584776-taol2ibs0t1tqpg756a2qfsja8a5k2h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChN9u78T33grWZhRaXAfTfOqaKFOyWv6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001861584776-taol2ibs0t1tqpg756a2qfsja8a5k2h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1001861584776:android:f8f0143bd0c59b462b0c3d",
         "android_client_info": {
           "package_name": "com.digitalhouse.a0819cpmoacn02armo_01"
