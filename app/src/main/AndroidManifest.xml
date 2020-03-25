@@ -37,6 +37,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.arandasebastian.discoverapp.view.ArtistProfileActivity"
+            android:parentActivityName=".view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/artistProfileTheme" />
         <activity

@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="Correo electrónico"
             android:textColor="@color/colorWhite"
             android:textSize="34sp"
@@ -128,19 +128,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_layout_manual_form"
-        android:layout_marginTop="48dp"
+
         android:gravity="center"
         android:text="O ingresá con"
         android:textColor="@color/colorWhite"
         android:textSize="34sp"
         android:textStyle="bold" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button_fb"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/login_button_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_login_title_social_media"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp" />
+        app:buttonSize="wide"
+        app:colorScheme="auto"
+        android:layout_marginTop="8dp"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button_fb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_button_google"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 
 </RelativeLayout>
