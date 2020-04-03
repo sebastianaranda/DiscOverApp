@@ -3,10 +3,14 @@ package com.arandasebastian.discoverapp.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +28,8 @@ import com.arandasebastian.discoverapp.controller.NetworkUtils;
 import com.arandasebastian.discoverapp.model.Album;
 import com.arandasebastian.discoverapp.model.Artist;
 import com.arandasebastian.discoverapp.model.FavArtist;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,15 +50,14 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
     private FirebaseAuth auth;
     private FirebaseUser currentUser;
     private TextView txtArtistFans;
-    private ImageView imgArtistPicture;
+    private ImageView imgArtistPicture, imgGradientBg;
     private CollapsingToolbarLayout collapsingToolbarLayoutTitle;
-
+    private View bgView;
+    private Palette.Swatch swatch;
     private static final String COLLECTION_FAV_ARTIST = "FavArtists";
     private FirebaseFirestore firestore;
     private FavArtist favArtist = new FavArtist();
-
     public ArtistProfileFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -70,9 +75,13 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
         } else {
             fragmentView = inflater.inflate(R.layout.fragment_artist_profile, container, false);
 
+            bgView = fragmentView.findViewById(R.id.artist_profile_bg_view);
+
             firestore = FirebaseFirestore.getInstance();
             auth = FirebaseAuth.getInstance();
             currentUser = auth.getCurrentUser();
+
+            imgGradientBg = fragmentView.findViewById(R.id.recycler_gradient_bg);
 
             favArtist = new FavArtist();
             favArtist.setArtistList(new ArrayList<Artist>());
@@ -97,9 +106,29 @@ public class ArtistProfileFragment extends Fragment implements AlbumAdapter.Albu
                 public void finish(Artist result) {
                     txtArtistFans.setText(String.valueOf(result.getNbFans()));
                     Glide.with(fragmentView)
+                            .asBitmap()
                             .load(result.getPictureBig())
                             .placeholder(R.drawable.img_artist_placeholder)
-                            .into(imgArtistPicture);
+                            .into(new CustomTarget<Bitmap>() {
+                                @Override
+                                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                    imgArtistPicture.setImageBitmap(resource);
+                                    Palette.from(resource).generate(new Palette.PaletteAsyncListener() {
+                                        @Override
+                                        public void onGenerated(@Nullable Palette palette) {
+                                            swatch = palette.getDominantSwatch();
+                                            if (swatch != null){
+                                                bgView.setBackgroundColor(swatch.getRgb());
+                                                fragmentView.setBackgroundColor(swatch.getRgb());
+                                            }
+                                        }
+                                    });
+                                }
+                                @Override
+                                public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                                }
+                            });
                     collapsingToolbarLayoutTitle.setTitle(result.getName());
                     selectedArtist = result;
                 }

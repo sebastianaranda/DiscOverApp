@@ -12,14 +12,16 @@ import com.arandasebastian.discoverapp.R;
 import com.arandasebastian.discoverapp.ResultListener;
 import com.arandasebastian.discoverapp.controller.GenresController;
 import com.arandasebastian.discoverapp.model.Genre;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenresRecyclerFragment extends Fragment implements GenresRecyclerAdapter.GenreAdapterListener {
 
     private GenresFragmentListener genresFragmentListener;
+    private List<Genre> genreList;
 
     public GenresRecyclerFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -34,11 +36,24 @@ public class GenresRecyclerFragment extends Fragment implements GenresRecyclerAd
         View view = inflater.inflate(R.layout.fragment_recycler_genres, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.genres_fragment_recycler);
         final GenresRecyclerAdapter genresRecyclerAdapter = new GenresRecyclerAdapter(this);
+        genreList = new ArrayList<>();
         GenresController genresController = new GenresController();
         genresController.getGenresFromDao(new ResultListener<List<Genre>>() {
             @Override
             public void finish(List<Genre> result) {
-                genresRecyclerAdapter.setGenreList(result);
+                genreList = result;
+                Genre newGenre = genreList.get(0);
+                String urlString = "https://e-cdns-images.dzcdn.net/images/playlist/f1ac18441ab1dabc94282e4d1d5f4955/1000x1000.jpg";
+                try {
+                    URL newPicture = new URL(urlString);
+                    newGenre.setPictureBig(newPicture);
+                    newGenre.setPicture(newPicture);
+                    genreList.get(0).setPicture(newPicture);
+                    genreList.get(0).setPictureBig(newPicture);
+                    genreList.get(0).setName("Top 100 world");
+                } catch (Exception e){
+                }
+                genresRecyclerAdapter.setGenreList(genreList);
                 genresRecyclerAdapter.notifyDataSetChanged();
             }
         });

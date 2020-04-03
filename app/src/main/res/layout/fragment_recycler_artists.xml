@@ -20,7 +20,8 @@
             android:text="@string/txt_main_activity_artists"
             android:textColor="@color/colorWhite"
             android:textSize="20sp"
-            android:layout_marginStart="12dp"/>
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"/>
 
         <TextView
             android:id="@+id/txt_artist_count"

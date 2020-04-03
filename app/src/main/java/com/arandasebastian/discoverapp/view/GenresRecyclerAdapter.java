@@ -98,4 +98,7 @@ public class GenresRecyclerAdapter extends RecyclerView.Adapter<GenresRecyclerAd
         this.genreList = genreList;
     }
 
+    public List<Genre> getGenreList() {
+        return genreList;
+    }
 }

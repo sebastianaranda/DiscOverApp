@@ -9,6 +9,12 @@
     android:orientation="vertical"
     tools:context=".view.ArtistProfileFragment">
 
+    <ImageView
+        android:id="@+id/recycler_gradient_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/recycler_bg"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +29,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:reverseLayout="false"
             app:spanCount="2"
-            tools:listitem="@layout/album_recycler_row" />
+            tools:listitem="@layout/album_recycler_row"/>
 
     </androidx.core.widget.NestedScrollView>
 
@@ -50,23 +56,37 @@
                 app:layout_collapseMode="parallax"
                 tools:src="@drawable/img_artist_placeholder" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_gravity="bottom"
-                android:background="#BF111A21"
                 android:gravity="bottom"
                 android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/artist_profile_bg_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#BF111A21"
+                    android:alpha="0.5"/>
+
+                <ImageView
+                    android:id="@+id/media_player_gradient_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/artist_profile_name_bg"/>
 
                 <TextView
                     android:id="@+id/txt_title_artist_fans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:paddingStart="16dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="30dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp"
-                    android:text="@string/txt_fragment_artist_profile_nb_fans" />
+                    android:text="@string/txt_fragment_artist_profile_nb_fans"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent" />
 
                 <TextView
                     android:id="@+id/txt_artist_fans"
@@ -75,9 +95,11 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginBottom="2dp"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="@id/txt_title_artist_fans"
+                    app:layout_constraintLeft_toRightOf="@+id/txt_title_artist_fans"/>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"

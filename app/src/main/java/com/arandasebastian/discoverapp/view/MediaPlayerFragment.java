@@ -1,10 +1,18 @@
 package com.arandasebastian.discoverapp.view;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.palette.graphics.Palette;
+
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +28,8 @@ import com.arandasebastian.discoverapp.ResultListener;
 import com.arandasebastian.discoverapp.controller.NetworkUtils;
 import com.arandasebastian.discoverapp.controller.TrackController;
 import com.arandasebastian.discoverapp.model.Track;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
@@ -42,6 +52,8 @@ public class MediaPlayerFragment extends Fragment {
     private List<Track> trackList;
     private boolean pause = false;
     private FloatingActionButton btnShare;
+    private ImageView imgGradientBg,imgBgColor;
+    private Palette.Swatch swatch;
 
     public MediaPlayerFragment() {
         // Required empty public constructor
@@ -66,20 +78,46 @@ public class MediaPlayerFragment extends Fragment {
             ImageButton btnPlay = view.findViewById(R.id.btn_player_play);
             ImageButton btnNext = view.findViewById(R.id.btn_player_next);
             ImageButton btnPrevious = view.findViewById(R.id.btn_player_previous);
-            ImageView imgPlayerAlbumCover = view.findViewById(R.id.player_album_cover);
+            final ImageView imgPlayerAlbumCover = view.findViewById(R.id.player_album_cover);
             final TextView txtPlayerTrackName = view.findViewById(R.id.player_track_title);
             TextView txtPlayerTrackArtist = view.findViewById(R.id.player_track_artist);
             seekBar = view.findViewById(R.id.player_seekbar);
             txtPlayerElapsed = view.findViewById(R.id.txt_player_elapsed);
             txtPlayerDuration = view.findViewById(R.id.txt_player_duration);
 
+            imgBgColor = view.findViewById(R.id.media_player_bg_color);
+            imgGradientBg = view.findViewById(R.id.media_player_gradient_bg);
+
             txtPlayerTrackName.setText(track.getTitle());
             txtPlayerTrackArtist.setText(track.getArtist().getName());
-            Glide.with(view)
-                .load(track.getCoverMedium())
-                .placeholder(R.drawable.img_genre_placeholder)
-                .into(imgPlayerAlbumCover);
 
+            Glide.with(view)
+                    .asBitmap()
+                    .load(track.getCoverMedium())
+                    .placeholder(R.drawable.img_genre_placeholder)
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            imgPlayerAlbumCover.setImageBitmap(resource);
+                            Palette.from(resource).generate(new Palette.PaletteAsyncListener() {
+                                @Override
+                                public void onGenerated(@Nullable Palette palette) {
+                                    swatch = palette.getDominantSwatch();
+                                    if (swatch != null){
+                                        imgBgColor.setBackgroundColor(swatch.getRgb());
+                                        btnShare.setBackgroundTintList(ColorStateList.valueOf(swatch.getBodyTextColor()));
+                                        seekBar.setProgressTintList(ColorStateList.valueOf(swatch.getRgb()));
+                                        seekBar.setThumbTintList(ColorStateList.valueOf(swatch.getRgb()));
+                                    }
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+                    });
             mediaPlayer = CustomMediaPlayer.getInstance();
             setAndPrepare(track.getPreview());
             getPlayerStats();
