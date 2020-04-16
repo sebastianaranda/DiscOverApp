@@ -1,8 +1,8 @@
-package com.arandasebastian.discoverapp.model;
+package com.arandasebastian.discover.model;
 
 import android.util.Log;
 
-import com.arandasebastian.discoverapp.ResultListener;
+import com.arandasebastian.discover.ResultListener;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;

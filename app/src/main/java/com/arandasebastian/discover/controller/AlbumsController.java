@@ -1,10 +1,10 @@
-package com.arandasebastian.discoverapp.controller;
+package com.arandasebastian.discover.controller;
 
-import com.arandasebastian.discoverapp.ResultListener;
-import com.arandasebastian.discoverapp.model.Album;
-import com.arandasebastian.discoverapp.model.AlbumDao;
-import com.arandasebastian.discoverapp.model.Artist;
-import com.arandasebastian.discoverapp.model.Track;
+import com.arandasebastian.discover.ResultListener;
+import com.arandasebastian.discover.model.Album;
+import com.arandasebastian.discover.model.AlbumDao;
+import com.arandasebastian.discover.model.Artist;
+import com.arandasebastian.discover.model.Track;
 
 import java.util.List;
 

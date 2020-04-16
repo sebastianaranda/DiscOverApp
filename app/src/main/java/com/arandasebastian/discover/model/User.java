@@ -1,4 +1,4 @@
-package com.arandasebastian.discoverapp.model;
+package com.arandasebastian.discover.model;
 
 public class User {
     private String userProfileImage;

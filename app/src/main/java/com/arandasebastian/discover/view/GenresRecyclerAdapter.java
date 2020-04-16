@@ -1,4 +1,4 @@
-package com.arandasebastian.discoverapp.view;
+package com.arandasebastian.discover.view;
 
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.arandasebastian.discoverapp.R;
-import com.arandasebastian.discoverapp.model.Genre;
+import com.arandasebastian.discover.R;
+import com.arandasebastian.discover.model.Genre;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;

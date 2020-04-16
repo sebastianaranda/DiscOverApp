@@ -1,4 +1,4 @@
-package com.arandasebastian.discoverapp.model;
+package com.arandasebastian.discover.model;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.arandasebastian.discoverapp.controller;
+package com.arandasebastian.discover.controller;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

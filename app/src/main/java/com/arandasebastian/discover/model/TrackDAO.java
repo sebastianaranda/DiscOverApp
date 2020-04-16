@@ -1,6 +1,6 @@
-package com.arandasebastian.discoverapp.model;
+package com.arandasebastian.discover.model;
 
-import com.arandasebastian.discoverapp.ResultListener;
+import com.arandasebastian.discover.ResultListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;

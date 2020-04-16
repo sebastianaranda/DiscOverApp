@@ -1,8 +1,8 @@
-package com.arandasebastian.discoverapp.controller;
+package com.arandasebastian.discover.controller;
 
-import com.arandasebastian.discoverapp.ResultListener;
-import com.arandasebastian.discoverapp.model.Track;
-import com.arandasebastian.discoverapp.model.TrackDAO;
+import com.arandasebastian.discover.ResultListener;
+import com.arandasebastian.discover.model.Track;
+import com.arandasebastian.discover.model.TrackDAO;
 
 public class TrackController {
 
