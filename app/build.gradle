@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId 'com.arandasebastian.discoverapp'
+        applicationId 'com.arandasebastian.discover'
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 2
+        versionCode 4
         versionName "1.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -18,10 +18,12 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+            }
         }
     }
 }
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -30,7 +32,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
@@ -38,20 +40,17 @@ dependencies {
     //CircularImageView
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     //Authentication
-    implementation 'com.facebook.android:facebook-login:[5,6)'
-    implementation 'com.google.firebase:firebase-analytics:17.2.1'
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-
+    implementation 'com.facebook.android:facebook-login:5.15.3'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
     //Firestore
-    implementation 'com.google.firebase:firebase-storage:19.1.0'
-    implementation 'com.google.firebase:firebase-firestore:21.1.1'
-
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.firebase:firebase-firestore:21.4.2'
     //Crashlytics
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
     //Performance Monitoring
-    implementation 'com.google.firebase:firebase-perf:19.0.4'
+    implementation 'com.google.firebase:firebase-perf:19.0.6'
     implementation 'androidx.palette:palette:1.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

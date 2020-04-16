@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1001861584776:android:14104eb9a50a08362b0c3d",
+        "mobilesdk_app_id": "1:1001861584776:android:386ab23c7ebb49102b0c3d",
         "android_client_info": {
-          "package_name": "com.arandasebastian.discoverapp"
+          "package_name": "com.arandasebastian.discover"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1001861584776-mvs14avifivtvrq5os2a4q21r7uik55l.apps.googleusercontent.com",
+          "client_id": "1001861584776-5dc3cusick9e1blsekp9k6714iucshj1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.arandasebastian.discoverapp",
-            "certificate_hash": "9531949c5cb2ce152d37a2d9f2c78299724b3c9c"
+            "package_name": "com.arandasebastian.discover",
+            "certificate_hash": "d96cc865080047052bdb9abda747581cd9d36d5f"
           }
         },
         {
@@ -45,12 +45,28 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1001861584776:android:f8f0143bd0c59b462b0c3d",
+        "mobilesdk_app_id": "1:1001861584776:android:14104eb9a50a08362b0c3d",
         "android_client_info": {
-          "package_name": "com.digitalhouse.a0819cpmoacn02armo_01"
+          "package_name": "com.arandasebastian.discoverapp"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1001861584776-0699j120bf4qjsnece8d8u8vou76crlk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arandasebastian.discoverapp",
+            "certificate_hash": "e9dc1f406f02b0af22f99f8c5f003ec8d50b188c"
+          }
+        },
+        {
+          "client_id": "1001861584776-mvs14avifivtvrq5os2a4q21r7uik55l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arandasebastian.discoverapp",
+            "certificate_hash": "9531949c5cb2ce152d37a2d9f2c78299724b3c9c"
+          }
+        },
         {
           "client_id": "1001861584776-taol2ibs0t1tqpg756a2qfsja8a5k2h4.apps.googleusercontent.com",
           "client_type": 3
