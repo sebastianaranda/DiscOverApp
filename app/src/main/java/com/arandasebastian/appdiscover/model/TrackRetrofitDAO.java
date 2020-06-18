@@ -1,4 +1,4 @@
-package com.arandasebastian.discover.model;
+package com.arandasebastian.appdiscover.model;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

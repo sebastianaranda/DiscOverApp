@@ -1,7 +1,7 @@
-package com.arandasebastian.discover.controller;
+package com.arandasebastian.appdiscover.controller;
 
 import android.net.Uri;
-import com.arandasebastian.discover.model.User;
+import com.arandasebastian.appdiscover.model.User;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import org.json.JSONException;

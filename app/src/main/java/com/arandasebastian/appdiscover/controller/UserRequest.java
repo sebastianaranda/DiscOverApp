@@ -1,4 +1,4 @@
-package com.arandasebastian.discover.controller;
+package com.arandasebastian.appdiscover.controller;
 
 import android.os.Bundle;
 import com.facebook.AccessToken;

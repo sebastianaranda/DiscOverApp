@@ -1,4 +1,4 @@
-package com.arandasebastian.discover.view;
+package com.arandasebastian.appdiscover.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.arandasebastian.discover.R;
-import com.arandasebastian.discover.ResultListener;
-import com.arandasebastian.discover.controller.GenresController;
-import com.arandasebastian.discover.model.Genre;
+import com.arandasebastian.appdiscover.R;
+import com.arandasebastian.appdiscover.ResultListener;
+import com.arandasebastian.appdiscover.controller.GenresController;
+import com.arandasebastian.appdiscover.model.Genre;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

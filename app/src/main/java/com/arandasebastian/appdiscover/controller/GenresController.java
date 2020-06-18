@@ -1,8 +1,8 @@
-package com.arandasebastian.discover.controller;
+package com.arandasebastian.appdiscover.controller;
 
-import com.arandasebastian.discover.ResultListener;
-import com.arandasebastian.discover.model.Genre;
-import com.arandasebastian.discover.model.GenreDao;
+import com.arandasebastian.appdiscover.ResultListener;
+import com.arandasebastian.appdiscover.model.Genre;
+import com.arandasebastian.appdiscover.model.GenreDao;
 import java.util.List;
 
 public class GenresController {

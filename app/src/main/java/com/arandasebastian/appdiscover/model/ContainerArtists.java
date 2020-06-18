@@ -1,4 +1,4 @@
-package com.arandasebastian.discover.model;
+package com.arandasebastian.appdiscover.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
