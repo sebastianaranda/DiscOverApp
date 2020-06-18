@@ -6,11 +6,11 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId 'com.arandasebastian.discover'
+        applicationId 'com.arandasebastian.appdiscover'
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.3"
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

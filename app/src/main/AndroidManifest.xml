@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.arandasebastian.discover">
+    package="com.arandasebastian.appdiscover">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,39 +14,39 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.arandasebastian.discover.view.SearchActivity" />
+        <activity android:name="com.arandasebastian.appdiscover.view.SearchActivity" />
         <activity
-            android:name="com.arandasebastian.discover.view.MyFavoritesActivity"
-            android:parentActivityName="com.arandasebastian.discover.view.MainActivity"
+            android:name="com.arandasebastian.appdiscover.view.MyFavoritesActivity"
+            android:parentActivityName="com.arandasebastian.appdiscover.view.MainActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.arandasebastian.discover.view.MediaPlayerActivity"
+            android:name="com.arandasebastian.appdiscover.view.MediaPlayerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.arandasebastian.discover.view.AlbumDetailActivity"
+            android:name="com.arandasebastian.appdiscover.view.AlbumDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.arandasebastian.discover.view.LoginActivity"
+            android:name="com.arandasebastian.appdiscover.view.LoginActivity"
             android:label="@string/title_login_activity"
-            android:parentActivityName="com.arandasebastian.discover.view.MainActivity"
+            android:parentActivityName="com.arandasebastian.appdiscover.view.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.arandasebastian.discover.view.UserProfileActivity"
+            android:name="com.arandasebastian.appdiscover.view.UserProfileActivity"
             android:label="@string/title_user_profile_activity"
-            android:parentActivityName="com.arandasebastian.discover.view.MainActivity"
+            android:parentActivityName="com.arandasebastian.appdiscover.view.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.arandasebastian.discover.view.ArtistProfileActivity"
-            android:parentActivityName="com.arandasebastian.discover.view.MainActivity"
+            android:name="com.arandasebastian.appdiscover.view.ArtistProfileActivity"
+            android:parentActivityName="com.arandasebastian.appdiscover.view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/artistProfileTheme" />
         <activity
-            android:name="com.arandasebastian.discover.view.GenreViewPagerActivity"
+            android:name="com.arandasebastian.appdiscover.view.GenreViewPagerActivity"
             android:label="@string/title_genre_viewpager_activity"
-            android:parentActivityName="com.arandasebastian.discover.view.MainActivity"
+            android:parentActivityName="com.arandasebastian.appdiscover.view.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.arandasebastian.discover.view.MainActivity"
+            android:name="com.arandasebastian.appdiscover.view.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
